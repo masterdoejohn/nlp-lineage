@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import { milestones, relationships, threads, terms, chapters, onThread } from '../lib/data';
+import { year } from '../lib/labels';
+
+const first = year(milestones[0]), last = year(milestones[milestones.length - 1]);
+---
+<Base title="NLP Lineage" description="A reference on how natural language processing led to modern language models: the milestones, the papers behind them, and what to learn first.">
+  <p class="kicker">A reference on how NLP led to modern language models</p>
+  <h1 class="title title-home">NLP Lineage</h1>
+  <p class="lead">
+    It records <span class="count">{milestones.length}</span> milestones from {first} to {last}, and the <span class="count">{relationships.length}</span> relationships between them.
+    Each milestone and each relationship links to its primary source.
+  </p>
+
+  <section class="sec" aria-labelledby="h-start">
+    <h2 id="h-start">Where to start</h2>
+    <ul class="tiles">
+      <li><a href="/tour/">Guided tour</a><p>How language models came to be: the story in {chapters.length} chapters, with working diagrams.</p></li>
+      <li><a href="/milestones/">Milestones</a><p>All {milestones.length}, in date order, from {first} to {last}.</p></li>
+      <li><a href="/threads/">Threads</a><p>The {threads.length} research threads, and the milestones on each one.</p></li>
+      <li><a href="/glossary/">Glossary</a><p>{terms.length ? `${terms.length} terms, each defined in plain words.` : 'Terms in plain words. The glossary is being written.'}</p></li>
+    </ul>
+  </section>
+
+  <section class="sec" aria-labelledby="h-threads">
+    <h2 id="h-threads">The threads</h2>
+    <ul class="tiles">
+      {threads.map((t) => (
+        <li><a class="mark" style={`--c:var(--c-${t.id})`} href={`/threads/${t.id}/`}>{t.name}</a><p><span class="count">{onThread(t.id).length}</span> milestones</p></li>
+      ))}
+    </ul>
+  </section>
+</Base>

@@ -23,7 +23,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'  # Astro 7 needs Node 22.12 or later
           cache: npm
 
       - name: Install tools
@@ -47,3 +47,9 @@ jobs:
 
       - name: Redesign checks
         run: python tests/test_redesign.py
+
+      - name: Build the reference site
+        run: npm run site:build
+
+      - name: Site checks
+        run: python tests/test_site.py

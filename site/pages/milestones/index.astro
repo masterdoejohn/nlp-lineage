@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import YearList from '../../components/YearList.astro';
+import { milestones } from '../../lib/data';
+import { year } from '../../lib/labels';
+---
+<Base title="Milestones" description="Every milestone in the history of language models, in date order, each with its primary source.">
+  <p class="kicker">{milestones.length} milestones, {year(milestones[0])} to {year(milestones[milestones.length - 1])}</p>
+  <h1 class="title">Milestones</h1>
+  <p class="lead">Papers, models, methods, datasets and events, in date order. Open one to see what it changed, its source, and what came before and after it.</p>
+  <div class="sec"><YearList items={milestones} /></div>
+</Base>

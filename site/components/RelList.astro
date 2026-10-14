@@ -1,0 +1,37 @@
+---
+// One side of a milestone's relationships, grouped as the guided tour groups them. Every item names its source,
+// and a weak item always carries its qualifier in words (never colour alone).
+import { byId, type Relationship } from '../lib/data';
+import { GROUP_IN, GROUP_OUT, GROUP_ORDER, relGroup, isWeak, QUAL, year, host } from '../lib/labels';
+
+interface Props { rels: Relationship[]; dir: 'in' | 'out' }
+const { rels, dir } = Astro.props;
+const names = dir === 'in' ? GROUP_IN : GROUP_OUT;
+const other = (r: Relationship) => byId[dir === 'in' ? r.f : r.t];
+const groups = GROUP_ORDER.map((g) => ({
+  g,
+  items: rels.filter((r) => relGroup(r.rel) === g).sort((a, b) => other(a).ord - other(b).ord || (other(a).id < other(b).id ? -1 : 1)),
+})).filter((x) => x.items.length);
+---
+{groups.length === 0 ? (
+  <p class="none">None recorded in the sources used.</p>
+) : (
+  groups.map(({ g, items }) => (
+    <div class="rel-group">
+      <p class="kicker">{names[g]}</p>
+      <ul class="rel-list">
+        {items.map((r) => {
+          const o = other(r);
+          return (
+            <li class={isWeak(r.ev) ? 'weak' : undefined} data-dir={dir} data-ev={r.ev}>
+              <a class="who" href={`/milestones/${o.id}/`}>{o.short}</a>, {year(o)}
+              {isWeak(r.ev) && <span class="q"> ({QUAL[r.ev]})</span>}{' '}
+              <span class="note">{r.note}.</span>{' '}
+              <a class="src" href={r.src} rel="noopener">Source: {host(r.src)}</a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ))
+)}

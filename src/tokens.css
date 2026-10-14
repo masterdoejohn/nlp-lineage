@@ -1,0 +1,59 @@
+/* Layout concept: a transit-authority print manual. One 12-column sheet; each chapter opens on a field of
+   its research line's colour, then pins a working diagram beside the text that drives it. Lines carry meaning,
+   ink carries words, colour is never decoration. */
+:root{
+  --paper:#f8f9fb; --panel:#edeff2; --ink:#15181f; --ink-2:#3b4047; --muted:#595e66; --rule:#d1d4d9; --rule-2:#b4b8bc;
+  --focus:#0173e6; --sel:#cfe0f7;
+  /* research lines, validated as a categorical set (adjacent CVD and normal-vision separation) */
+  --c-lm:#0173e6; --c-align:#a3000e; --c-rep:#8347cf; --c-eff:#07a44c; --c-reason:#a82f74;
+  --c-open:#884d01; --c-multi:#0390a4; --c-agent:#c56001; --c-soc:#444e91; --c-scale:#c79101;
+  --on-lm:#ffffff; --on-align:#ffffff; --on-rep:#ffffff; --on-eff:#15181f; --on-reason:#ffffff;
+  --on-open:#ffffff; --on-multi:#15181f; --on-agent:#15181f; --on-soc:#ffffff; --on-scale:#15181f;
+  --c-ink-field:#15181f; --on-ink-field:#f8f9fb;
+  /* names the experiments already use */
+  --paper-2:var(--panel); --card:var(--paper); --station:var(--paper);
+  --lab-a:var(--c-lm); --lab-b:var(--c-align); --lab-c:var(--c-scale); --lab-c-ink:#7a5800; --lab-d:var(--c-eff);
+  --good:#07a44c; --bad:#a3000e;
+
+  --display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --text:"Atkinson Hyperlegible","Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+
+  --t-cap:0.8125rem; --t-sm:0.9375rem; --t-body:1.125rem; --t-lead:1.375rem;
+  --t-h3:clamp(1.375rem,1.15rem + 0.9vw,1.75rem);
+  --t-h2:clamp(2.25rem,1.4rem + 3.4vw,4.25rem);
+  --t-h1:clamp(2.75rem,1.5rem + 5.2vw,5.75rem);
+  --t-num:clamp(3.75rem,2rem + 7vw,6rem);
+
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:128px;
+  --gutter:clamp(16px,4vw,48px);
+  --sheet:1280px;
+  --bar-h:56px;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --z-sticky:10; --z-bar:30; --z-dialog:50;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1216; --panel:#181c21; --ink:#edeff1; --ink-2:#c4c8cc; --muted:#9da2a8; --rule:#32363c; --rule-2:#494d54;
+    --focus:#7fb1f5; --sel:#22406a;
+    --c-lm:#2f7fe3; --c-align:#f45249; --c-rep:#a167f1; --c-eff:#03a14a; --c-reason:#d13d91;
+    --c-open:#a25f12; --c-multi:#0b9db3; --c-agent:#e06d00; --c-soc:#7380c8; --c-scale:#bf8b00;
+    --on-lm:#15181f; --on-align:#15181f; --on-rep:#15181f; --on-eff:#15181f; --on-reason:#ffffff;
+    --on-open:#ffffff; --on-multi:#15181f; --on-agent:#15181f; --on-soc:#15181f; --on-scale:#15181f;
+    --c-ink-field:#edeff1; --on-ink-field:#0f1216;
+    --lab-c-ink:#e2b84a; --good:#03a14a; --bad:#f45249;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1216; --panel:#181c21; --ink:#edeff1; --ink-2:#c4c8cc; --muted:#9da2a8; --rule:#32363c; --rule-2:#494d54;
+  --focus:#7fb1f5; --sel:#22406a;
+  --c-lm:#2f7fe3; --c-align:#f45249; --c-rep:#a167f1; --c-eff:#03a14a; --c-reason:#d13d91;
+  --c-open:#a25f12; --c-multi:#0b9db3; --c-agent:#e06d00; --c-soc:#7380c8; --c-scale:#bf8b00;
+  --on-lm:#15181f; --on-align:#15181f; --on-rep:#15181f; --on-eff:#15181f; --on-reason:#ffffff;
+  --on-open:#ffffff; --on-multi:#15181f; --on-agent:#15181f; --on-soc:#15181f; --on-scale:#15181f;
+  --c-ink-field:#edeff1; --on-ink-field:#0f1216;
+  --lab-c-ink:#e2b84a; --good:#03a14a; --bad:#f45249;
+  color-scheme:dark;
+}
+

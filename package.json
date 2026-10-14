@@ -1,12 +1,19 @@
 {
-  "name": "llm-lineage",
+  "name": "nlp-lineage",
   "private": true,
-  "description": "How language models came to be: build and test tooling. The page itself loads GSAP from cdnjs; this local copy only lets the tests run offline.",
+  "description": "NLP Lineage: a public reference on how NLP led to modern language models. The reference site is built with Astro; the guided tour is built with Python (build.py). The tour loads GSAP from cdnjs; the local copy only lets the tests run offline.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "build": "python build.py",
-    "test": "python tests/test_interact.py && python tests/test_redesign.py"
+    "test": "python tests/test_interact.py && python tests/test_redesign.py",
+    "site:dev": "node scripts/prepare-tour.mjs && astro dev",
+    "site:build": "node scripts/prepare-tour.mjs && astro build",
+    "site:preview": "astro preview"
   },
   "devDependencies": {
+    "astro": "7.3.8",
     "gsap": "3.12.5"
   }
 }

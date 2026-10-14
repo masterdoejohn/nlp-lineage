@@ -1,4 +1,8 @@
 node_modules/
+# reference site build output, and the tour copy written before each site build
+build/
+public/tour/
+.astro/
 shots/
 tests/test.html
 _check.js

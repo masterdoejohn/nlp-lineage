@@ -1,6 +1,6 @@
 """Assemble the single-file page.
 
-src/shell.html + src/style.css + the data files (via lineage_data.py) + src/scene_copy.json + the scripts in src/
+src/shell.html + src/tokens.css + src/style.css + the data files (via lineage_data.py) + src/scene_copy.json + the scripts in src/
 -> one HTML file. Run check_data.py first to check the data against the evidence rules.
 Usage: python build.py [output_path]      (default: dist/llm-lineage.html)
 Needs Python 3.9+ and Node (for a syntax check of the inlined script).
@@ -20,7 +20,7 @@ read = lambda p: p.read_text(encoding='utf-8')
 
 P = load_payload()
 shell = read(SRC / 'shell.html')
-css = read(SRC / 'style.css')
+css = read(SRC / 'tokens.css') + read(SRC / 'style.css')  # tokens.css is shared with the reference site
 # order matters: scene_builders defines SCENES, which app_a uses to build the chapters; the labs mount into
 # slots app_a creates; app_b runs last and brings everything to life
 parts = ['scene_builders.js', 'app_a.js', 'labs_a.js', 'labs_b.js', 'app_b.js']

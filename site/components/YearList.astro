@@ -1,0 +1,31 @@
+---
+// Milestones grouped by year, in date order. Each row names the milestone, its original title and its kind.
+import { threadById, type Milestone } from '../lib/data';
+import { year, cap } from '../lib/labels';
+
+interface Props { items: Milestone[]; thread?: string }
+const { items, thread } = Astro.props;
+const years: [string, Milestone[]][] = [];
+for (const m of items) {
+  const y = year(m);
+  if (!years.length || years[years.length - 1][0] !== y) years.push([y, []]);
+  years[years.length - 1][1].push(m);
+}
+---
+{years.map(([y, ms]) => (
+  <section class="year-block" aria-label={y}>
+    <h2>{y}</h2>
+    <ul class="rows">
+      {ms.map((m) => (
+        <li>
+          <span>
+            <a class="name" href={`/milestones/${m.id}/`}>{m.short}</a>
+            <span class="sub">{m.title}</span>
+            {thread && m.lines[0] !== thread && <span class="sub muted">Main thread: {threadById[m.lines[0]].name}</span>}
+          </span>
+          <span class="kind">{cap(m.type)}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+))}

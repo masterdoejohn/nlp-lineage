@@ -1,0 +1,127 @@
+/* Reference site. The same technical-print system as the guided tour (docs/DESIGN.md): one sheet, ink rules,
+   square corners, no shadows, Archivo for display and Atkinson Hyperlegible for text. Every colour is a token from
+   src/tokens.css. A thread colour marks a thread and nothing else; small text is never set in a thread colour.
+   Reference pages are calm: no scroll-driven motion here (that stays in the tour). */
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);font-size:var(--t-body);line-height:1.6;
+  font-feature-settings:"kern";text-rendering:optimizeLegibility}
+h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
+ul,ol{padding:0}
+a{color:inherit;text-decoration-thickness:1.5px;text-underline-offset:0.18em}
+a:hover{text-decoration-thickness:3px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+::selection{background:var(--sel)}
+[hidden]{display:none!important}
+
+.sheet{max-width:var(--sheet);margin-inline:auto;padding-inline:var(--gutter)}
+.skip{position:absolute;left:var(--gutter);top:-100px;background:var(--ink);color:var(--paper);padding:var(--s2) var(--s4);z-index:var(--z-bar)}
+.skip:focus{top:var(--s2)}
+
+/* ---------- top bar ---------- */
+.bar{border-bottom:1.5px solid var(--ink)}
+.bar-in{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--s2) var(--s5);padding-block:var(--s3)}
+.brand{font-family:var(--display);font-weight:850;font-stretch:75%;font-size:1.5rem;line-height:1;text-decoration:none;letter-spacing:0.005em}
+.bar nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s1) var(--s5)}
+.bar nav a{display:inline-block;padding-block:var(--s2);font-weight:700;font-size:var(--t-sm);text-decoration:none;border-bottom:3px solid transparent}
+.bar nav a:hover{border-bottom-color:var(--rule-2)}
+.bar nav a[aria-current="page"]{border-bottom-color:var(--ink)}
+.preview{font-size:var(--t-cap);color:var(--muted);padding-block:var(--s2)}
+
+main{padding-block:var(--s6) var(--s9)}
+
+/* ---------- type ---------- */
+.kicker{font-weight:700;font-size:var(--t-sm);color:var(--muted);margin-bottom:var(--s2)}
+.title{font-family:var(--display);font-weight:850;font-stretch:72%;font-size:var(--t-h2);line-height:0.98;letter-spacing:-0.01em;
+  text-wrap:balance;max-width:22ch}
+.title-home{font-size:var(--t-h1);line-height:0.94;letter-spacing:-0.015em;max-width:14ch}
+.lead{font-size:var(--t-lead);line-height:1.45;max-width:38em;margin-top:var(--s5)}
+.prose{max-width:40em}
+.prose p+p{margin-top:var(--s4)}
+.muted{color:var(--muted)}
+.small{font-size:var(--t-sm)}
+.sec{margin-top:var(--s8)}
+.sec>h2,.h2{font-family:var(--display);font-weight:800;font-stretch:75%;font-size:var(--t-h3);line-height:1.1;margin-bottom:var(--s4);
+  padding-top:var(--s3);border-top:1.5px solid var(--ink)}
+h3.h3{font-family:var(--display);font-weight:800;font-stretch:78%;font-size:1.1875rem;line-height:1.15;margin-bottom:var(--s2)}
+
+/* ---------- colour field: the page heading on its thread's colour ---------- */
+/* Text on a field is large text only: the meta line is 1.2rem bold, the title is display size (DESIGN.md, Colour). */
+.field{background:var(--c);color:var(--on);padding:var(--s6) var(--s5) var(--s7);margin-inline:calc(var(--gutter) * -1)}
+.field .meta{font-weight:700;font-size:1.2rem;line-height:1.35;margin-bottom:var(--s4)}
+.field .title{max-width:20ch}
+@media (min-width:1376px){.field{margin-inline:0}}
+.under-field{padding-top:var(--s5)}
+.orig{font-size:var(--t-lead);line-height:1.4;max-width:36em}
+.by{color:var(--ink-2);margin-top:var(--s2);max-width:40em}
+
+/* ---------- facts grid (the study card's spec sheet) ---------- */
+.facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,160px),1fr));border-top:1.5px solid var(--ink);margin-top:var(--s6)}
+.facts>div{padding:var(--s3) var(--s4) var(--s3) 0;border-bottom:1px solid var(--rule)}
+.facts dt{font-size:var(--t-cap);font-weight:700;color:var(--muted)}
+.facts dd{margin-top:2px}
+.flags{display:grid;gap:var(--s2);margin-top:var(--s5);max-width:44em}
+.flag{background:var(--panel);padding:var(--s3) var(--s4);font-size:var(--t-sm)}
+.actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s5)}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:var(--s2) var(--s4);border:1.5px solid var(--ink);font-weight:700;
+  text-decoration:none;font-size:var(--t-sm)}
+.btn:hover{background:var(--panel)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:var(--ink-2)}
+.status{border:1.5px dashed var(--rule-2);padding:var(--s3) var(--s4);font-size:var(--t-sm);color:var(--ink-2);max-width:44em;margin-top:var(--s6)}
+
+/* ---------- narrative ---------- */
+.story{display:grid;gap:var(--s5) var(--s7);grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.story h3{font-family:var(--display);font-weight:800;font-stretch:78%;font-size:1.1875rem;margin-bottom:var(--s1)}
+
+/* ---------- thread marks: colour beside ink text, never colour text ---------- */
+.mark{display:inline-flex;align-items:baseline;gap:0.45em}
+.mark::before{content:"";flex:none;width:0.72em;height:0.72em;background:var(--c);align-self:center;border:1px solid var(--ink)}
+.marks{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s1) var(--s4)}
+
+/* ---------- relationships ---------- */
+.rels{display:grid;gap:var(--s6) var(--s7);grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))}
+.rel-group+.rel-group{margin-top:var(--s5)}
+.rel-list{list-style:none;border-top:1px solid var(--rule)}
+.rel-list li{padding:var(--s3) 0;border-bottom:1px solid var(--rule)}
+.rel-list .who{font-weight:700}
+.rel-list .note{display:block;font-size:var(--t-sm);color:var(--ink-2);margin-top:2px}
+.rel-list .src{font-size:var(--t-cap);color:var(--muted)}
+.rel-list li.weak .who{font-weight:400}
+.q{font-size:var(--t-sm);color:var(--muted);font-style:italic}
+.none{color:var(--muted);font-size:var(--t-sm)}
+
+/* ---------- lists of milestones ---------- */
+.year-block{display:grid;grid-template-columns:5.5rem 1fr;gap:0 var(--s5);border-top:1.5px solid var(--ink);padding-top:var(--s3)}
+.year-block+.year-block{margin-top:var(--s5)}
+.year-block>h2{font-family:var(--display);font-weight:850;font-stretch:72%;font-size:2rem;line-height:1;font-variant-numeric:tabular-nums}
+.rows{list-style:none}
+.rows li{display:grid;grid-template-columns:1fr auto;gap:0 var(--s4);padding:var(--s2) 0;border-bottom:1px solid var(--rule)}
+.rows li:last-child{border-bottom:0}
+.rows .name{font-weight:700}
+.rows .sub{display:block;font-size:var(--t-sm);color:var(--ink-2)}
+.rows .kind{font-size:var(--t-cap);color:var(--muted);text-align:right;padding-top:0.3em}
+@media (max-width:560px){
+  .year-block{grid-template-columns:1fr}
+  .year-block>h2{margin-bottom:var(--s2)}
+  .rows li{grid-template-columns:1fr}
+  .rows .kind{text-align:left;padding-top:0}
+}
+
+/* ---------- index tiles (home, threads) ---------- */
+.tiles{list-style:none;display:grid;gap:0;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));border-top:1.5px solid var(--ink)}
+.tiles li{border-bottom:1px solid var(--rule);padding:var(--s4) var(--s4) var(--s4) 0}
+.tiles a{font-family:var(--display);font-weight:800;font-stretch:78%;font-size:1.375rem;line-height:1.1;text-decoration:none}
+.tiles a:hover{text-decoration:underline}
+.tiles p{font-size:var(--t-sm);color:var(--ink-2);margin-top:var(--s1)}
+.count{font-variant-numeric:tabular-nums}
+
+/* ---------- glossary ---------- */
+.terms{list-style:none;border-top:1.5px solid var(--ink)}
+.terms li{padding:var(--s3) 0;border-bottom:1px solid var(--rule)}
+.terms a{font-weight:700}
+.definition{font-size:var(--t-lead);line-height:1.45;max-width:36em;margin-top:var(--s5)}
+
+/* ---------- footer ---------- */
+.foot{border-top:1.5px solid var(--ink);background:var(--panel);padding-block:var(--s6);font-size:var(--t-sm);color:var(--ink-2)}

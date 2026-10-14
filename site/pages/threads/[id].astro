@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import YearList from '../../components/YearList.astro';
+import { threads, onThread, type Thread } from '../../lib/data';
+import { year } from '../../lib/labels';
+
+export function getStaticPaths() {
+  return threads.map((t) => ({ params: { id: t.id }, props: { t } }));
+}
+const { t } = Astro.props as { t: Thread };
+const ms = onThread(t.id);
+const main = ms.filter((m) => m.lines[0] === t.id).length;
+---
+<Base title={t.name} description={`The ${ms.length} milestones on the ${t.name.toLowerCase()} thread, from ${year(ms[0])} to ${year(ms[ms.length - 1])}.`}>
+  <header class="field" style={`--c:var(--c-${t.id});--on:var(--on-${t.id})`}>
+    <p class="meta">Research thread · {year(ms[0])} to {year(ms[ms.length - 1])}</p>
+    <h1 class="title">{t.name}</h1>
+  </header>
+  <p class="lead">
+    <span class="count">{ms.length}</span> milestones sit on this thread. For <span class="count">{main}</span> of them it is the main thread.
+    The others also belong to another thread, which is named under them.
+  </p>
+  <div class="sec"><YearList items={ms} thread={t.id} /></div>
+</Base>
