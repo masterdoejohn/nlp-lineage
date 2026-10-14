@@ -15,6 +15,7 @@ Each entry has its own file, so each change is small and easy to review.
 | `data/study.json` | Study notes for some milestones: what to understand and what to know first. |
 | `data/phases.json` | The eight learning phases. |
 | `data/trace.json` | The models offered in the lineage tracer. |
+| `data/summaries/<id>.md` | A full summary of one milestone's paper, drafted from the paper itself. The file name is the milestone's id. The format is below. |
 | `data/glossary/<id>.json` | One glossary term. The id is lower case words joined by hyphens, for example `self-attention`. The folder appears with the first term. |
 
 `lineage_data.py` reads these files and rebuilds the payload that the guided tour uses. The reference site (`site/lib/data.ts`) reads the same files. Milestones are put in order by date, then by id. Nothing else is reordered. `build.py` calls it, so there is no payload file to edit by hand.
@@ -62,6 +63,40 @@ Each entry has its own file, so each change is small and easy to review.
 | `introduced_by` | The id of the milestone that introduced the term. |
 | `used_by` | The ids of milestones that use it. The introducing milestone is not repeated here. |
 
+### A paper summary
+
+A summary is a Markdown file with a short header and exactly eight sections.
+
+The header lies between two lines of `---`. Each header line is `key: value`. Values are plain text, without quotes, and without a second `: `.
+
+| Header field | Meaning |
+|---|---|
+| `milestone` | The milestone's id. It is the same as the file name. |
+| `source` | An https link to the exact text that was read, for example a versioned arXiv link. |
+| `source_note` | Optional. A note about the source, for example that it is an open copy and where the official version is. |
+| `version` | Which version was read, for example "arXiv version 7 (May 2016)". |
+| `read` | The date the source was read, as YYYY-MM-DD. |
+| `reviewed_by` | The person who reviewed the summary. |
+
+The page shows: "Drafted with Claude from the paper on (read); reviewed by (reviewed_by)."
+
+The sections are these `##` headings, in this order:
+
+1. **What it changed:** one sentence.
+2. **The problem before it.**
+3. **The idea:** the mechanism first, then the notation.
+4. **What it showed:** it starts with `**Reported in the paper.**`, says whether the paper was peer reviewed or a preprint, and gives each number with what it measures.
+5. **Limits, and what came later:** the authors' own limits first. Later work is named only where the relationships in the data document it.
+6. **What to know first:** links to milestone and glossary pages.
+7. **How to read it:** which sections to read first, and an estimated reading time, marked as an estimate.
+8. **Links:** the paper, code if the paper names it, and video. Say so when there is none.
+
+Rules:
+- Write from the paper itself, never from memory.
+- When the paper contradicts itself, report both numbers. Do not choose one.
+- Follow the plain-language rules, with no em dashes.
+- Internal links must point to a milestone, a glossary term, `/levels/` or `/tour/`. External links must be https.
+
 ## How to change the data
 
 1. Edit or add the files. Keep the layout that `lineage_data.dumps_entry` writes: one field per line, and short lists on one line.
@@ -88,6 +123,7 @@ It exits with an error and lists every problem it finds.
   - The evidence type and the kind of relationship come from the fixed lists.
   - There is a note and an https source.
   - `dateflip` is present exactly when the relationship points from a later milestone to an earlier one.
+- **Paper summaries:** the header fields, the eight sections in order, the label at the start of "What it showed", working links, and no em dashes.
 - **Glossary terms:** the fields are exactly the five above, the id matches the file name, and every milestone named exists.
 - **Chapters, study notes, phases and tracer:** they name only milestones that exist. A chapter's `all` list holds exactly the milestones with that chapter number.
 - **Writing rule:** there are no em dashes anywhere in the data.
