@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import RelList from '../../components/RelList.astro';
+import { milestones, threadById, chapterByN, study, phases, incoming, outgoing, termsFor, type Milestone } from '../../lib/data';
+import { when, cap, access, host, claimFlag } from '../../lib/labels';
+
+export function getStaticPaths() {
+  return milestones.map((m) => ({ params: { id: m.id }, props: { m } }));
+}
+const { m } = Astro.props as { m: Milestone };
+const home = threadById[m.lines[0]];
+const chap = chapterByN[m.ch];
+const st = study[m.id];
+const flags = [m.tp ? 'A turning point in this history.' : null, claimFlag(m)].filter(Boolean);
+const ins = incoming(m.id), outs = outgoing(m.id);
+const terms = termsFor(m.id);
+const facts: [string, string][] = [
+  ['Date', when(m)],
+  ['What the date marks', m.dtype.startsWith('arXiv') ? m.dtype : cap(m.dtype)],
+  ['Kind', cap(m.type)],
+  ['Organisation', m.inst],
+  ['Access', access(m)],
+];
+if (m.other) facts.push(['Other dates', m.other]);
+---
+<Base title={m.short} description={m.problem}>
+  <header class="field" style={`--c:var(--c-${home.id});--on:var(--on-${home.id})`}>
+    <p class="meta">{when(m)} · {home.name}</p>
+    <h1 class="title">{m.short}</h1>
+  </header>
+
+  <div class="under-field">
+    <p class="orig">{m.title}</p>
+    <p class="by">{m.authors}</p>
+
+    <dl class="facts">
+      {facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+      <div>
+        <dt>Threads</dt>
+        <dd><ul class="marks">{m.lines.map((l) => <li><a class="mark" style={`--c:var(--c-${l})`} href={`/threads/${l}/`}>{threadById[l].name}</a></li>)}</ul></dd>
+      </div>
+      <div><dt>In the guided tour</dt><dd><a href={`/tour/#ch-${chap.n}`}>Chapter {chap.n}. {chap.title}</a></dd></div>
+      {m.phase.length > 0 && (
+        <div><dt>Learning phases</dt><dd>{m.phase.map((p) => `${p}. ${phases[String(p)]}`).join('; ')}</dd></div>
+      )}
+    </dl>
+
+    {flags.length > 0 && <div class="flags">{flags.map((f) => <p class="flag">{f}</p>)}</div>}
+
+    <div class="actions">
+      <a class="btn btn-ink" href={m.src} rel="noopener">Read the primary source ({host(m.src)})</a>
+    </div>
+
+    <p class="status">Full summary in progress. Until then, this page shows the milestone's record from the research data.</p>
+  </div>
+
+  <section class="sec" aria-labelledby="h-story">
+    <h2 id="h-story">What it changed</h2>
+    <div class="story">
+      <div><h3>Before it</h3><p>{m.before}</p></div>
+      <div><h3>The problem</h3><p>{m.problem}</p></div>
+      <div><h3>What it introduced</h3><p>{m.breakthrough}</p></div>
+      <div><h3>Why it matters</h3><p>{m.why}</p></div>
+      <div><h3>What modern models inherit</h3><p>{m.inherits}</p></div>
+      <div><h3>What came next</h3><p>{m.next}</p></div>
+    </div>
+  </section>
+
+  {st && (
+    <section class="sec" aria-labelledby="h-learn">
+      <h2 id="h-learn">To understand it</h2>
+      <div class="story">
+        <div><h3>Learn</h3><ul class="prose" style="padding-left:1.2em">{st.understand.map((u) => <li>{u}</li>)}</ul></div>
+        <div><h3>Helpful first</h3><p>{st.prereq}</p></div>
+      </div>
+    </section>
+  )}
+
+  <section class="sec" aria-labelledby="h-rel">
+    <h2 id="h-rel">Before and after</h2>
+    <div class="rels">
+      <div><h3 class="h3">Where it came from</h3><RelList rels={ins} dir="in" /></div>
+      <div><h3 class="h3">What it led to</h3><RelList rels={outs} dir="out" /></div>
+    </div>
+  </section>
+
+  {terms.length > 0 && (
+    <section class="sec" aria-labelledby="h-terms">
+      <h2 id="h-terms">Terms</h2>
+      <ul class="marks">{terms.map((t) => <li><a href={`/glossary/${t.id}/`}>{t.term}</a></li>)}</ul>
+    </section>
+  )}
+</Base>

@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { threads, onThread } from '../../lib/data';
+import { year } from '../../lib/labels';
+---
+<Base title="Threads" description="The ten research threads in the history of language models, and the milestones on each.">
+  <p class="kicker">{threads.length} research threads</p>
+  <h1 class="title">Threads</h1>
+  <p class="lead">A thread is a line of research that runs through the history. A milestone can sit on more than one thread. Its main thread comes first.</p>
+  <ul class="tiles sec">
+    {threads.map((t) => {
+      const ms = onThread(t.id);
+      return (
+        <li>
+          <a class="mark" style={`--c:var(--c-${t.id})`} href={`/threads/${t.id}/`}>{t.name}</a>
+          <p><span class="count">{ms.length}</span> milestones, {year(ms[0])} to {year(ms[ms.length - 1])}</p>
+        </li>
+      );
+    })}
+  </ul>
+</Base>

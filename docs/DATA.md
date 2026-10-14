@@ -15,8 +15,9 @@ Each entry has its own file, so each change is small and easy to review.
 | `data/study.json` | Study notes for some milestones: what to understand and what to know first. |
 | `data/phases.json` | The eight learning phases. |
 | `data/trace.json` | The models offered in the lineage tracer. |
+| `data/glossary/<id>.json` | One glossary term. The id is lower case words joined by hyphens, for example `self-attention`. The folder appears with the first term. |
 
-`lineage_data.py` reads these files and rebuilds the payload that the page uses. Milestones are put in order by date, then by id. Nothing else is reordered. `build.py` calls it, so there is no payload file to edit by hand.
+`lineage_data.py` reads these files and rebuilds the payload that the guided tour uses. The reference site (`site/lib/data.ts`) reads the same files. Milestones are put in order by date, then by id. Nothing else is reordered. `build.py` calls it, so there is no payload file to edit by hand.
 
 ## Fields
 
@@ -50,6 +51,16 @@ Each entry has its own file, so each change is small and easy to review.
 | `src` | The source that documents the relationship, as an https link. |
 | `dateflip` | Present, and `true`, only when the "from" milestone is dated after the "to" milestone. This can happen when work circulated before its formal date. |
 
+### A glossary term
+
+| Field | Meaning |
+|---|---|
+| `id` | Lower case words joined by hyphens. It matches the file name and never changes once published. |
+| `term` | The term as readers see it, for example "Self-attention". |
+| `definition` | A plain definition, defining any other technical word it uses. |
+| `introduced_by` | The id of the milestone that introduced the term. |
+| `used_by` | The ids of milestones that use it. The introducing milestone is not repeated here. |
+
 ## How to change the data
 
 1. Edit or add the files. Keep the layout that `lineage_data.dumps_entry` writes: one field per line, and short lists on one line.
@@ -75,6 +86,7 @@ It exits with an error and lists every problem it finds.
   - The evidence type and the kind of relationship come from the fixed lists.
   - There is a note and an https source.
   - `dateflip` is present exactly when the relationship points from a later milestone to an earlier one.
+- **Glossary terms:** the fields are exactly the five above, the id matches the file name, and every milestone named exists.
 - **Chapters, study notes, phases and tracer:** they name only milestones that exist. A chapter's `all` list holds exactly the milestones with that chapter number.
 - **Writing rule:** there are no em dashes anywhere in the data.
 - **Fixed lists:** the lists of types, claims, kinds of impact, date types, relationship kinds and evidence types are fixed. A new value is rejected until it is added to `check_data.py` on purpose, in the same pull request.

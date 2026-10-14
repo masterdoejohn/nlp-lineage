@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import { terms } from '../../lib/data';
+---
+<Base title="Glossary" description="Technical terms from the history of language models, each defined in plain words and linked to the milestone that introduced it.">
+  <p class="kicker">{terms.length ? `${terms.length} terms` : 'Glossary'}</p>
+  <h1 class="title">Glossary</h1>
+  <p class="lead">Each term is defined in plain words, and linked to the milestone that introduced it and the milestones that use it.</p>
+  {terms.length ? (
+    <ul class="terms sec">
+      {terms.map((t) => <li><a href={`/glossary/${t.id}/`}>{t.term}</a></li>)}
+    </ul>
+  ) : (
+    <p class="status">The glossary is being written. Terms are added as the paper summaries are written.</p>
+  )}
+</Base>

@@ -5,7 +5,7 @@ Exits with code 1 and lists every problem it finds. It checks what a script can 
   - every milestone has the required fields, a valid date for its precision and an https primary source
   - every relationship joins two known milestones, has an evidence type, a note and an https source,
     and carries "dateflip": true exactly when it points from a later milestone to an earlier one
-  - chapters, threads, study notes, phases and the tracer only name things that exist
+  - chapters, threads, study notes, phases, the tracer and glossary terms only name things that exist
   - no em dash appears anywhere (en dashes are for number ranges only)
 It cannot check that a source supports a claim. That stays a human review step.
 
@@ -202,6 +202,35 @@ for p in cf:
     if set(c.get('all', [])) != members:
         bad(w, f'"all" must list exactly the milestones whose ch is {c.get("n")}: differs by {sorted(set(c.get("all", [])) ^ members)}')
 
+# ---- glossary terms (data/glossary/<id>.json; the folder is optional until the first term)
+TERM_RX = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*$')
+gp = DATA / 'glossary'
+term_files = sorted(gp.glob('*.json')) if gp.is_dir() else []
+for p in term_files:
+    t = load(p)
+    if t is None:
+        continue
+    w = f'glossary/{p.name}'
+    need = {'id', 'term', 'definition', 'introduced_by', 'used_by'}
+    if set(t) != need:
+        bad(w, f'fields must be exactly {sorted(need)} (found {sorted(t)})')
+        continue
+    if p.stem != t['id'] or not TERM_RX.match(t['id']):
+        bad(w, 'the id must be lower case words joined by hyphens, and match the file name')
+    for k in ('term', 'definition'):
+        if not isinstance(t[k], str) or not t[k].strip():
+            bad(w, f'"{k}" must be non-empty text')
+    if t['introduced_by'] not in ms:
+        bad(w, f'introduced_by names an unknown milestone: {t["introduced_by"]}')
+    if not isinstance(t['used_by'], list) or len(set(t['used_by'])) != len(t['used_by']):
+        bad(w, 'used_by must be a list of distinct milestone ids')
+    else:
+        unknown = [x for x in t['used_by'] if x not in ms]
+        if unknown:
+            bad(w, f'used_by names unknown milestones: {unknown}')
+        if t['introduced_by'] in t['used_by']:
+            bad(w, 'the introducing milestone goes in introduced_by only, not in used_by')
+
 # ---- study notes, phases, tracer
 study = load(DATA / 'study.json') or {}
 for k, v in study.items():
@@ -225,10 +254,10 @@ for p in sorted(DATA.rglob('*.json*')):
 # ---- stray files
 known = {DATA / 'relationships.jsonl', DATA / 'study.json', DATA / 'phases.json', DATA / 'trace.json'}
 for p in sorted(DATA.rglob('*')):
-    if p.is_file() and p not in known and p.parent.name not in ('milestones', 'threads', 'chapters'):
+    if p.is_file() and p not in known and p.parent.name not in ('milestones', 'threads', 'chapters', 'glossary'):
         bad(p.relative_to(DATA.parent).as_posix(), 'unexpected file in data/')
 
-counts = f'{len(ms)} milestones, {len(seen)} relationships, {len(threads)} threads, {len(cf)} chapters, {len(study)} study notes'
+counts = f'{len(ms)} milestones, {len(seen)} relationships, {len(threads)} threads, {len(cf)} chapters, {len(study)} study notes, {len(term_files)} glossary terms'
 if problems:
     print(f'{len(problems)} problem(s) in the data ({counts}):')
     for x in problems:

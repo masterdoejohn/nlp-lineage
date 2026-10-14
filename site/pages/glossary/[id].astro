@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import { terms, byId, type Term } from '../../lib/data';
+import { year } from '../../lib/labels';
+
+export function getStaticPaths() {
+  return terms.map((t) => ({ params: { id: t.id }, props: { t } }));
+}
+const { t } = Astro.props as { t: Term };
+const intro = byId[t.introduced_by];
+const users = t.used_by.map((id) => byId[id]).sort((a, b) => a.ord - b.ord);
+---
+<Base title={t.term} description={t.definition}>
+  <p class="kicker"><a href="/glossary/">Glossary</a></p>
+  <h1 class="title">{t.term}</h1>
+  <p class="definition">{t.definition}</p>
+  <section class="sec" aria-labelledby="h-intro">
+    <h2 id="h-intro">Introduced by</h2>
+    <p><a class="mark" style={`--c:var(--c-${intro.lines[0]})`} href={`/milestones/${intro.id}/`}>{intro.short}</a>, {year(intro)}</p>
+  </section>
+  {users.length > 0 && (
+    <section class="sec" aria-labelledby="h-used">
+      <h2 id="h-used">Used by</h2>
+      <ul class="terms">
+        {users.map((m) => <li><a href={`/milestones/${m.id}/`}>{m.short}</a>, {year(m)}</li>)}
+      </ul>
+    </section>
+  )}
+</Base>
