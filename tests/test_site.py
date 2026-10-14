@@ -130,6 +130,23 @@ lv = (BUILD / 'levels' / 'index.html').read_text(encoding='utf-8')
 listed = re.findall(r'class="name" href="/milestones/([a-z0-9_]+)/"', lv)
 ok('the levels page lists exactly the turning points', sorted(listed) == sorted(i for i, m in ms.items() if m['level'] == 'turning-point'), len(listed))
 
+# paper summaries: each one is on its milestone's page with its provenance line; every other page says it is in progress
+sdir = DATA / 'summaries'
+summarised = {q.stem: q.read_text(encoding='utf-8') for q in sorted(sdir.glob('*.md'))} if sdir.is_dir() else {}
+missing_sum, wrong_status = [], []
+for i in ms:
+    html = (BUILD / 'milestones' / i / 'index.html').read_text(encoding='utf-8')
+    if i in summarised:
+        src = re.search(r'(?m)^source: (.+)$', summarised[i])[1].strip()
+        if 'data-summary' not in html or 'Drafted with Claude from the paper on' not in html or f'href="{src}"' not in html:
+            missing_sum.append(i)
+        if 'Full summary in progress' in html:
+            wrong_status.append(i)
+    elif 'Full summary in progress' not in html:
+        wrong_status.append(i)
+ok('every summary is on its milestone page, with its provenance line and source', not missing_sum, missing_sum)
+ok('"Full summary in progress" shows exactly where there is no summary', not wrong_status, wrong_status[:5])
+
 tl = (BUILD / 'timeline' / 'index.html').read_text(encoding='utf-8')
 wide, narrow = tl.split('class="tt-narrow', 1)
 for label, part in (('table', wide), ('list', narrow)):

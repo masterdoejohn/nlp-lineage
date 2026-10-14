@@ -5,12 +5,18 @@ import Lineage from '../../components/Lineage.astro';
 import { milestones, threadById, chapterByN, study, phases, incoming, outgoing, termsFor, type Milestone } from '../../lib/data';
 import { when, cap, access, host, claimFlag, levelReason } from '../../lib/labels';
 import { influence } from '../../lib/lineage';
+import { getCollection, render } from 'astro:content';
 import { linkTerms } from '../../lib/glossary';
 
 export function getStaticPaths() {
   return milestones.map((m) => ({ params: { id: m.id }, props: { m } }));
 }
 const { m } = Astro.props as { m: Milestone };
+// a full summary, drafted from the paper (data/summaries/<id>.md), when one exists
+const summary = (await getCollection('summaries')).find((e) => e.id === m.id);
+const Summary = summary ? (await render(summary)).Content : null;
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const readOn = summary ? `${summary.data.read.getUTCDate()} ${MONTHS[summary.data.read.getUTCMonth()]} ${summary.data.read.getUTCFullYear()}` : '';
 const home = threadById[m.lines[0]];
 const chap = chapterByN[m.ch];
 const st = study[m.id];
@@ -62,11 +68,21 @@ if (m.other) facts.push(['Other dates', m.other]);
       <a class="btn btn-ink" href={m.src} rel="noopener">Read the primary source ({host(m.src)})</a>
     </div>
 
-    <p class="status">Full summary in progress. Until then, this page shows the milestone's record from the research data.</p>
+    {!summary && <p class="status">Full summary in progress. Until then, this page shows the milestone's record from the research data.</p>}
   </div>
 
+  {summary && Summary && (
+    <div class="summary" data-summary>
+      <p class="provenance">
+        Drafted with Claude from the paper on {readOn}; reviewed by {summary.data.reviewed_by}.
+        Read from <a href={summary.data.source} rel="noopener">{host(summary.data.source)}</a> ({summary.data.version}).{summary.data.source_note && ` ${summary.data.source_note}`}
+      </p>
+      <Summary />
+    </div>
+  )}
+
   <section class="sec" aria-labelledby="h-story">
-    <h2 id="h-story">What it changed</h2>
+    <h2 id="h-story">{summary ? 'In brief, from the research data' : 'What it changed'}</h2>
     <div class="story">
       {story.map(([h, html]) => <div><h3>{h}</h3><p set:html={html} /></div>)}
     </div>

@@ -252,6 +252,66 @@ for p in term_files:
         if t['introduced_by'] in t['used_by']:
             bad(w, 'the introducing milestone goes in introduced_by only, not in used_by')
 
+# ---- paper summaries (data/summaries/<milestone id>.md; format in docs/DATA.md)
+SUMMARY_HEADINGS = ['What it changed', 'The problem before it', 'The idea', 'What it showed',
+                    'Limits, and what came later', 'What to know first', 'How to read it', 'Links']
+FORBIDDEN_START = chr(39) + chr(34) + '[{#&*!|>%@`'  # characters that change a YAML value's meaning
+SUMMARY_KEYS, SUMMARY_OPTIONAL = {'milestone', 'source', 'version', 'read', 'reviewed_by'}, {'source_note'}
+LINK_RX = re.compile(r'\]\((/[^)]*)\)')
+term_ids = {p.stem for p in term_files}
+sp = DATA / 'summaries'
+summary_files = sorted(sp.glob('*.md')) if sp.is_dir() else []
+for p in summary_files:
+    w = f'summaries/{p.name}'
+    text = p.read_text(encoding='utf-8')
+    if p.stem not in ms:
+        bad(w, 'the file name must be the id of a milestone')
+    parts = text.split('---' + chr(10), 2)
+    if len(parts) != 3 or parts[0] != '':
+        bad(w, 'must start with a header between two lines of ---')
+        continue
+    head, body = parts[1], parts[2]
+    meta = {}
+    for line in head.splitlines():
+        k, sep, v = line.partition(': ')
+        if not sep or not v.strip() or ': ' in v or v.strip()[0] in FORBIDDEN_START:
+            bad(w, f'header line must be "key: plain value" without quotes or a second ": " ({line})')
+            continue
+        meta[k] = v.strip()
+    if set(meta) - SUMMARY_KEYS - SUMMARY_OPTIONAL or SUMMARY_KEYS - set(meta):
+        bad(w, f'header fields must be {sorted(SUMMARY_KEYS)}, plus an optional source_note (found {sorted(meta)})')
+    if meta.get('milestone', p.stem) != p.stem:
+        bad(w, 'milestone in the header must match the file name')
+    if 'source' in meta and not meta['source'].startswith('https://'):
+        bad(w, 'source must be an https link to the text that was read')
+    try:
+        if 'read' in meta:
+            datetime.date.fromisoformat(meta['read'])
+    except ValueError:
+        bad(w, 'read must be the date the source was read, as YYYY-MM-DD')
+    heads = re.findall(r'(?m)^## (.+)$', body)
+    if heads != SUMMARY_HEADINGS:
+        bad(w, f'sections must be exactly, in order: {SUMMARY_HEADINGS} (found {heads})')
+    else:
+        sections = re.split(r'(?m)^## .+$', body)[1:]
+        for h, sec in zip(SUMMARY_HEADINGS, sections):
+            if not sec.strip():
+                bad(w, f'section "{h}" is empty')
+        if not sections[3].strip().startswith('**Reported in the paper.**'):
+            bad(w, '"What it showed" must start with **Reported in the paper.** so every number there is labelled')
+    if re.search(r'(?m)^#(?!# )', body) or re.search(r'(?m)^### ', body):
+        bad(w, 'use only the eight ## headings')
+    for link in LINK_RX.findall(body):
+        m1 = re.fullmatch(r'/milestones/([a-z0-9_]+)/', link)
+        m2 = re.fullmatch(r'/glossary/([a-z0-9-]+)/', link)
+        if not ((m1 and m1[1] in ms) or (m2 and m2[1] in term_ids) or link in ('/levels/', '/tour/')):
+            bad(w, f'link to {link} does not point to a milestone, glossary term or page that exists')
+    for url in re.findall(r'\]\((http[^)]*)\)', body):
+        if not url.startswith('https://'):
+            bad(w, f'external links must be https ({url})')
+    if chr(0x2014) in text:
+        bad(w, 'contains an em dash; rewrite the sentence (en dashes only for number ranges)')
+
 # ---- study notes, phases, tracer
 study = load(DATA / 'study.json') or {}
 for k, v in study.items():
@@ -275,10 +335,10 @@ for p in sorted(DATA.rglob('*.json*')):
 # ---- stray files
 known = {DATA / 'relationships.jsonl', DATA / 'study.json', DATA / 'phases.json', DATA / 'trace.json'}
 for p in sorted(DATA.rglob('*')):
-    if p.is_file() and p not in known and p.parent.name not in ('milestones', 'threads', 'chapters', 'glossary'):
+    if p.is_file() and p not in known and p.parent.name not in ('milestones', 'threads', 'chapters', 'glossary', 'summaries'):
         bad(p.relative_to(DATA.parent).as_posix(), 'unexpected file in data/')
 
-counts = f'{len(ms)} milestones, {len(seen)} relationships, {len(threads)} threads, {len(cf)} chapters, {len(study)} study notes, {len(term_files)} glossary terms'
+counts = f'{len(ms)} milestones, {len(seen)} relationships, {len(threads)} threads, {len(cf)} chapters, {len(study)} study notes, {len(term_files)} glossary terms, {len(summary_files)} summaries'
 if problems:
     print(f'{len(problems)} problem(s) in the data ({counts}):')
     for x in problems:
