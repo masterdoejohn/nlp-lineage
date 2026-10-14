@@ -12,6 +12,7 @@
   "branches": ["multimodal", "scaling", "productization"],
   "imp": ["PRODUCTIZATION"],
   "tp": false,
+  "level": "milestone",
   "phase": [2, 3],
   "lic": "API only",
   "src": "https://arxiv.org/abs/2312.11805",

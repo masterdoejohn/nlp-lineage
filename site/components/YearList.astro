@@ -17,7 +17,7 @@ for (const m of items) {
     <h2>{y}</h2>
     <ul class="rows">
       {ms.map((m) => (
-        <li data-lines={m.lines.join(' ')} data-kind={m.type} data-year={year(m)} data-claim={m.claim} data-tp={m.tp ? '1' : '0'}>
+        <li data-lines={m.lines.join(' ')} data-kind={m.type} data-year={year(m)} data-claim={m.claim} data-level={m.level}>
           <span>
             <a class="name" href={`/milestones/${m.id}/`}>{m.short}</a>
             <span class="sub">{m.title}</span>

@@ -12,6 +12,7 @@
   "branches": ["pretraining", "open_weight_ecosystem", "data"],
   "imp": ["ENABLING", "ECOSYSTEM"],
   "tp": false,
+  "level": "notable",
   "phase": [2, 8],
   "lic": "BLOOM RAIL v1.0",
   "src": "https://huggingface.co/bigscience/bloom",

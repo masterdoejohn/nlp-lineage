@@ -12,6 +12,7 @@
   "branches": ["open_weight_ecosystem", "scaling"],
   "imp": ["SCALING"],
   "tp": false,
+  "level": "milestone",
   "phase": [6],
   "lic": "Llama 3 Community License",
   "src": "https://ai.meta.com/blog/meta-llama-3/",

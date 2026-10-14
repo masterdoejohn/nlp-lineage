@@ -12,6 +12,7 @@
   "branches": ["sequence_modeling", "attention"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [1],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/1406.1078",

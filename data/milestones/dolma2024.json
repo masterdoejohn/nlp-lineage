@@ -12,6 +12,7 @@
   "branches": ["data", "open_weight_ecosystem"],
   "imp": ["ECOSYSTEM"],
   "tp": false,
+  "level": "milestone",
   "phase": [2, 8],
   "lic": "ODC-BY",
   "src": "https://arxiv.org/abs/2402.00159",

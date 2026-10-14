@@ -12,6 +12,7 @@
   "branches": ["neural_lm", "representation", "pretraining"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [2],
   "lic": "n/a",
   "src": "https://jmlr.org/papers/v12/collobert11a.html",

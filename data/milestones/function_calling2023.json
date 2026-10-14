@@ -12,6 +12,7 @@
   "branches": ["retrieval_tools", "agents", "productization"],
   "imp": ["PRODUCTIZATION"],
   "tp": false,
+  "level": "milestone",
   "phase": [3, 7],
   "lic": "API only",
   "src": "https://openai.com/index/function-calling-and-other-api-updates/",

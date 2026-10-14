@@ -12,6 +12,7 @@
   "branches": ["reasoning"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [2],
   "lic": "API / Ultra tier",
   "claim": "vendor-reported",

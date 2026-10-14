@@ -12,6 +12,7 @@
   "branches": ["open_weight_ecosystem"],
   "imp": ["ECOSYSTEM"],
   "tp": false,
+  "level": "notable",
   "phase": [6],
   "lic": "Gemma Terms of Use",
   "src": "https://arxiv.org/abs/2403.08295",

@@ -12,6 +12,7 @@
   "branches": ["pretraining", "scaling", "open_weight_ecosystem"],
   "imp": ["TRANSFORMATIVE", "ECOSYSTEM"],
   "tp": true,
+  "level": "turning-point",
   "phase": [2, 8],
   "lic": "non-commercial research",
   "src": "https://arxiv.org/abs/2302.13971",

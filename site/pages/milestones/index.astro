@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import YearList from '../../components/YearList.astro';
 import { milestones, threads } from '../../lib/data';
-import { year, cap, CLAIM_LABEL } from '../../lib/labels';
+import { year, cap, CLAIM_LABEL, LEVEL_PLURAL } from '../../lib/labels';
 
 const first = year(milestones[0]), last = year(milestones[milestones.length - 1]);
 const kinds = [...new Set(milestones.map((m) => m.type))].sort();
@@ -36,7 +36,10 @@ const claims = Object.keys(CLAIM_LABEL).filter((c) => milestones.some((m) => m.c
       </label>
     </div>
     <div class="f-row">
-      <label class="f-check"><input type="checkbox" name="tp" value="1" /> Turning points only</label>
+      <label>Level
+        <select name="level"><option value="">Any level</option>{Object.entries(LEVEL_PLURAL).map(([k, v]) => <option value={k}>{v}</option>)}</select>
+      </label>
+      <a class="f-help small" href="/levels/">How levels are decided</a>
       <button type="reset" class="btn">Clear the filters</button>
     </div>
   </form>
@@ -54,7 +57,7 @@ const claims = Object.keys(CLAIM_LABEL).filter((c) => milestones.some((m) => m.c
   const blocks = [...document.querySelectorAll<HTMLElement>('#list .year-block')];
   const count = document.getElementById('f-count')!;
   const empty = document.getElementById('f-empty')!;
-  const fields = ['thread', 'kind', 'from', 'to', 'claim', 'tp'];
+  const fields = ['thread', 'kind', 'from', 'to', 'claim', 'level'];
 
   function apply() {
     const f = new FormData(form);
@@ -67,7 +70,7 @@ const claims = Object.keys(CLAIM_LABEL).filter((c) => milestones.some((m) => m.c
         && (!v('from') || d.year! >= v('from'))
         && (!v('to') || d.year! <= v('to'))
         && (!v('claim') || d.claim === v('claim'))
-        && (!v('tp') || d.tp === '1');
+        && (!v('level') || d.level === v('level'));
       r.hidden = !ok;
       if (ok) shown++;
     }

@@ -12,6 +12,7 @@
   "branches": ["pretraining", "scaling", "data"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [8],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/2304.01373",

@@ -12,6 +12,7 @@
   "branches": ["reasoning", "data"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [2],
   "lic": "MIT (dataset)",
   "src": "https://arxiv.org/abs/2305.20050",

@@ -12,6 +12,7 @@
   "branches": ["reasoning", "open_weight_ecosystem"],
   "imp": ["ECOSYSTEM"],
   "tp": false,
+  "level": "milestone",
   "phase": [6],
   "lic": "Apache 2.0",
   "claim": "mixed",

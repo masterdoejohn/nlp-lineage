@@ -12,6 +12,7 @@
   "branches": ["instruction_alignment", "open_weight_ecosystem"],
   "imp": ["ALIGNMENT", "ECOSYSTEM"],
   "tp": false,
+  "level": "notable",
   "phase": [2],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/2110.08207",

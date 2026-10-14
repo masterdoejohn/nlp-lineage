@@ -12,6 +12,7 @@
   "branches": ["reasoning", "instruction_alignment"],
   "imp": ["TRANSFORMATIVE"],
   "tp": true,
+  "level": "turning-point",
   "phase": [2, 3],
   "lic": "API only",
   "src": "https://openai.com/index/introducing-openai-o1-preview/",

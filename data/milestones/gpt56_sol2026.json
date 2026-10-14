@@ -12,6 +12,7 @@
   "branches": ["reasoning"],
   "imp": ["PRODUCTIZATION"],
   "tp": false,
+  "level": "milestone",
   "phase": [3],
   "lic": "API only",
   "claim": "vendor-reported",

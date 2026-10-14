@@ -12,6 +12,7 @@
   "branches": ["open_weight_ecosystem", "multimodal"],
   "imp": ["ECOSYSTEM"],
   "tp": false,
+  "level": "milestone",
   "phase": [6],
   "lic": "Apache 2.0 (72B custom)",
   "src": "https://arxiv.org/abs/2407.10671",

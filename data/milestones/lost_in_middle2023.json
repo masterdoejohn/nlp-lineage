@@ -12,6 +12,7 @@
   "branches": ["efficiency_long_context", "retrieval_tools"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "notable",
   "phase": [4],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/2307.03172",

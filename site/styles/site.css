@@ -219,3 +219,10 @@ a.gl{text-decoration-style:dotted;text-decoration-thickness:2px}
 .r-ex{font-size:var(--t-sm);color:var(--ink-2);margin-top:var(--s1)}
 .r-ex mark{background:var(--sel);color:var(--ink)}
 #more{margin-top:var(--s4);cursor:pointer;background:var(--paper);color:var(--ink);font:inherit;font-weight:700;font-size:var(--t-sm)}
+
+.rule-list{border-top:1.5px solid var(--ink);max-width:56em}
+.rule-list>div{display:grid;grid-template-columns:minmax(9rem,13rem) 1fr;gap:var(--s1) var(--s5);padding:var(--s3) 0;border-bottom:1px solid var(--rule)}
+.rule-list dt{font-weight:700}
+@media (max-width:560px){.rule-list>div{grid-template-columns:1fr}}
+.f-help{align-self:flex-end;padding-bottom:var(--s3)}
+.flag a{white-space:nowrap}

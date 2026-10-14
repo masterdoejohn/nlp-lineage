@@ -12,6 +12,7 @@
   "branches": ["efficiency_long_context", "transformer_arch"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [1, 6],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/1911.02150",

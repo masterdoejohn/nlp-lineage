@@ -12,6 +12,7 @@
   "branches": ["neural_lm", "sequence_modeling"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "notable",
   "phase": [2],
   "lic": "n/a",
   "src": "https://www.isca-archive.org/interspeech_2010/mikolov10_interspeech.html",

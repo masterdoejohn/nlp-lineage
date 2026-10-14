@@ -12,6 +12,7 @@
   "branches": ["infrastructure", "scaling"],
   "imp": ["SCALING"],
   "tp": false,
+  "level": "milestone",
   "phase": [8],
   "lic": "MIT",
   "src": "https://arxiv.org/abs/1910.02054",

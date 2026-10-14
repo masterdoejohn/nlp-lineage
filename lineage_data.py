@@ -82,3 +82,42 @@ def dumps_entry(obj):
 def dumps_relationship(rel):
     """One line of relationships.jsonl."""
     return json.dumps(rel, ensure_ascii=False) + '\n'
+
+
+# ---------------- levels (docs/LEVELS.md) ----------------
+# A milestone's level is measured from the documented relationships, never set by hand:
+#   turning-point: at least TP_DIRECT later milestones descend from it directly, and its descendants
+#                  reach at least TP_THREADS of the research threads
+#   notable:       no later milestone descends from it, and it is dated before RECENT_FROM
+#   milestone:     everything else (including recent work that has had no time to gain successors)
+# "Descend" uses firm links only: evidence documented or strong, and not a parallel relationship
+# (the same rule as the tour's lineage tracer without weak links).
+TP_DIRECT, TP_THREADS, RECENT_FROM = 4, 5, '2025'
+WEAK_EVIDENCE = {'plausible-indirect', 'coincidence', 'retrospective'}
+PARALLEL = {'complementary development', 'independently contributed', 'historically adjacent'}
+
+
+def influence(milestones, relationships):
+    """For each milestone id: (number of direct firm successors, number of threads its descendants reach)."""
+    kids = {}
+    for r in relationships:
+        if r['ev'] not in WEAK_EVIDENCE and r['rel'] not in PARALLEL:
+            kids.setdefault(r['f'], set()).add(r['t'])
+    by = {m['id']: m for m in milestones}
+    out = {}
+    for i in by:
+        seen, stack = set(), [i]
+        while stack:
+            for k in kids.get(stack.pop(), ()):
+                if k not in seen:
+                    seen.add(k); stack.append(k)
+        out[i] = (len(kids.get(i, ())), len({l for d in seen if d in by for l in by[d]['lines']}))
+    return out
+
+
+def expected_level(m, direct, threads):
+    if direct >= TP_DIRECT and threads >= TP_THREADS:
+        return 'turning-point'
+    if direct == 0 and m['date'][:4] < RECENT_FROM:
+        return 'notable'
+    return 'milestone'

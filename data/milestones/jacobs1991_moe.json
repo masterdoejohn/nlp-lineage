@@ -12,6 +12,7 @@
   "branches": ["efficiency_long_context"],
   "imp": ["FOUNDATIONAL"],
   "tp": false,
+  "level": "milestone",
   "phase": [],
   "lic": "n/a",
   "src": "https://direct.mit.edu/neco/article/3/1/79/5560",

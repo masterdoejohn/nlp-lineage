@@ -12,6 +12,7 @@
   "branches": ["multimodal", "instruction_alignment", "productization"],
   "imp": ["PRODUCTIZATION"],
   "tp": false,
+  "level": "milestone",
   "phase": [3],
   "lic": "API only",
   "src": "https://www.anthropic.com/news/claude-3-family",

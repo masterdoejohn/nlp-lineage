@@ -35,6 +35,13 @@ export function trace(root: string, dir: Dir, weak: boolean): Trace {
   return { all, brief, depth };
 }
 
+/** The numbers behind a milestone's level (lineage_data.py, influence): direct firm successors, and the
+ *  threads its firm descendants reach. Firm means documented or strong, and not parallel work. */
+export function influence(id: string) {
+  const t = trace(id, 'after', false);
+  return { direct: t.all.filter((i) => t.depth[i] === 1).length, threads: new Set(t.all.flatMap((i) => byId[i].lines)).size };
+}
+
 /** The links that place `id` in the trace: up to three relationships toward the root, shown ones first. */
 export function via(id: string, t: Trace, dir: Dir, weak: boolean, shown: Set<string>): Relationship[] {
   return relationships

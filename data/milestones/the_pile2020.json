@@ -12,6 +12,7 @@
   "branches": ["data", "pretraining", "open_weight_ecosystem"],
   "imp": ["ENABLING", "ECOSYSTEM"],
   "tp": false,
+  "level": "milestone",
   "phase": [2, 8],
   "lic": "mixed, openly distributed",
   "src": "https://arxiv.org/abs/2101.00027",

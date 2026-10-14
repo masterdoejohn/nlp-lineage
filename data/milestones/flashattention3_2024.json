@@ -12,6 +12,7 @@
   "branches": ["efficiency_long_context", "infrastructure"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "notable",
   "phase": [6],
   "lic": "BSD-3-Clause",
   "src": "https://arxiv.org/abs/2407.08608",

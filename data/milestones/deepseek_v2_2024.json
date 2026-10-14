@@ -12,6 +12,7 @@
   "branches": ["efficiency_long_context", "open_weight_ecosystem"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [1, 8],
   "lic": "MIT code, DeepSeek model licence",
   "src": "https://arxiv.org/abs/2405.04434",

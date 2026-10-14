@@ -12,6 +12,7 @@
   "branches": ["tokenization"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [1],
   "lic": "MIT",
   "src": "https://arxiv.org/abs/1508.07909",

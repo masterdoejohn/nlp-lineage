@@ -12,6 +12,7 @@
   "branches": ["productization", "agents"],
   "imp": ["PRODUCTIZATION"],
   "tp": false,
+  "level": "notable",
   "phase": [3],
   "lic": "subscription",
   "src": "https://github.blog/news-insights/product-news/introducing-github-copilot-ai-pair-programmer/",

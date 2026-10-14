@@ -12,6 +12,7 @@
   "branches": ["multimodal", "transformer_arch"],
   "imp": ["TRANSFORMATIVE"],
   "tp": false,
+  "level": "milestone",
   "phase": [1],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/2010.11929",

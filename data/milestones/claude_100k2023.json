@@ -12,6 +12,7 @@
   "branches": ["efficiency_long_context", "productization"],
   "imp": ["PRODUCTIZATION"],
   "tp": false,
+  "level": "notable",
   "phase": [4],
   "lic": "API only",
   "src": "https://www.anthropic.com/news/100k-context-windows",

@@ -12,6 +12,7 @@
   "branches": ["retrieval_tools", "agents", "instruction_alignment"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [3, 7],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/2112.09332",

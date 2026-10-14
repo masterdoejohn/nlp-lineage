@@ -12,6 +12,7 @@
   "branches": ["pretraining", "instruction_alignment", "open_weight_ecosystem"],
   "imp": ["TRANSFORMATIVE", "ECOSYSTEM"],
   "tp": true,
+  "level": "turning-point",
   "phase": [2, 5, 8],
   "lic": "Llama 2 Community License",
   "src": "https://arxiv.org/abs/2307.09288",

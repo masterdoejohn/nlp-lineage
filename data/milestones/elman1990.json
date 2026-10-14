@@ -12,6 +12,7 @@
   "branches": ["neural_lm", "sequence_modeling"],
   "imp": ["FOUNDATIONAL"],
   "tp": false,
+  "level": "milestone",
   "phase": [],
   "lic": "n/a",
   "src": "https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog1402_1",

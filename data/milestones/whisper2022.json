@@ -12,6 +12,7 @@
   "branches": ["multimodal", "pretraining"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "notable",
   "phase": [6],
   "lic": "MIT",
   "src": "https://openai.com/index/whisper/",

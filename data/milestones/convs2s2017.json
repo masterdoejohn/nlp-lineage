@@ -12,6 +12,7 @@
   "branches": ["sequence_modeling", "attention"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "notable",
   "phase": [1],
   "lic": "MIT",
   "src": "https://arxiv.org/abs/1705.03122",
