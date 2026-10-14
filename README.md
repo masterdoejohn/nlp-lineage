@@ -9,7 +9,7 @@ The site is a preview and is not yet public. [docs/PLAN.md](docs/PLAN.md) descri
 | Path | What it is |
 |---|---|
 | `data/` | The research data: one file per milestone, thread, chapter and glossary term. [docs/DATA.md](docs/DATA.md) describes it. |
-| `site/` | The reference site (Astro). It builds to `build/`. |
+| `site/` | The reference site (Astro): milestone, thread and glossary pages, a timeline, filters, and "before and after" for every milestone. It builds to `build/`, and Pagefind then adds a search index. |
 | `src/`, `build.py` | The guided tour, "How language models came to be": one HTML page with scroll-driven diagrams. It builds to `dist/llm-lineage.html`. |
 | `src/tokens.css` | The design tokens (colours, type, spacing), shared by the site and the tour. [docs/DESIGN.md](docs/DESIGN.md) describes the design. |
 | `check_data.py` | Checks the data against the rules a script can check. |

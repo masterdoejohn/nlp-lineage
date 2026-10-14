@@ -10,9 +10,9 @@ const { t } = Astro.props as { t: Term };
 const intro = byId[t.introduced_by];
 const users = t.used_by.map((id) => byId[id]).sort((a, b) => a.ord - b.ord);
 ---
-<Base title={t.term} description={t.definition}>
+<Base title={t.term} description={t.definition} indexed>
   <p class="kicker"><a href="/glossary/">Glossary</a></p>
-  <h1 class="title">{t.term}</h1>
+  <h1 class="title" data-pagefind-meta="sub:Glossary term">{t.term}</h1>
   <p class="definition">{t.definition}</p>
   <section class="sec" aria-labelledby="h-intro">
     <h2 id="h-intro">Introduced by</h2>

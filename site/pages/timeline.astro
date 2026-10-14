@@ -1,0 +1,74 @@
+---
+// A timetable: one row per year, one column per thread, each milestone under its main thread.
+// Columns follow the order the thread colours were validated in (docs/DESIGN.md), so neighbours stay distinct.
+// Phones get the same content as a year-by-year list, composed for the narrow screen.
+import Base from '../layouts/Base.astro';
+import { milestones, threadById, type Milestone } from '../lib/data';
+import { year } from '../lib/labels';
+
+const ORDER = ['lm', 'align', 'rep', 'eff', 'reason', 'open', 'multi', 'agent', 'soc', 'scale'].filter((t) => threadById[t]);
+type Row = { kind: 'year'; y: string; ms: Milestone[] } | { kind: 'gap'; from: number; to: number };
+const rows: Row[] = [];
+for (const m of milestones) {
+  const y = year(m), last = rows[rows.length - 1];
+  if (last && last.kind === 'year' && last.y === y) { last.ms.push(m); continue; }
+  if (last && last.kind === 'year' && +y - +last.y > 1) rows.push({ kind: 'gap', from: +last.y + 1, to: +y - 1 });
+  rows.push({ kind: 'year', y, ms: [m] });
+}
+const gapText = (r: { from: number; to: number }) => (r.from === r.to ? `${r.from}: no milestones in the data.` : `${r.from} to ${r.to}: no milestones in the data.`);
+const first = year(milestones[0]), lastY = year(milestones[milestones.length - 1]);
+---
+<Base title="Timeline" description="Every milestone in the history of language models, by year and by research thread.">
+  <p class="kicker">{first} to {lastY}</p>
+  <h1 class="title">Timeline</h1>
+  <p class="lead">Every milestone by year, under its main thread. Turning points are in bold. Years with no milestones are folded together.</p>
+
+  <div class="tt-wide sec">
+    <table class="tt">
+      <caption class="sr">Milestones by year and main thread</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="tt-y">Year</th>
+          {ORDER.map((t) => <th scope="col"><a class="mark" style={`--c:var(--c-${t})`} href={`/threads/${t}/`}>{threadById[t].name}</a></th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => r.kind === 'gap' ? (
+          <tr class="tt-gap"><td colspan={ORDER.length + 1}>{gapText(r)}</td></tr>
+        ) : (
+          <tr>
+            <th scope="row" class="tt-y">{r.y}</th>
+            {ORDER.map((t) => (
+              <td>
+                <ul>
+                  {r.ms.filter((m) => m.lines[0] === t).map((m) => (
+                    <li class={m.tp ? 'tp' : undefined}><a href={`/milestones/${m.id}/`}>{m.short}</a>{m.tp && <span class="sr"> (turning point)</span>}</li>
+                  ))}
+                </ul>
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tt-narrow sec">
+    {rows.map((r) => r.kind === 'gap' ? (
+      <p class="tt-gap-n">{gapText(r)}</p>
+    ) : (
+      <section class="year-block" aria-label={r.y}>
+        <h2>{r.y}</h2>
+        <ul class="tt-n">
+          {r.ms.map((m) => (
+            <li class={m.tp ? 'tp' : undefined}>
+              <a class="mark" style={`--c:var(--c-${m.lines[0]})`} href={`/milestones/${m.id}/`}>{m.short}</a>
+              {m.tp && <span class="sr"> (turning point)</span>}
+              <span class="muted small"> {threadById[m.lines[0]].name}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>

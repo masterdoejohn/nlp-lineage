@@ -13,6 +13,20 @@ export function relGroup(rel: string): Group {
   return 'influence';
 }
 
+// The tour's lineage tracer: how an ancestor relates to the milestone after it ("X built directly on this").
+export const TRACE_VERB = { direct: 'built directly on this', influence: 'was influenced by this', succession: 'succeeded this', parallel: 'developed alongside this' };
+// The same relations read from the later milestone ("built directly on X"), for the "after" direction.
+export const TRACE_FROM = { direct: 'built directly on', influence: 'was influenced by', succession: 'succeeded', parallel: 'developed alongside' };
+
+// Who stands behind a milestone's reported results (the data's `claim` field), for the milestones filter.
+export const CLAIM_LABEL: Record<string, string> = {
+  'peer-reviewed': 'Peer reviewed',
+  'official': 'Official source',
+  'vendor-reported': 'Reported by the builder, not independently verified',
+  'mixed': 'Mixed',
+  'n-a': 'Not applicable',
+};
+
 // Weak evidence is always shown with one of these qualifiers (PLAN.md: weak links stay visibly marked).
 export const QUAL: Record<string, string> = {
   'plausible-indirect': 'indirect influence',

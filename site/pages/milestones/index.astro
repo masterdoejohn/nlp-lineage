@@ -1,12 +1,98 @@
 ---
 import Base from '../../layouts/Base.astro';
 import YearList from '../../components/YearList.astro';
-import { milestones } from '../../lib/data';
-import { year } from '../../lib/labels';
+import { milestones, threads } from '../../lib/data';
+import { year, cap, CLAIM_LABEL } from '../../lib/labels';
+
+const first = year(milestones[0]), last = year(milestones[milestones.length - 1]);
+const kinds = [...new Set(milestones.map((m) => m.type))].sort();
+const years = [...new Set(milestones.map((m) => year(m)))];
+const claims = Object.keys(CLAIM_LABEL).filter((c) => milestones.some((m) => m.claim === c));
 ---
 <Base title="Milestones" description="Every milestone in the history of language models, in date order, each with its primary source.">
-  <p class="kicker">{milestones.length} milestones, {year(milestones[0])} to {year(milestones[milestones.length - 1])}</p>
+  <p class="kicker">{milestones.length} milestones, {first} to {last}</p>
   <h1 class="title">Milestones</h1>
   <p class="lead">Papers, models, methods, datasets and events, in date order. Open one to see what it changed, its source, and what came before and after it.</p>
-  <div class="sec"><YearList items={milestones} /></div>
+
+  <!-- The filters need JavaScript; without it the full list below is shown. -->
+  <details class="filters-d sec" id="filters-d" hidden>
+  <summary>Filter the list</summary>
+  <form class="filters" id="filters" aria-label="Filter the milestones">
+    <div class="f-row">
+      <label>Thread
+        <select name="thread"><option value="">All threads</option>{threads.map((t) => <option value={t.id}>{t.name}</option>)}</select>
+      </label>
+      <label>Kind
+        <select name="kind"><option value="">All kinds</option>{kinds.map((k) => <option value={k}>{cap(k)}</option>)}</select>
+      </label>
+      <label>From
+        <select name="from"><option value="">{first}</option>{years.slice(1).map((y) => <option value={y}>{y}</option>)}</select>
+      </label>
+      <label>To
+        <select name="to"><option value="">{last}</option>{years.slice(0, -1).reverse().map((y) => <option value={y}>{y}</option>)}</select>
+      </label>
+      <label>Who stands behind the results
+        <select name="claim"><option value="">Any</option>{claims.map((c) => <option value={c}>{CLAIM_LABEL[c]}</option>)}</select>
+      </label>
+    </div>
+    <div class="f-row">
+      <label class="f-check"><input type="checkbox" name="tp" value="1" /> Turning points only</label>
+      <button type="reset" class="btn">Clear the filters</button>
+    </div>
+  </form>
+  </details>
+  <p class="f-count" id="f-count" role="status"></p>
+
+  <div class="sec" id="list"><YearList items={milestones} /></div>
+  <p class="status" id="f-empty" hidden>No milestones match these filters.</p>
 </Base>
+
+<script>
+  // Filter the list in place. The choices are kept in the address, so a filtered view can be shared.
+  const form = document.getElementById('filters') as HTMLFormElement;
+  const rows = [...document.querySelectorAll<HTMLLIElement>('#list li[data-kind]')];
+  const blocks = [...document.querySelectorAll<HTMLElement>('#list .year-block')];
+  const count = document.getElementById('f-count')!;
+  const empty = document.getElementById('f-empty')!;
+  const fields = ['thread', 'kind', 'from', 'to', 'claim', 'tp'];
+
+  function apply() {
+    const f = new FormData(form);
+    const v = (k: string) => String(f.get(k) ?? '');
+    let shown = 0;
+    for (const r of rows) {
+      const d = r.dataset;
+      const ok = (!v('thread') || d.lines!.split(' ').includes(v('thread')))
+        && (!v('kind') || d.kind === v('kind'))
+        && (!v('from') || d.year! >= v('from'))
+        && (!v('to') || d.year! <= v('to'))
+        && (!v('claim') || d.claim === v('claim'))
+        && (!v('tp') || d.tp === '1');
+      r.hidden = !ok;
+      if (ok) shown++;
+    }
+    for (const b of blocks) b.hidden = !b.querySelector('li[data-kind]:not([hidden])');
+    count.textContent = shown === rows.length ? `Showing all ${rows.length} milestones.` : `Showing ${shown} of ${rows.length} milestones.`;
+    empty.hidden = shown > 0;
+    const q = new URLSearchParams();
+    for (const k of fields) if (v(k)) q.set(k, v(k));
+    history.replaceState(null, '', q.toString() ? `?${q}` : location.pathname);
+  }
+
+  const params = new URLSearchParams(location.search);
+  for (const k of fields) {
+    const el = form.elements.namedItem(k) as HTMLInputElement | HTMLSelectElement | null;
+    const val = params.get(k);
+    if (!el || !val) continue;
+    if (el instanceof HTMLInputElement && el.type === 'checkbox') el.checked = val === '1';
+    else el.value = val;
+  }
+  const box = document.getElementById('filters-d') as HTMLDetailsElement;
+  box.hidden = false;
+  // open on wide screens, or when the address already sets a filter; on phones it starts folded
+  box.open = matchMedia('(min-width: 960px)').matches || fields.some((k) => params.get(k));
+  form.addEventListener('input', apply);
+  form.addEventListener('reset', () => setTimeout(apply));
+  form.addEventListener('submit', (e) => e.preventDefault());
+  apply();
+</script>

@@ -13,11 +13,20 @@ const first = year(milestones[0]), last = year(milestones[milestones.length - 1]
     Each milestone and each relationship links to its primary source.
   </p>
 
+  <form class="search-box sec" action="/search/" method="get" role="search">
+    <label for="home-q">Search milestones, threads and terms</label>
+    <div class="sb-row">
+      <input id="home-q" name="q" type="search" autocomplete="off" spellcheck="false" />
+      <button class="btn btn-ink" type="submit">Search</button>
+    </div>
+  </form>
+
   <section class="sec" aria-labelledby="h-start">
     <h2 id="h-start">Where to start</h2>
     <ul class="tiles">
       <li><a href="/tour/">Guided tour</a><p>How language models came to be: the story in {chapters.length} chapters, with working diagrams.</p></li>
-      <li><a href="/milestones/">Milestones</a><p>All {milestones.length}, in date order, from {first} to {last}.</p></li>
+      <li><a href="/milestones/">Milestones</a><p>All {milestones.length}, in date order, from {first} to {last}. Filter them by thread, kind and year.</p></li>
+      <li><a href="/timeline/">Timeline</a><p>Every milestone by year, under its main thread, on one page.</p></li>
       <li><a href="/threads/">Threads</a><p>The {threads.length} research threads, and the milestones on each one.</p></li>
       <li><a href="/glossary/">Glossary</a><p>{terms.length ? `${terms.length} terms, each defined in plain words.` : 'Terms in plain words. The glossary is being written.'}</p></li>
     </ul>

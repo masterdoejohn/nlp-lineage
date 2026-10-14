@@ -9,11 +9,12 @@
     "build": "python build.py",
     "test": "python tests/test_interact.py && python tests/test_redesign.py",
     "site:dev": "node scripts/prepare-tour.mjs && astro dev",
-    "site:build": "node scripts/prepare-tour.mjs && astro build",
+    "site:build": "node scripts/prepare-tour.mjs && astro build && pagefind --site build",
     "site:preview": "astro preview"
   },
   "devDependencies": {
     "astro": "7.3.8",
-    "gsap": "3.12.5"
+    "gsap": "3.12.5",
+    "pagefind": "1.5.2"
   }
 }
