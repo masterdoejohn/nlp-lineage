@@ -1,0 +1,29 @@
+{
+  "n": 5,
+  "id": "scale",
+  "title": "Scale becomes a science",
+  "years": "2020 to 2022",
+  "lede": "If bigger is better, how much better, and bigger in what?",
+  "body": [
+    "In January 2020 OpenAI published scaling laws: a model's loss falls predictably as parameters, data and compute grow, across seven orders of magnitude. Scale stopped being a gamble and became a budget. Four months later GPT-3, at 175 billion parameters, showed something new: give it a few examples in the prompt and it does the task, with no retraining. Prompting was born.",
+    "In 2022 DeepMind's Chinchilla corrected the recipe. Everyone had grown models far faster than their data, so a 70-billion-parameter model trained on more text beat one four times its size. The lesson, scale data and parameters together, is why capable small models exist. The same year, researchers argued over whether some abilities appear suddenly at scale, or only look sudden because of how they are measured."
+  ],
+  "keystones": ["gpt3_2020", "chinchilla2022"],
+  "extra": ["scaling_laws2020", "palm2022", "emergent_abilities2022"],
+  "transition": "GPT-3 was powerful and awkward. It continued your text rather than doing what you asked.",
+  "stations": ["scaling_laws2020", "gpt3_2020", "chinchilla2022", "palm2022", "emergent_abilities2022"],
+  "all": [
+    "scaling_laws2020",
+    "gpt3_2020",
+    "gshard2020",
+    "mmlu2020",
+    "the_pile2020",
+    "switch2021",
+    "gopher2021",
+    "mtnlg2022",
+    "chinchilla2022",
+    "palm2022",
+    "emergent_abilities2022",
+    "emergence_mirage2023"
+  ]
+}

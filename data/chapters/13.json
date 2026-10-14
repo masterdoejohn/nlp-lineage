@@ -1,0 +1,52 @@
+{
+  "n": 13,
+  "id": "agents",
+  "title": "Models that act",
+  "years": "2021 to 2026",
+  "lede": "What changes when the output is an action, not an answer?",
+  "body": [
+    "In 2021 WebGPT gave a model a text browser and taught it to search and cite. In 2022 ReAct combined reasoning and acting into one loop: think, act, observe, repeat. Almost every agent since is built on that loop. In 2023 SWE-bench asked models to fix real GitHub issues; the best of the day solved under 2 percent.",
+    "Then the tooling caught up. Function calling made tool use a standard API feature, computer use let a model operate a screen, and the Model Context Protocol standardised how models connect to tools. Coding agents became everyday tools in 2025, and reported SWE-bench scores passed 80 percent, though those figures are vendor-reported."
+  ],
+  "keystones": ["react2022", "mcp2024"],
+  "extra": [
+    "webgpt2021",
+    "swe_bench2023",
+    "devin2024",
+    "claude_computer_use2024",
+    "claude_code2025",
+    "claude_opus45_2025"
+  ],
+  "transition": "Which brings the threads back together, in the present.",
+  "stations": [
+    "webgpt2021",
+    "react2022",
+    "swe_bench2023",
+    "devin2024",
+    "claude_computer_use2024",
+    "mcp2024",
+    "claude_code2025",
+    "claude4_2025",
+    "claude_opus45_2025"
+  ],
+  "all": [
+    "codex2021",
+    "webgpt2021",
+    "react2022",
+    "toolformer2023",
+    "reflexion2023",
+    "autogpt2023",
+    "function_calling2023",
+    "swe_bench2023",
+    "devin2024",
+    "swe_agent2024",
+    "claude_computer_use2024",
+    "mcp2024",
+    "openai_deep_research2025",
+    "claude_code2025",
+    "claude4_2025",
+    "claude_sonnet45_2025",
+    "claude_opus45_2025",
+    "gpt53_codex2026"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "n": 1,
+  "id": "probability",
+  "title": "Language as probability",
+  "years": "1948 to 2011",
+  "lede": "Can you describe language well enough to predict it?",
+  "body": [
+    "The story starts with a question from information theory rather than linguistics. In 1948 Claude Shannon treated English as a source of symbols and measured how predictable the next one was. For forty years afterwards, language models were counts: how often does this word follow those two? IBM used exactly that idea to translate text statistically, replacing hand-written grammar rules with probabilities learned from data.",
+    "Counting has a ceiling. Most sentences you will ever read have never been written before, so a model that only remembers sequences it has seen gives them zero probability. In 2003 Yoshua Bengio's group proposed learning a vector for every word, so that similar words share what the model knows about them. That single move, meaning as position in a learned space, is still inside every model today."
+  ],
+  "keystones": ["bengio2003_nplm"],
+  "extra": ["mikolov2010_rnnlm"],
+  "transition": "The idea was right, but the computers were too slow to use it at scale. That changed a decade later.",
+  "stations": ["shannon1948", "brown1990_smt", "lstm1997", "bengio2003_nplm", "mikolov2010_rnnlm"],
+  "all": [
+    "shannon1948",
+    "brown1990_smt",
+    "elman1990",
+    "jacobs1991_moe",
+    "brown1992_class",
+    "lstm1997",
+    "bengio2003_nplm",
+    "mikolov2010_rnnlm",
+    "collobert2011"
+  ]
+}

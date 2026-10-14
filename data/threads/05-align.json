@@ -1,0 +1,6 @@
+{
+  "id": "align",
+  "name": "Alignment",
+  "hex": "#C43A2E",
+  "branches": ["instruction_alignment"]
+}

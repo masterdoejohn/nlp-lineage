@@ -1,0 +1,41 @@
+{
+  "n": 9,
+  "id": "efficiency",
+  "title": "Making it run anywhere",
+  "years": "2019 to 2024",
+  "lede": "How does a model built for a datacentre end up on a laptop?",
+  "body": [
+    "A thread of efficiency work runs quietly under everything else. FlashAttention made attention fast by reorganising memory traffic rather than approximating the maths. Quantization shrank weights from 16 bits to 8 and then 4 with little loss. LoRA let you fine-tune a model by training a tiny adapter beside it, and QLoRA combined the two so a 65-billion-parameter model could be tuned on one GPU.",
+    "Serving changed too. vLLM managed the model's working memory like an operating system manages RAM, and throughput rose two to four times. llama.cpp ran models on ordinary CPUs. Most of what you would do to run a model locally today was invented in this stretch."
+  ],
+  "keystones": ["flashattention2022", "qlora2023"],
+  "extra": ["lora2021", "llm_int8_2022", "gptq2022", "vllm2023", "llamacpp2023", "gqa2023"],
+  "transition": "Efficiency made models cheaper. It did not make them know more, or see more.",
+  "stations": [
+    "lora2021",
+    "flashattention2022",
+    "llm_int8_2022",
+    "gptq2022",
+    "llamacpp2023",
+    "gqa2023",
+    "qlora2023",
+    "vllm2023"
+  ],
+  "all": [
+    "mixed_precision2017",
+    "mqa2019",
+    "lora2021",
+    "flashattention2022",
+    "llm_int8_2022",
+    "gptq2022",
+    "speculative_decoding2022",
+    "llamacpp2023",
+    "gqa2023",
+    "qlora2023",
+    "awq2023",
+    "vllm2023",
+    "mamba2023",
+    "deepseek_v2_2024",
+    "flashattention3_2024"
+  ]
+}

@@ -1,0 +1,414 @@
+{"f": "shannon1948", "t": "brown1990_smt", "rel": "provided a foundation for", "ev": "retrospective", "note": "Noisy-channel MT rests on an information-theoretic base", "src": "https://aclanthology.org/J90-2002/"}
+{"f": "shannon1948", "t": "brown1992_class", "rel": "provided a foundation for", "ev": "strong", "note": "n-gram entropy framework underlies class n-grams", "src": "https://aclanthology.org/J92-4003/"}
+{"f": "brown1990_smt", "t": "brown1992_class", "rel": "directly built upon", "ev": "documented", "note": "Same IBM group extends statistical MT to word clustering", "src": "https://aclanthology.org/J92-4003/"}
+{"f": "elman1990", "t": "lstm1997", "rel": "provided a foundation for", "ev": "documented", "note": "LSTM fixes vanishing gradients in Elman-style recurrent nets", "src": "https://direct.mit.edu/neco/article/9/8/1735/6109/Long-Short-Term-Memory"}
+{"f": "bengio2003_nplm", "t": "mikolov2010_rnnlm", "rel": "influenced", "ev": "documented", "note": "RNN LM cites Bengio's neural LM as its precursor", "src": "https://www.isca-archive.org/interspeech_2010/mikolov10_interspeech.html"}
+{"f": "bengio2003_nplm", "t": "collobert2011", "rel": "influenced", "ev": "documented", "note": "Extends neural representation learning to many NLP tasks", "src": "https://jmlr.org/papers/v12/collobert11a.html"}
+{"f": "bengio2003_nplm", "t": "word2vec2013", "rel": "provided a foundation for", "ev": "documented", "note": "word2vec builds on the neural LM embedding idea", "src": "https://arxiv.org/abs/1301.3781"}
+{"f": "lstm1997", "t": "mikolov2010_rnnlm", "rel": "influenced", "ev": "strong", "note": "Recurrent LM in the gated-RNN lineage", "src": "https://www.isca-archive.org/interspeech_2010/mikolov10_interspeech.html"}
+{"f": "collobert2011", "t": "word2vec2013", "rel": "influenced", "ev": "documented", "note": "word2vec cites Collobert's unified-network embeddings", "src": "https://arxiv.org/abs/1301.3781"}
+{"f": "word2vec2013", "t": "glove2014", "rel": "influenced", "ev": "documented", "note": "GloVe compares against and critiques skip-gram", "src": "https://aclanthology.org/D14-1162/"}
+{"f": "lstm1997", "t": "seq2seq2014", "rel": "directly built upon", "ev": "documented", "note": "Seq2seq is built from stacked LSTMs", "src": "https://arxiv.org/abs/1409.3215"}
+{"f": "lstm1997", "t": "cho2014_gru", "rel": "directly built upon", "ev": "documented", "note": "GRU simplifies LSTM gating", "src": "https://arxiv.org/abs/1406.1078"}
+{"f": "cho2014_gru", "t": "seq2seq2014", "rel": "complementary development", "ev": "strong", "note": "Two 2014 encoder-decoder formulations, mutually cited", "src": "https://arxiv.org/abs/1409.3215"}
+{"f": "cho2014_gru", "t": "bahdanau2014", "rel": "directly built upon", "ev": "documented", "note": "Bahdanau extends Cho's RNN encoder-decoder", "src": "https://arxiv.org/abs/1409.0473"}
+{"f": "seq2seq2014", "t": "bahdanau2014", "rel": "directly built upon", "ev": "documented", "note": "Attention solves the fixed-vector bottleneck of seq2seq", "src": "https://arxiv.org/abs/1409.0473", "dateflip": true}
+{"f": "bahdanau2014", "t": "luong2015", "rel": "directly built upon", "ev": "documented", "note": "Luong proposes alternative attention scoring", "src": "https://arxiv.org/abs/1508.04025"}
+{"f": "bahdanau2014", "t": "transformer2017", "rel": "directly built upon", "ev": "documented", "note": "Transformer cites Bahdanau and generalises the mechanism", "src": "https://arxiv.org/abs/1706.03762"}
+{"f": "luong2015", "t": "transformer2017", "rel": "influenced", "ev": "strong", "note": "Dot-product attention lineage into scaled dot-product", "src": "https://arxiv.org/abs/1706.03762"}
+{"f": "seq2seq2014", "t": "transformer2017", "rel": "directly built upon", "ev": "documented", "note": "Transformer is an encoder-decoder trained on translation", "src": "https://arxiv.org/abs/1706.03762"}
+{"f": "seq2seq2014", "t": "gnmt2016", "rel": "directly built upon", "ev": "documented", "note": "GNMT is deep seq2seq plus attention in production", "src": "https://arxiv.org/abs/1609.08144"}
+{"f": "bahdanau2014", "t": "gnmt2016", "rel": "directly built upon", "ev": "documented", "note": "GNMT uses attention alignment", "src": "https://arxiv.org/abs/1609.08144"}
+{"f": "sennrich_bpe2015", "t": "gnmt2016", "rel": "complementary development", "ev": "strong", "note": "GNMT uses wordpiece subwords akin to BPE", "src": "https://arxiv.org/abs/1609.08144"}
+{"f": "convs2s2017", "t": "transformer2017", "rel": "influenced", "ev": "plausible-indirect", "note": "Cited as prior non-recurrent seq2seq, not an ancestor", "src": "https://arxiv.org/abs/1706.03762"}
+{"f": "resnet2015", "t": "transformer2017", "rel": "influenced", "ev": "strong", "note": "Transformer blocks use residual connections", "src": "https://arxiv.org/abs/1706.03762"}
+{"f": "layernorm2016", "t": "transformer2017", "rel": "directly built upon", "ev": "documented", "note": "Transformer uses layer normalisation", "src": "https://arxiv.org/abs/1706.03762"}
+{"f": "adam2014", "t": "transformer2017", "rel": "enabled", "ev": "documented", "note": "Transformer trained with Adam", "src": "https://arxiv.org/abs/1706.03762"}
+{"f": "jacobs1991_moe", "t": "shazeer2017_moe", "rel": "directly built upon", "ev": "documented", "note": "Sparsely-gated MoE builds on adaptive mixtures of experts", "src": "https://arxiv.org/abs/1701.06538"}
+{"f": "lstm1997", "t": "shazeer2017_moe", "rel": "directly built upon", "ev": "documented", "note": "MoE layers inserted between stacked LSTM layers", "src": "https://arxiv.org/abs/1701.06538"}
+{"f": "resnet2015", "t": "convs2s2017", "rel": "directly built upon", "ev": "documented", "note": "ConvS2S uses residual connections", "src": "https://arxiv.org/abs/1705.03122"}
+{"f": "bahdanau2014", "t": "convs2s2017", "rel": "directly built upon", "ev": "documented", "note": "Attention at every decoder layer", "src": "https://arxiv.org/abs/1705.03122"}
+{"f": "christiano2017_rlhf", "t": "ziegler2019_rlhf_lm", "rel": "directly built upon", "ev": "documented", "note": "Applies preference-based RL to language models", "src": "https://arxiv.org/abs/1909.08593"}
+{"f": "gpt2_2019", "t": "ziegler2019_rlhf_lm", "rel": "directly built upon", "ev": "documented", "note": "Fine-tunes GPT-2 with human preferences", "src": "https://arxiv.org/abs/1909.08593"}
+{"f": "dai_le2015", "t": "gpt1_2018", "rel": "influenced", "ev": "documented", "note": "GPT cites semi-supervised sequence learning", "src": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf"}
+{"f": "ulmfit2018", "t": "gpt1_2018", "rel": "influenced", "ev": "plausible-indirect", "note": "Contemporaneous fine-tuning work, not credited as causal", "src": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf"}
+{"f": "transformer2017", "t": "gpt1_2018", "rel": "directly built upon", "ev": "documented", "note": "GPT is a Transformer decoder", "src": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf"}
+{"f": "dai_le2015", "t": "ulmfit2018", "rel": "influenced", "ev": "documented", "note": "ULMFiT extends LM pretraining and fine-tuning", "src": "https://arxiv.org/abs/1801.06146"}
+{"f": "cove2017", "t": "elmo2018", "rel": "influenced", "ev": "documented", "note": "ELMo compares against and extends CoVe", "src": "https://aclanthology.org/N18-1202/"}
+{"f": "dai_le2015", "t": "elmo2018", "rel": "influenced", "ev": "documented", "note": "ELMo cites LM pretraining precedent", "src": "https://aclanthology.org/N18-1202/"}
+{"f": "elmo2018", "t": "gpt1_2018", "rel": "influenced", "ev": "plausible-indirect", "note": "Contemporaneous contextual pretraining, not a stated cause", "src": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf"}
+{"f": "lstm1997", "t": "elmo2018", "rel": "directly built upon", "ev": "documented", "note": "ELMo is a deep bidirectional LSTM", "src": "https://aclanthology.org/N18-1202/"}
+{"f": "lstm1997", "t": "cove2017", "rel": "directly built upon", "ev": "documented", "note": "CoVe uses a biLSTM translation encoder", "src": "https://arxiv.org/abs/1708.00107"}
+{"f": "seq2seq2014", "t": "cove2017", "rel": "directly built upon", "ev": "documented", "note": "Encoder taken from attentional seq2seq MT", "src": "https://arxiv.org/abs/1708.00107"}
+{"f": "collobert2011", "t": "elmo2018", "rel": "influenced", "ev": "documented", "note": "Cited in the pretrained-representation lineage", "src": "https://aclanthology.org/N18-1202/"}
+{"f": "word2vec2013", "t": "elmo2018", "rel": "influenced", "ev": "documented", "note": "ELMo contrasts static against contextual embeddings", "src": "https://aclanthology.org/N18-1202/"}
+{"f": "glove2014", "t": "elmo2018", "rel": "directly built upon", "ev": "documented", "note": "ELMo augments GloVe vectors", "src": "https://aclanthology.org/N18-1202/"}
+{"f": "glove2014", "t": "cove2017", "rel": "directly built upon", "ev": "documented", "note": "CoVe vectors appended to GloVe", "src": "https://arxiv.org/abs/1708.00107"}
+{"f": "transformer2017", "t": "bert2018", "rel": "directly built upon", "ev": "documented", "note": "BERT is a Transformer encoder", "src": "https://arxiv.org/abs/1810.04805"}
+{"f": "gpt1_2018", "t": "bert2018", "rel": "influenced", "ev": "documented", "note": "BERT contrasts itself with GPT's unidirectional LM", "src": "https://arxiv.org/abs/1810.04805"}
+{"f": "elmo2018", "t": "bert2018", "rel": "influenced", "ev": "documented", "note": "BERT cites ELMo's contextual representations", "src": "https://arxiv.org/abs/1810.04805"}
+{"f": "dai_le2015", "t": "bert2018", "rel": "influenced", "ev": "documented", "note": "Cited as semi-supervised pretraining precedent", "src": "https://arxiv.org/abs/1810.04805"}
+{"f": "ulmfit2018", "t": "bert2018", "rel": "influenced", "ev": "documented", "note": "BERT cites ULMFiT's LM fine-tuning", "src": "https://arxiv.org/abs/1810.04805"}
+{"f": "gpt1_2018", "t": "gpt2_2019", "rel": "directly built upon", "ev": "documented", "note": "GPT-2 scales the GPT architecture", "src": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"}
+{"f": "transformer2017", "t": "gpt2_2019", "rel": "directly built upon", "ev": "documented", "note": "GPT-2 is a Transformer decoder LM", "src": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"}
+{"f": "sennrich_bpe2015", "t": "gpt2_2019", "rel": "directly built upon", "ev": "documented", "note": "GPT-2 uses byte-level BPE", "src": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"}
+{"f": "webtext2019", "t": "gpt2_2019", "rel": "enabled", "ev": "documented", "note": "GPT-2 trained on WebText", "src": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"}
+{"f": "layernorm2016", "t": "gpt2_2019", "rel": "directly built upon", "ev": "documented", "note": "GPT-2 moves layer norm to the sublayer input", "src": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"}
+{"f": "gpt1_2018", "t": "webtext2019", "rel": "provided a foundation for", "ev": "strong", "note": "WebText built to scale GPT-style pretraining", "src": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"}
+{"f": "transformer2017", "t": "transformer_xl2019", "rel": "directly built upon", "ev": "documented", "note": "Extends the Transformer for longer context", "src": "https://arxiv.org/abs/1901.02860"}
+{"f": "transformer2017", "t": "sparse_transformer2019", "rel": "directly built upon", "ev": "documented", "note": "Factorises Transformer attention", "src": "https://arxiv.org/abs/1904.10509"}
+{"f": "transformer_xl2019", "t": "sparse_transformer2019", "rel": "influenced", "ev": "plausible-indirect", "note": "Both target the long-context limit", "src": "https://arxiv.org/abs/1904.10509"}
+{"f": "transformer2017", "t": "mqa2019", "rel": "directly built upon", "ev": "documented", "note": "Modifies multi-head attention for decoding speed", "src": "https://arxiv.org/abs/1911.02150"}
+{"f": "bert2018", "t": "roberta2019", "rel": "directly built upon", "ev": "documented", "note": "Retrains BERT with a better recipe", "src": "https://arxiv.org/abs/1907.11692"}
+{"f": "sennrich_bpe2015", "t": "roberta2019", "rel": "directly built upon", "ev": "documented", "note": "RoBERTa uses byte-level BPE", "src": "https://arxiv.org/abs/1907.11692"}
+{"f": "transformer2017", "t": "megatron2019", "rel": "directly built upon", "ev": "documented", "note": "Parallelises Transformer language models", "src": "https://arxiv.org/abs/1909.08053"}
+{"f": "gpt2_2019", "t": "megatron2019", "rel": "influenced", "ev": "documented", "note": "Scales GPT-2-style models", "src": "https://arxiv.org/abs/1909.08053"}
+{"f": "bert2018", "t": "megatron2019", "rel": "influenced", "ev": "documented", "note": "Also trains a scaled BERT", "src": "https://arxiv.org/abs/1909.08053"}
+{"f": "mixed_precision2017", "t": "megatron2019", "rel": "enabled", "ev": "strong", "note": "Megatron trains in mixed precision", "src": "https://arxiv.org/abs/1909.08053"}
+{"f": "adam2014", "t": "zero2019", "rel": "directly built upon", "ev": "documented", "note": "ZeRO partitions Adam optimizer state", "src": "https://arxiv.org/abs/1910.02054"}
+{"f": "megatron2019", "t": "zero2019", "rel": "complementary development", "ev": "documented", "note": "ZeRO complements model parallelism", "src": "https://arxiv.org/abs/1910.02054"}
+{"f": "transformer2017", "t": "t5_2019", "rel": "directly built upon", "ev": "documented", "note": "T5 is an encoder-decoder Transformer", "src": "https://arxiv.org/abs/1910.10683"}
+{"f": "bert2018", "t": "t5_2019", "rel": "influenced", "ev": "documented", "note": "T5 studies masked-LM style objectives", "src": "https://arxiv.org/abs/1910.10683"}
+{"f": "gpt2_2019", "t": "t5_2019", "rel": "influenced", "ev": "documented", "note": "T5 references scaling and transfer trends", "src": "https://arxiv.org/abs/1910.10683"}
+{"f": "c4_2019", "t": "t5_2019", "rel": "enabled", "ev": "documented", "note": "T5 trained on C4", "src": "https://arxiv.org/abs/1910.10683"}
+{"f": "sentencepiece2018", "t": "t5_2019", "rel": "directly built upon", "ev": "documented", "note": "T5 uses SentencePiece tokenization", "src": "https://arxiv.org/abs/1910.10683"}
+{"f": "webtext2019", "t": "c4_2019", "rel": "influenced", "ev": "plausible-indirect", "note": "Independent 2019 web corpora with similar filtering aims", "src": "https://arxiv.org/abs/1910.10683"}
+{"f": "transformer2017", "t": "scaling_laws2020", "rel": "directly built upon", "ev": "documented", "note": "Studies scaling of Transformer language models", "src": "https://arxiv.org/abs/2001.08361"}
+{"f": "gpt2_2019", "t": "scaling_laws2020", "rel": "provided a foundation for", "ev": "documented", "note": "Extends the GPT-2 scaling trend into a quantitative law", "src": "https://arxiv.org/abs/2001.08361"}
+{"f": "scaling_laws2020", "t": "gpt3_2020", "rel": "influenced", "ev": "documented", "note": "GPT-3 cites the scaling laws to motivate 175B", "src": "https://arxiv.org/abs/2005.14165"}
+{"f": "gpt2_2019", "t": "gpt3_2020", "rel": "directly built upon", "ev": "documented", "note": "GPT-3 scales the GPT-2 architecture", "src": "https://arxiv.org/abs/2005.14165"}
+{"f": "sparse_transformer2019", "t": "gpt3_2020", "rel": "directly built upon", "ev": "documented", "note": "GPT-3 alternates dense and locally banded sparse attention", "src": "https://arxiv.org/abs/2005.14165"}
+{"f": "bert2018", "t": "dpr2020", "rel": "directly built upon", "ev": "documented", "note": "DPR uses BERT dual encoders", "src": "https://arxiv.org/abs/2004.04906"}
+{"f": "faiss2017", "t": "dpr2020", "rel": "enabled", "ev": "documented", "note": "DPR uses FAISS for dense similarity search", "src": "https://arxiv.org/abs/2004.04906"}
+{"f": "sbert2019", "t": "dpr2020", "rel": "complementary development", "ev": "plausible-indirect", "note": "Both are dense bi-encoder embedding approaches", "src": "https://arxiv.org/abs/2004.04906"}
+{"f": "bert2018", "t": "sbert2019", "rel": "directly built upon", "ev": "documented", "note": "Siamese structure over BERT", "src": "https://arxiv.org/abs/1908.10084"}
+{"f": "transformer2017", "t": "longformer2020", "rel": "directly built upon", "ev": "documented", "note": "Modifies Transformer attention for long documents", "src": "https://arxiv.org/abs/2004.05150"}
+{"f": "sparse_transformer2019", "t": "bigbird2020", "rel": "influenced", "ev": "documented", "note": "Builds on the sparse-attention lineage", "src": "https://arxiv.org/abs/2007.14062"}
+{"f": "transformer2017", "t": "bigbird2020", "rel": "directly built upon", "ev": "documented", "note": "Sparse attention approximating full self-attention", "src": "https://arxiv.org/abs/2007.14062"}
+{"f": "bart2019", "t": "rag2020", "rel": "directly built upon", "ev": "documented", "note": "RAG's generator is BART", "src": "https://arxiv.org/abs/2005.11401"}
+{"f": "dpr2020", "t": "rag2020", "rel": "directly built upon", "ev": "documented", "note": "RAG uses the DPR retriever as non-parametric memory", "src": "https://arxiv.org/abs/2005.11401"}
+{"f": "faiss2017", "t": "rag2020", "rel": "enabled", "ev": "documented", "note": "RAG uses FAISS over a Wikipedia index", "src": "https://arxiv.org/abs/2005.11401"}
+{"f": "shazeer2017_moe", "t": "gshard2020", "rel": "directly built upon", "ev": "documented", "note": "GShard scales MoE conditional computation", "src": "https://arxiv.org/abs/2006.16668"}
+{"f": "zero2019", "t": "gshard2020", "rel": "complementary development", "ev": "plausible-indirect", "note": "Both address distributed training of giant models", "src": "https://arxiv.org/abs/2006.16668"}
+{"f": "christiano2017_rlhf", "t": "stiennon2020_summarize", "rel": "directly built upon", "ev": "documented", "note": "Extends preference-based RL to summarisation", "src": "https://arxiv.org/abs/2009.01325"}
+{"f": "ziegler2019_rlhf_lm", "t": "stiennon2020_summarize", "rel": "directly built upon", "ev": "documented", "note": "Continues the RLHF-for-language-models line", "src": "https://arxiv.org/abs/2009.01325"}
+{"f": "transformer2017", "t": "vit2020", "rel": "directly built upon", "ev": "documented", "note": "Applies a Transformer encoder to image patches", "src": "https://arxiv.org/abs/2010.11929"}
+{"f": "bert2018", "t": "vit2020", "rel": "influenced", "ev": "documented", "note": "Patch tokens and a class token mirror BERT", "src": "https://arxiv.org/abs/2010.11929"}
+{"f": "gpt3_2020", "t": "the_pile2020", "rel": "influenced", "ev": "documented", "note": "Motivated by the data needs of GPT-3-scale training", "src": "https://arxiv.org/abs/2101.00027"}
+{"f": "c4_2019", "t": "the_pile2020", "rel": "influenced", "ev": "strong", "note": "Improves on C4-style web-only corpora", "src": "https://arxiv.org/abs/2101.00027"}
+{"f": "gshard2020", "t": "switch2021", "rel": "directly built upon", "ev": "documented", "note": "Simplifies GShard routing to a single expert", "src": "https://arxiv.org/abs/2101.03961"}
+{"f": "shazeer2017_moe", "t": "switch2021", "rel": "directly built upon", "ev": "documented", "note": "Builds on the sparsely-gated MoE layer", "src": "https://arxiv.org/abs/2101.03961"}
+{"f": "t5_2019", "t": "switch2021", "rel": "directly built upon", "ev": "documented", "note": "Uses the T5 backbone and benchmarks", "src": "https://arxiv.org/abs/2101.03961"}
+{"f": "vit2020", "t": "clip2021", "rel": "directly built upon", "ev": "documented", "note": "CLIP uses a ViT image encoder variant", "src": "https://arxiv.org/abs/2103.00020"}
+{"f": "gpt2_2019", "t": "clip2021", "rel": "directly built upon", "ev": "documented", "note": "CLIP's text encoder is a GPT-style Transformer", "src": "https://arxiv.org/abs/2103.00020"}
+{"f": "transformer2017", "t": "rope2021", "rel": "directly built upon", "ev": "documented", "note": "Replaces the Transformer's positional encoding", "src": "https://arxiv.org/abs/2104.09864"}
+{"f": "transformer_xl2019", "t": "rope2021", "rel": "influenced", "ev": "strong", "note": "Continues the relative-position line", "src": "https://arxiv.org/abs/2104.09864"}
+{"f": "gpt3_2020", "t": "lora2021", "rel": "directly built upon", "ev": "documented", "note": "LoRA targets the cost of fine-tuning GPT-3 175B", "src": "https://arxiv.org/abs/2106.09685"}
+{"f": "transformer2017", "t": "lora2021", "rel": "directly built upon", "ev": "documented", "note": "Injects low-rank updates into Transformer weight matrices", "src": "https://arxiv.org/abs/2106.09685"}
+{"f": "gpt3_2020", "t": "codex2021", "rel": "directly built upon", "ev": "documented", "note": "Codex fine-tunes GPT models on public code", "src": "https://arxiv.org/abs/2107.03374"}
+{"f": "codex2021", "t": "github_copilot2021", "rel": "enabled", "ev": "documented", "note": "Copilot is powered by OpenAI Codex", "src": "https://github.blog/news-insights/product-news/introducing-github-copilot-ai-pair-programmer/", "dateflip": true}
+{"f": "transformer2017", "t": "alibi2021", "rel": "directly built upon", "ev": "documented", "note": "Replaces sinusoidal position encoding with a distance bias", "src": "https://arxiv.org/abs/2108.12409"}
+{"f": "rope2021", "t": "alibi2021", "rel": "complementary development", "ev": "documented", "note": "ALiBi compares against rotary embeddings on extrapolation", "src": "https://arxiv.org/abs/2108.12409"}
+{"f": "gpt3_2020", "t": "flan2021", "rel": "influenced", "ev": "documented", "note": "FLAN compares against GPT-3 zero and few-shot", "src": "https://arxiv.org/abs/2109.01652"}
+{"f": "t5_2019", "t": "flan2021", "rel": "influenced", "ev": "strong", "note": "Multitask text-to-text framing precedes instruction tuning", "src": "https://arxiv.org/abs/2109.01652"}
+{"f": "flan2021", "t": "t0_2021", "rel": "complementary development", "ev": "documented", "note": "T0 parallels and cites FLAN's instruction tuning", "src": "https://arxiv.org/abs/2110.08207"}
+{"f": "t5_2019", "t": "t0_2021", "rel": "directly built upon", "ev": "documented", "note": "T0 is built on a T5 backbone", "src": "https://arxiv.org/abs/2110.08207"}
+{"f": "stiennon2020_summarize", "t": "askell2021", "rel": "influenced", "ev": "strong", "note": "Extends the RLHF line into general assistant alignment", "src": "https://arxiv.org/abs/2112.00861"}
+{"f": "dpr2020", "t": "retro2021", "rel": "influenced", "ev": "strong", "note": "Dense retrieval precedent, though RETRO uses frozen BERT and ScaNN", "src": "https://arxiv.org/abs/2112.04426"}
+{"f": "rag2020", "t": "retro2021", "rel": "influenced", "ev": "documented", "note": "Retrieval-augmented generation precedent at smaller scale", "src": "https://arxiv.org/abs/2112.04426"}
+{"f": "gpt3_2020", "t": "gopher2021", "rel": "complementary development", "ev": "documented", "note": "Gopher benchmarks against GPT-3", "src": "https://arxiv.org/abs/2112.11446"}
+{"f": "stiennon2020_summarize", "t": "webgpt2021", "rel": "directly built upon", "ev": "documented", "note": "Uses RLHF for long-form question answering", "src": "https://arxiv.org/abs/2112.09332"}
+{"f": "gpt3_2020", "t": "webgpt2021", "rel": "directly built upon", "ev": "documented", "note": "Fine-tunes GPT-3 with browsing", "src": "https://arxiv.org/abs/2112.09332"}
+{"f": "gpt3_2020", "t": "lamda2022", "rel": "complementary development", "ev": "documented", "note": "Contemporaneous large dialogue model", "src": "https://arxiv.org/abs/2201.08239"}
+{"f": "gpt3_2020", "t": "cot2022", "rel": "demonstrated feasibility", "ev": "documented", "note": "Chain-of-thought results reported on GPT-3 class models", "src": "https://arxiv.org/abs/2201.11903"}
+{"f": "scaling_laws2020", "t": "mtnlg2022", "rel": "influenced", "ev": "strong", "note": "530B scale follows the scaling-law rationale", "src": "https://arxiv.org/abs/2201.11990"}
+{"f": "megatron2019", "t": "mtnlg2022", "rel": "directly built upon", "ev": "documented", "note": "Uses Megatron tensor parallelism", "src": "https://arxiv.org/abs/2201.11990"}
+{"f": "zero2019", "t": "mtnlg2022", "rel": "directly built upon", "ev": "documented", "note": "DeepSpeed ZeRO powers the 530B run", "src": "https://arxiv.org/abs/2201.11990"}
+{"f": "stiennon2020_summarize", "t": "instructgpt2022", "rel": "directly built upon", "ev": "documented", "note": "Extends the summarisation RLHF recipe", "src": "https://arxiv.org/abs/2203.02155"}
+{"f": "gpt3_2020", "t": "instructgpt2022", "rel": "directly built upon", "ev": "documented", "note": "InstructGPT fine-tunes GPT-3", "src": "https://arxiv.org/abs/2203.02155"}
+{"f": "flan2021", "t": "instructgpt2022", "rel": "influenced", "ev": "strong", "note": "Instruction tuning precedes the supervised stage", "src": "https://arxiv.org/abs/2203.02155"}
+{"f": "webgpt2021", "t": "instructgpt2022", "rel": "complementary development", "ev": "documented", "note": "Same OpenAI human-feedback lineage", "src": "https://arxiv.org/abs/2203.02155"}
+{"f": "cot2022", "t": "self_consistency2022", "rel": "directly built upon", "ev": "documented", "note": "Samples multiple chain-of-thought paths", "src": "https://arxiv.org/abs/2203.11171"}
+{"f": "cot2022", "t": "star2022", "rel": "influenced", "ev": "documented", "note": "Bootstraps chain-of-thought style rationales", "src": "https://arxiv.org/abs/2203.14465"}
+{"f": "codex2021", "t": "alphacode2022", "rel": "complementary development", "ev": "documented", "note": "Both code generation; AlphaCode adds sampling and filtering", "src": "https://arxiv.org/abs/2203.07814"}
+{"f": "scaling_laws2020", "t": "chinchilla2022", "rel": "directly built upon", "ev": "documented", "note": "Chinchilla revises the Kaplan compute-optimal analysis", "src": "https://arxiv.org/abs/2203.15556"}
+{"f": "gopher2021", "t": "chinchilla2022", "rel": "directly built upon", "ev": "documented", "note": "Uses Gopher's compute budget as the comparison", "src": "https://arxiv.org/abs/2203.15556"}
+{"f": "gpt3_2020", "t": "palm2022", "rel": "complementary development", "ev": "documented", "note": "PaLM compares against GPT-3 few-shot", "src": "https://arxiv.org/abs/2204.02311"}
+{"f": "gshard2020", "t": "palm2022", "rel": "enabled", "ev": "documented", "note": "Pathways builds on Google's sharding infrastructure", "src": "https://arxiv.org/abs/2204.02311"}
+{"f": "cot2022", "t": "palm2022", "rel": "demonstrated feasibility", "ev": "documented", "note": "PaLM uses chain-of-thought for its reasoning results", "src": "https://arxiv.org/abs/2204.02311"}
+{"f": "instructgpt2022", "t": "hh_rlhf2022", "rel": "complementary development", "ev": "strong", "note": "Parallel RLHF assistant programme at Anthropic", "src": "https://arxiv.org/abs/2204.05862"}
+{"f": "askell2021", "t": "hh_rlhf2022", "rel": "directly built upon", "ev": "documented", "note": "Extends the HHH framing into RLHF training", "src": "https://arxiv.org/abs/2204.05862"}
+{"f": "stiennon2020_summarize", "t": "hh_rlhf2022", "rel": "directly built upon", "ev": "documented", "note": "Uses learned preference reward models", "src": "https://arxiv.org/abs/2204.05862"}
+{"f": "clip2021", "t": "flamingo2022", "rel": "directly built upon", "ev": "documented", "note": "Uses a contrastively trained vision encoder", "src": "https://arxiv.org/abs/2204.14198"}
+{"f": "gpt3_2020", "t": "flamingo2022", "rel": "influenced", "ev": "documented", "note": "Brings few-shot prompting to vision-language", "src": "https://arxiv.org/abs/2204.14198"}
+{"f": "vit2020", "t": "flamingo2022", "rel": "directly built upon", "ev": "documented", "note": "Vision encoder built on ViT-style features", "src": "https://arxiv.org/abs/2204.14198"}
+{"f": "gpt3_2020", "t": "opt2022", "rel": "directly built upon", "ev": "documented", "note": "OPT-175B openly replicates GPT-3", "src": "https://arxiv.org/abs/2205.01068"}
+{"f": "the_pile2020", "t": "opt2022", "rel": "directly built upon", "ev": "documented", "note": "Trained partly on Pile-derived corpora", "src": "https://arxiv.org/abs/2205.01068"}
+{"f": "megatron2019", "t": "opt2022", "rel": "enabled", "ev": "strong", "note": "Trained with Megatron-style parallelism", "src": "https://arxiv.org/abs/2205.01068"}
+{"f": "cot2022", "t": "zs_cot2022", "rel": "directly built upon", "ev": "documented", "note": "Extends few-shot chain-of-thought to zero-shot", "src": "https://arxiv.org/abs/2205.11916"}
+{"f": "gpt3_2020", "t": "zs_cot2022", "rel": "demonstrated feasibility", "ev": "documented", "note": "Tested on GPT-3 and InstructGPT models", "src": "https://arxiv.org/abs/2205.11916"}
+{"f": "transformer2017", "t": "flashattention2022", "rel": "directly built upon", "ev": "documented", "note": "Reimplements exact self-attention with IO awareness", "src": "https://arxiv.org/abs/2205.14135"}
+{"f": "bigbird2020", "t": "flashattention2022", "rel": "superseded", "ev": "strong", "note": "Exact tiled attention displaces approximate long-attention", "src": "https://arxiv.org/abs/2205.14135"}
+{"f": "scaling_laws2020", "t": "emergent_abilities2022", "rel": "directly built upon", "ev": "documented", "note": "Contrasts smooth scaling with discontinuous capability", "src": "https://arxiv.org/abs/2206.07682"}
+{"f": "cot2022", "t": "emergent_abilities2022", "rel": "directly built upon", "ev": "documented", "note": "Uses chain-of-thought as a case of emergence", "src": "https://arxiv.org/abs/2206.07682"}
+{"f": "palm2022", "t": "emergent_abilities2022", "rel": "influenced", "ev": "documented", "note": "PaLM's breakthrough tasks cited as emergence", "src": "https://arxiv.org/abs/2206.07682"}
+{"f": "mmlu2020", "t": "emergent_abilities2022", "rel": "enabled", "ev": "strong", "note": "MMLU is one of the benchmarks where jumps are measured", "src": "https://arxiv.org/abs/2206.07682"}
+{"f": "gpt3_2020", "t": "mmlu2020", "rel": "historically adjacent", "ev": "coincidence", "note": "Contemporaneous; MMLU was built to measure models of this class", "src": "https://arxiv.org/abs/2009.03300"}
+{"f": "the_pile2020", "t": "bloom2022", "rel": "influenced", "ev": "strong", "note": "Open corpus practice informs the ROOTS corpus", "src": "https://arxiv.org/abs/2211.05100"}
+{"f": "alibi2021", "t": "bloom2022", "rel": "directly built upon", "ev": "documented", "note": "BLOOM uses ALiBi position encoding", "src": "https://arxiv.org/abs/2211.05100"}
+{"f": "opt2022", "t": "bloom2022", "rel": "complementary development", "ev": "documented", "note": "Both open replications at GPT-3 scale", "src": "https://arxiv.org/abs/2211.05100"}
+{"f": "zero2019", "t": "bloom2022", "rel": "enabled", "ev": "strong", "note": "Trained with DeepSpeed and Megatron parallelism", "src": "https://arxiv.org/abs/2211.05100"}
+{"f": "opt2022", "t": "llm_int8_2022", "rel": "demonstrated feasibility", "ev": "documented", "note": "Method demonstrated on OPT-175B", "src": "https://arxiv.org/abs/2208.07339"}
+{"f": "transformer2017", "t": "whisper2022", "rel": "directly built upon", "ev": "documented", "note": "Encoder-decoder Transformer over audio spectrograms", "src": "https://arxiv.org/abs/2212.04356"}
+{"f": "cot2022", "t": "react2022", "rel": "directly built upon", "ev": "documented", "note": "ReAct combines chain-of-thought reasoning with acting", "src": "https://arxiv.org/abs/2210.03629"}
+{"f": "webgpt2021", "t": "react2022", "rel": "influenced", "ev": "documented", "note": "Cites WebGPT for language models acting in environments", "src": "https://arxiv.org/abs/2210.03629"}
+{"f": "flan2021", "t": "flan_scaling2022", "rel": "directly built upon", "ev": "documented", "note": "Scales the FLAN instruction-tuning approach", "src": "https://arxiv.org/abs/2210.11416"}
+{"f": "t5_2019", "t": "flan_scaling2022", "rel": "directly built upon", "ev": "documented", "note": "Fine-tunes T5 checkpoints", "src": "https://arxiv.org/abs/2210.11416"}
+{"f": "cot2022", "t": "flan_scaling2022", "rel": "directly built upon", "ev": "documented", "note": "Adds chain-of-thought data to the instruction mixture", "src": "https://arxiv.org/abs/2210.11416"}
+{"f": "palm2022", "t": "flan_scaling2022", "rel": "directly built upon", "ev": "documented", "note": "Flan-PaLM instruction-tunes PaLM", "src": "https://arxiv.org/abs/2210.11416"}
+{"f": "llm_int8_2022", "t": "gptq2022", "rel": "influenced", "ev": "documented", "note": "Addresses the limits of 8-bit outlier handling", "src": "https://arxiv.org/abs/2210.17323"}
+{"f": "instructgpt2022", "t": "chatgpt2022", "rel": "directly built upon", "ev": "documented", "note": "OpenAI calls ChatGPT a sibling model to InstructGPT, same method", "src": "https://openai.com/index/chatgpt/"}
+{"f": "gpt35_2022", "t": "chatgpt2022", "rel": "directly built upon", "ev": "documented", "note": "Fine-tuned from a GPT-3.5 series model", "src": "https://openai.com/index/chatgpt/"}
+{"f": "instructgpt2022", "t": "gpt35_2022", "rel": "directly built upon", "ev": "documented", "note": "GPT-3.5 productises the instruction-tuned line", "src": "https://openai.com/index/gpt-4-api-general-availability/"}
+{"f": "gpt3_2020", "t": "gpt35_2022", "rel": "directly built upon", "ev": "documented", "note": "GPT-3.5 is a GPT-3 descendant", "src": "https://platform.openai.com/docs/deprecations"}
+{"f": "hh_rlhf2022", "t": "constitutional_ai2022", "rel": "directly built upon", "ev": "documented", "note": "Replaces human harmlessness labels with AI feedback", "src": "https://arxiv.org/abs/2212.08073"}
+{"f": "christiano2017_rlhf", "t": "constitutional_ai2022", "rel": "influenced", "ev": "strong", "note": "Keeps the preference-model and PPO pipeline", "src": "https://arxiv.org/abs/2212.08073"}
+{"f": "cot2022", "t": "constitutional_ai2022", "rel": "influenced", "ev": "documented", "note": "Uses chain-of-thought in the critique and revision stage", "src": "https://arxiv.org/abs/2212.08073"}
+{"f": "flan2021", "t": "self_instruct2022", "rel": "influenced", "ev": "documented", "note": "Targets the instruction-data bottleneck flan exposed", "src": "https://arxiv.org/abs/2212.10560"}
+{"f": "gpt3_2020", "t": "self_instruct2022", "rel": "directly built upon", "ev": "documented", "note": "Bootstraps instructions from a GPT-3 model", "src": "https://arxiv.org/abs/2212.10560"}
+{"f": "webgpt2021", "t": "toolformer2023", "rel": "influenced", "ev": "documented", "note": "Cites prior tool and search use by language models", "src": "https://arxiv.org/abs/2302.04761"}
+{"f": "gpt3_2020", "t": "toolformer2023", "rel": "directly built upon", "ev": "documented", "note": "Self-supervised API calls trained into a GPT-family model", "src": "https://arxiv.org/abs/2302.04761"}
+{"f": "chinchilla2022", "t": "llama2023", "rel": "directly built upon", "ev": "documented", "note": "LLaMA training is inspired by Chinchilla scaling laws", "src": "https://arxiv.org/abs/2302.13971"}
+{"f": "rope2021", "t": "llama2023", "rel": "directly built upon", "ev": "documented", "note": "LLaMA uses rotary position embeddings", "src": "https://arxiv.org/abs/2302.13971"}
+{"f": "gpt3_2020", "t": "llama2023", "rel": "independently contributed", "ev": "documented", "note": "LLaMA-13B compared against and beats GPT-3 175B", "src": "https://arxiv.org/abs/2302.13971"}
+{"f": "sennrich_bpe2015", "t": "llama2023", "rel": "directly built upon", "ev": "documented", "note": "Uses a BPE tokenizer via SentencePiece", "src": "https://arxiv.org/abs/2302.13971"}
+{"f": "llama2023", "t": "alpaca2023", "rel": "directly built upon", "ev": "documented", "note": "Alpaca fine-tunes LLaMA 7B", "src": "https://crfm.stanford.edu/2023/03/13/alpaca.html"}
+{"f": "self_instruct2022", "t": "alpaca2023", "rel": "directly built upon", "ev": "documented", "note": "Generates 52K demonstrations in the self-instruct style", "src": "https://crfm.stanford.edu/2023/03/13/alpaca.html"}
+{"f": "gpt35_2022", "t": "alpaca2023", "rel": "enabled", "ev": "documented", "note": "Training data generated from text-davinci-003", "src": "https://crfm.stanford.edu/2023/03/13/alpaca.html"}
+{"f": "constitutional_ai2022", "t": "claude2023", "rel": "directly built upon", "ev": "documented", "note": "Claude is aligned with Constitutional AI", "src": "https://www.anthropic.com/news/introducing-claude"}
+{"f": "hh_rlhf2022", "t": "claude2023", "rel": "provided a foundation for", "ev": "strong", "note": "Built on Anthropic's RLHF assistant research", "src": "https://www.anthropic.com/news/introducing-claude"}
+{"f": "chatgpt2022", "t": "claude2023", "rel": "historically adjacent", "ev": "coincidence", "note": "Competitive response, not a technical dependency", "src": "https://www.anthropic.com/news/introducing-claude"}
+{"f": "gpt35_2022", "t": "gpt4_2023", "rel": "superseded", "ev": "documented", "note": "GPT-4 succeeds the GPT-3.5 series", "src": "https://arxiv.org/abs/2303.08774"}
+{"f": "scaling_laws2020", "t": "gpt4_2023", "rel": "directly built upon", "ev": "documented", "note": "Performance predicted from smaller runs using scaling laws", "src": "https://arxiv.org/abs/2303.08774"}
+{"f": "instructgpt2022", "t": "gpt4_2023", "rel": "directly built upon", "ev": "documented", "note": "Post-trained with RLHF", "src": "https://arxiv.org/abs/2303.08774"}
+{"f": "react2022", "t": "reflexion2023", "rel": "directly built upon", "ev": "documented", "note": "Adds verbal self-reflection to ReAct agents", "src": "https://arxiv.org/abs/2303.11366"}
+{"f": "react2022", "t": "autogpt2023", "rel": "popularized", "ev": "plausible-indirect", "note": "Packages a reason-act loop for general use", "src": "https://github.com/Significant-Gravitas/AutoGPT"}
+{"f": "gpt4_2023", "t": "autogpt2023", "rel": "enabled", "ev": "documented", "note": "Built on top of the GPT-4 API", "src": "https://github.com/Significant-Gravitas/AutoGPT"}
+{"f": "the_pile2020", "t": "pythia2023", "rel": "directly built upon", "ev": "documented", "note": "Pythia is trained on the Pile", "src": "https://arxiv.org/abs/2304.01373"}
+{"f": "scaling_laws2020", "t": "pythia2023", "rel": "influenced", "ev": "documented", "note": "Designed to study scaling and training dynamics", "src": "https://arxiv.org/abs/2304.01373"}
+{"f": "clip2021", "t": "llava2023", "rel": "directly built upon", "ev": "documented", "note": "LLaVA uses a CLIP vision encoder", "src": "https://arxiv.org/abs/2304.08485"}
+{"f": "gpt4_2023", "t": "llava2023", "rel": "directly built upon", "ev": "documented", "note": "Visual instruction data generated by GPT-4", "src": "https://arxiv.org/abs/2304.08485"}
+{"f": "flamingo2022", "t": "llava2023", "rel": "influenced", "ev": "plausible-indirect", "note": "Prior frozen-encoder bridging work", "src": "https://arxiv.org/abs/2304.08485"}
+{"f": "llama2023", "t": "llava2023", "rel": "directly built upon", "ev": "documented", "note": "Language backbone is an open LLaMA-family model", "src": "https://arxiv.org/abs/2304.08485"}
+{"f": "emergent_abilities2022", "t": "emergence_mirage2023", "rel": "superseded", "ev": "documented", "note": "Directly rebuts the emergent-abilities interpretation", "src": "https://arxiv.org/abs/2304.15004"}
+{"f": "claude2023", "t": "claude_100k2023", "rel": "directly built upon", "ev": "documented", "note": "Extends the deployed Claude model's context", "src": "https://www.anthropic.com/news/100k-context-windows"}
+{"f": "cot2022", "t": "tree_of_thoughts2023", "rel": "directly built upon", "ev": "documented", "note": "Generalises chain-of-thought to a search tree", "src": "https://arxiv.org/abs/2305.10601"}
+{"f": "self_consistency2022", "t": "tree_of_thoughts2023", "rel": "influenced", "ev": "documented", "note": "Extends aggregation over reasoning paths to search", "src": "https://arxiv.org/abs/2305.10601"}
+{"f": "mqa2019", "t": "gqa2023", "rel": "directly built upon", "ev": "documented", "note": "Interpolates between multi-query and multi-head attention", "src": "https://arxiv.org/abs/2305.13245"}
+{"f": "lora2021", "t": "qlora2023", "rel": "directly built upon", "ev": "documented", "note": "Backpropagates through a 4-bit model into LoRA adapters", "src": "https://arxiv.org/abs/2305.14314"}
+{"f": "llm_int8_2022", "t": "qlora2023", "rel": "directly built upon", "ev": "documented", "note": "Extends the same author's quantization work to 4-bit", "src": "https://arxiv.org/abs/2305.14314"}
+{"f": "llama2023", "t": "qlora2023", "rel": "directly built upon", "ev": "documented", "note": "Demonstrated by fine-tuning LLaMA models", "src": "https://arxiv.org/abs/2305.14314"}
+{"f": "refinedweb2023", "t": "falcon2023", "rel": "directly built upon", "ev": "documented", "note": "Falcon is trained on RefinedWeb", "src": "https://arxiv.org/abs/2311.16867", "dateflip": true}
+{"f": "llama2023", "t": "falcon2023", "rel": "complementary development", "ev": "documented", "note": "Competing open model benchmarked against LLaMA", "src": "https://arxiv.org/abs/2311.16867"}
+{"f": "stiennon2020_summarize", "t": "dpo2023", "rel": "directly built upon", "ev": "documented", "note": "Reworks the RLHF reward objective from this line", "src": "https://arxiv.org/abs/2305.18290"}
+{"f": "instructgpt2022", "t": "dpo2023", "rel": "directly built upon", "ev": "documented", "note": "Offers an RL-free alternative to the InstructGPT pipeline", "src": "https://arxiv.org/abs/2305.18290"}
+{"f": "star2022", "t": "lets_verify2023", "rel": "influenced", "ev": "plausible-indirect", "note": "Both supervise reasoning steps rather than outcomes", "src": "https://arxiv.org/abs/2305.20050"}
+{"f": "cot2022", "t": "lets_verify2023", "rel": "directly built upon", "ev": "documented", "note": "Supervises chain-of-thought steps individually", "src": "https://arxiv.org/abs/2305.20050"}
+{"f": "gptq2022", "t": "awq2023", "rel": "complementary development", "ev": "documented", "note": "AWQ compares against GPTQ as the 4-bit baseline", "src": "https://arxiv.org/abs/2306.00978"}
+{"f": "c4_2019", "t": "refinedweb2023", "rel": "influenced", "ev": "documented", "note": "Improves on C4-style web filtering", "src": "https://arxiv.org/abs/2306.01116"}
+{"f": "toolformer2023", "t": "function_calling2023", "rel": "influenced", "ev": "plausible-indirect", "note": "Research precedent for model-emitted tool calls", "src": "https://openai.com/index/function-calling-and-other-api-updates/"}
+{"f": "react2022", "t": "function_calling2023", "rel": "influenced", "ev": "plausible-indirect", "note": "Productises the action step of the agent loop", "src": "https://openai.com/index/function-calling-and-other-api-updates/"}
+{"f": "self_instruct2022", "t": "phi1_2023", "rel": "influenced", "ev": "plausible-indirect", "note": "Uses model-generated training data", "src": "https://arxiv.org/abs/2306.11644"}
+{"f": "gpt35_2022", "t": "phi1_2023", "rel": "enabled", "ev": "documented", "note": "Synthetic textbook data generated by GPT-3.5", "src": "https://arxiv.org/abs/2306.11644"}
+{"f": "rope2021", "t": "position_interpolation2023", "rel": "directly built upon", "ev": "documented", "note": "Rescales RoPE position indices", "src": "https://arxiv.org/abs/2306.15595"}
+{"f": "llama2023", "t": "position_interpolation2023", "rel": "directly built upon", "ev": "documented", "note": "Extends LLaMA context to 32K", "src": "https://arxiv.org/abs/2306.15595"}
+{"f": "claude_100k2023", "t": "lost_in_middle2023", "rel": "influenced", "ev": "plausible-indirect", "note": "Long deployed contexts motivated the study", "src": "https://arxiv.org/abs/2307.03172"}
+{"f": "rag2020", "t": "lost_in_middle2023", "rel": "influenced", "ev": "documented", "note": "Studies retrieval-augmented settings directly", "src": "https://arxiv.org/abs/2307.03172"}
+{"f": "llama2023", "t": "llama2_2023", "rel": "directly built upon", "ev": "documented", "note": "Llama 2 iterates on the LLaMA architecture", "src": "https://arxiv.org/abs/2307.09288"}
+{"f": "gqa2023", "t": "llama2_2023", "rel": "directly built upon", "ev": "documented", "note": "Llama 2 70B uses grouped-query attention", "src": "https://arxiv.org/abs/2307.09288"}
+{"f": "instructgpt2022", "t": "llama2_2023", "rel": "influenced", "ev": "documented", "note": "Llama 2-Chat uses an RLHF pipeline", "src": "https://arxiv.org/abs/2307.09288"}
+{"f": "llama2023", "t": "llamacpp2023", "rel": "enabled", "ev": "documented", "note": "A C++ port of LLaMA inference", "src": "https://github.com/ggerganov/llama.cpp"}
+{"f": "gptq2022", "t": "llamacpp2023", "rel": "influenced", "ev": "plausible-indirect", "note": "Quantization formats draw on the same period's methods", "src": "https://github.com/ggerganov/llama.cpp"}
+{"f": "flashattention2022", "t": "vllm2023", "rel": "complementary development", "ev": "strong", "note": "Pairs with FlashAttention kernels in serving", "src": "https://arxiv.org/abs/2309.06180"}
+{"f": "mqa2019", "t": "vllm2023", "rel": "influenced", "ev": "strong", "note": "KV cache memory is the problem both address", "src": "https://arxiv.org/abs/2309.06180"}
+{"f": "gpt4_2023", "t": "gpt4v2023", "rel": "directly built upon", "ev": "documented", "note": "Adds vision to the deployed GPT-4", "src": "https://openai.com/index/gpt-4v-system-card/"}
+{"f": "clip2021", "t": "gpt4v2023", "rel": "provided a foundation for", "ev": "plausible-indirect", "note": "Contrastive vision-text pretraining underpins VLMs", "src": "https://openai.com/index/gpt-4v-system-card/"}
+{"f": "gqa2023", "t": "mistral7b2023", "rel": "directly built upon", "ev": "documented", "note": "Mistral 7B uses grouped-query attention", "src": "https://arxiv.org/abs/2310.06825"}
+{"f": "longformer2020", "t": "mistral7b2023", "rel": "influenced", "ev": "documented", "note": "Cited for sliding-window attention", "src": "https://arxiv.org/abs/2310.06825"}
+{"f": "sparse_transformer2019", "t": "mistral7b2023", "rel": "influenced", "ev": "documented", "note": "Cited in the sliding-window attention lineage", "src": "https://arxiv.org/abs/2310.06825"}
+{"f": "flashattention2022", "t": "mistral7b2023", "rel": "enabled", "ev": "documented", "note": "Uses FlashAttention for efficient attention", "src": "https://arxiv.org/abs/2310.06825"}
+{"f": "llama2_2023", "t": "mistral7b2023", "rel": "independently contributed", "ev": "documented", "note": "Outperforms Llama 2 13B on all reported benchmarks", "src": "https://arxiv.org/abs/2310.06825"}
+{"f": "codex2021", "t": "swe_bench2023", "rel": "directly built upon", "ev": "documented", "note": "Extends execution-based code evaluation to repositories", "src": "https://arxiv.org/abs/2310.06770"}
+{"f": "gpt4_2023", "t": "swe_bench2023", "rel": "enabled", "ev": "documented", "note": "Frontier models evaluated, resolving under 2%", "src": "https://arxiv.org/abs/2310.06770"}
+{"f": "transformer2017", "t": "mamba2023", "rel": "independently contributed", "ev": "documented", "note": "Positioned as an attention-free alternative", "src": "https://arxiv.org/abs/2312.00752"}
+{"f": "flashattention2022", "t": "mamba2023", "rel": "influenced", "ev": "documented", "note": "Hardware-aware design in the spirit of FlashAttention", "src": "https://arxiv.org/abs/2312.00752"}
+{"f": "palm2022", "t": "gemini1_2023", "rel": "superseded", "ev": "documented", "note": "Gemini succeeds PaLM as Google's frontier model", "src": "https://arxiv.org/abs/2312.11805"}
+{"f": "vit2020", "t": "gemini1_2023", "rel": "provided a foundation for", "ev": "strong", "note": "Transformer-based visual encoding", "src": "https://arxiv.org/abs/2312.11805"}
+{"f": "gshard2020", "t": "gemini1_2023", "rel": "enabled", "ev": "documented", "note": "Built on Google's sharded MoE infrastructure", "src": "https://arxiv.org/abs/2312.11805"}
+{"f": "switch2021", "t": "mixtral2023", "rel": "directly built upon", "ev": "documented", "note": "Sparse MoE routing lineage", "src": "https://arxiv.org/abs/2401.04088"}
+{"f": "gshard2020", "t": "mixtral2023", "rel": "directly built upon", "ev": "documented", "note": "Builds on GShard conditional computation", "src": "https://arxiv.org/abs/2401.04088"}
+{"f": "shazeer2017_moe", "t": "mixtral2023", "rel": "provided a foundation for", "ev": "documented", "note": "Cites the sparsely-gated MoE layer", "src": "https://arxiv.org/abs/2401.04088"}
+{"f": "mistral7b2023", "t": "mixtral2023", "rel": "directly built upon", "ev": "documented", "note": "Same architecture as Mistral 7B with MoE layers", "src": "https://arxiv.org/abs/2401.04088"}
+{"f": "transformer2017", "t": "speculative_decoding2022", "rel": "provided a foundation for", "ev": "strong", "note": "Accelerates autoregressive Transformer decoding", "src": "https://arxiv.org/abs/2211.17192"}
+{"f": "scaling_laws2020", "t": "deepseek_llm2024", "rel": "directly built upon", "ev": "documented", "note": "Revisits compute-optimal scaling on their own data", "src": "https://arxiv.org/abs/2401.02954"}
+{"f": "chinchilla2022", "t": "deepseek_llm2024", "rel": "influenced", "ev": "strong", "note": "Re-derives scaling coefficients against Chinchilla", "src": "https://arxiv.org/abs/2401.02954"}
+{"f": "llama2_2023", "t": "deepseek_llm2024", "rel": "influenced", "ev": "strong", "note": "Follows the LLaMA-style dense open architecture", "src": "https://arxiv.org/abs/2401.02954"}
+{"f": "gshard2020", "t": "deepseekmoe2024", "rel": "directly built upon", "ev": "documented", "note": "Improves on top-k MoE routing", "src": "https://arxiv.org/abs/2401.06066"}
+{"f": "switch2021", "t": "deepseekmoe2024", "rel": "influenced", "ev": "strong", "note": "Contrasts with Switch-style routing", "src": "https://arxiv.org/abs/2401.06066"}
+{"f": "shazeer2017_moe", "t": "deepseekmoe2024", "rel": "provided a foundation for", "ev": "strong", "note": "Sparse MoE origin", "src": "https://arxiv.org/abs/2401.06066"}
+{"f": "the_pile2020", "t": "dolma2024", "rel": "influenced", "ev": "documented", "note": "Extends the open pretraining-corpus tradition", "src": "https://arxiv.org/abs/2402.00159"}
+{"f": "c4_2019", "t": "dolma2024", "rel": "influenced", "ev": "strong", "note": "Web-corpus curation lineage", "src": "https://arxiv.org/abs/2402.00159"}
+{"f": "refinedweb2023", "t": "dolma2024", "rel": "influenced", "ev": "strong", "note": "Web-only filtering precedent", "src": "https://arxiv.org/abs/2402.00159"}
+{"f": "dolma2024", "t": "olmo2024", "rel": "directly built upon", "ev": "documented", "note": "OLMo is pretrained on Dolma", "src": "https://arxiv.org/abs/2402.00838"}
+{"f": "pythia2023", "t": "olmo2024", "rel": "influenced", "ev": "documented", "note": "Cites Pythia as the prior fully-open effort", "src": "https://arxiv.org/abs/2402.00838"}
+{"f": "llama2_2023", "t": "olmo2024", "rel": "influenced", "ev": "documented", "note": "Targets the Llama 2 capability level openly", "src": "https://arxiv.org/abs/2402.00838"}
+{"f": "instructgpt2022", "t": "deepseekmath_grpo2024", "rel": "influenced", "ev": "strong", "note": "GRPO is a variant within the PPO-based RLHF family", "src": "https://arxiv.org/abs/2402.03300"}
+{"f": "lets_verify2023", "t": "deepseekmath_grpo2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Process and verification supervision for maths", "src": "https://arxiv.org/abs/2402.03300"}
+{"f": "deepseek_llm2024", "t": "deepseekmath_grpo2024", "rel": "directly built upon", "ev": "documented", "note": "Continues the DeepSeek base models for maths", "src": "https://arxiv.org/abs/2402.03300"}
+{"f": "gemini1_2023", "t": "gemini15_2024", "rel": "directly built upon", "ev": "documented", "note": "Next Gemini generation", "src": "https://arxiv.org/abs/2403.05530"}
+{"f": "gshard2020", "t": "gemini15_2024", "rel": "influenced", "ev": "strong", "note": "Gemini 1.5 uses a sparse MoE architecture", "src": "https://arxiv.org/abs/2403.05530"}
+{"f": "lost_in_middle2023", "t": "gemini15_2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Long-context retrieval evaluation motivation", "src": "https://arxiv.org/abs/2403.05530"}
+{"f": "claude_100k2023", "t": "gemini15_2024", "rel": "historically adjacent", "ev": "coincidence", "note": "Competitive long-context escalation, not a technical dependency", "src": "https://arxiv.org/abs/2403.05530"}
+{"f": "gemini1_2023", "t": "gemma2024", "rel": "directly built upon", "ev": "documented", "note": "Built from Gemini research and technology", "src": "https://arxiv.org/abs/2403.08295"}
+{"f": "llama2_2023", "t": "gemma2024", "rel": "influenced", "ev": "strong", "note": "Benchmarked against Llama 2", "src": "https://arxiv.org/abs/2403.08295"}
+{"f": "mistral7b2023", "t": "gemma2024", "rel": "influenced", "ev": "documented", "note": "Benchmarked against Mistral 7B", "src": "https://arxiv.org/abs/2403.08295"}
+{"f": "claude2023", "t": "claude3_2024", "rel": "directly built upon", "ev": "documented", "note": "Successor to the Claude 2 line", "src": "https://www.anthropic.com/news/claude-3-family"}
+{"f": "constitutional_ai2022", "t": "claude3_2024", "rel": "directly built upon", "ev": "documented", "note": "Aligned via Constitutional AI", "src": "https://www.anthropic.com/news/claude-3-family"}
+{"f": "gpt4_2023", "t": "claude3_2024", "rel": "influenced", "ev": "strong", "note": "Benchmarked directly against GPT-4", "src": "https://www.anthropic.com/news/claude-3-family"}
+{"f": "mmlu2020", "t": "chatbot_arena2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Static-benchmark saturation motivated human evaluation", "src": "https://arxiv.org/abs/2403.04132"}
+{"f": "chatgpt2022", "t": "chatbot_arena2024", "rel": "enabled", "ev": "strong", "note": "A public assistant market made head-to-head voting possible", "src": "https://arxiv.org/abs/2403.04132"}
+{"f": "swe_bench2023", "t": "devin2024", "rel": "directly built upon", "ev": "documented", "note": "Devin reports SWE-bench results as its headline claim", "src": "https://cognition.ai/blog/introducing-devin"}
+{"f": "react2022", "t": "devin2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Reason-and-act agent loop", "src": "https://cognition.ai/blog/introducing-devin"}
+{"f": "gpt4_2023", "t": "devin2024", "rel": "enabled", "ev": "strong", "note": "Built on frontier model capability of the period", "src": "https://cognition.ai/blog/introducing-devin"}
+{"f": "llama2_2023", "t": "llama3_2024", "rel": "directly built upon", "ev": "documented", "note": "Direct predecessor", "src": "https://ai.meta.com/blog/meta-llama-3/"}
+{"f": "gqa2023", "t": "llama3_2024", "rel": "directly built upon", "ev": "documented", "note": "Llama 3 uses grouped-query attention", "src": "https://ai.meta.com/blog/meta-llama-3/"}
+{"f": "chinchilla2022", "t": "llama3_2024", "rel": "influenced", "ev": "strong", "note": "Deliberately trains far past compute-optimal", "src": "https://ai.meta.com/blog/meta-llama-3/"}
+{"f": "phi1_2023", "t": "phi3_2024", "rel": "directly built upon", "ev": "documented", "note": "Continues the textbook-quality data approach", "src": "https://arxiv.org/abs/2404.14219"}
+{"f": "deepseekmoe2024", "t": "deepseek_v2_2024", "rel": "directly built upon", "ev": "documented", "note": "Uses the DeepSeekMoE architecture", "src": "https://arxiv.org/abs/2405.04434"}
+{"f": "mqa2019", "t": "deepseek_v2_2024", "rel": "influenced", "ev": "documented", "note": "Continues the KV-cache reduction line", "src": "https://arxiv.org/abs/2405.04434"}
+{"f": "gqa2023", "t": "deepseek_v2_2024", "rel": "influenced", "ev": "documented", "note": "Latent attention compared against and improves on GQA", "src": "https://arxiv.org/abs/2405.04434"}
+{"f": "rope2021", "t": "deepseek_v2_2024", "rel": "directly built upon", "ev": "documented", "note": "Uses decoupled RoPE within latent attention", "src": "https://arxiv.org/abs/2405.04434"}
+{"f": "swe_bench2023", "t": "swe_agent2024", "rel": "directly built upon", "ev": "documented", "note": "Same group; evaluated on SWE-bench", "src": "https://arxiv.org/abs/2405.15793"}
+{"f": "react2022", "t": "swe_agent2024", "rel": "influenced", "ev": "strong", "note": "Builds on the reasoning-and-acting paradigm", "src": "https://arxiv.org/abs/2405.15793"}
+{"f": "devin2024", "t": "swe_agent2024", "rel": "historically adjacent", "ev": "coincidence", "note": "Open counterpart published two months later", "src": "https://arxiv.org/abs/2405.15793"}
+{"f": "gpt4v2023", "t": "gpt4o2024", "rel": "directly built upon", "ev": "strong", "note": "Extends GPT-4's multimodality", "src": "https://openai.com/index/hello-gpt-4o/"}
+{"f": "gpt4_2023", "t": "gpt4o2024", "rel": "directly built upon", "ev": "documented", "note": "GPT-4 level intelligence across modalities", "src": "https://openai.com/index/hello-gpt-4o/"}
+{"f": "whisper2022", "t": "gpt4o2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Speech capability lineage at the same lab", "src": "https://openai.com/index/hello-gpt-4o/"}
+{"f": "claude3_2024", "t": "claude35_sonnet2024", "rel": "directly built upon", "ev": "documented", "note": "Upgraded Sonnet tier", "src": "https://www.anthropic.com/news/claude-3-5-sonnet"}
+{"f": "refinedweb2023", "t": "fineweb2024", "rel": "directly built upon", "ev": "documented", "note": "Extends web-only curation and compares directly", "src": "https://arxiv.org/abs/2406.17557"}
+{"f": "the_pile2020", "t": "fineweb2024", "rel": "influenced", "ev": "strong", "note": "Prior open corpus baseline", "src": "https://arxiv.org/abs/2406.17557"}
+{"f": "phi1_2023", "t": "fineweb2024", "rel": "influenced", "ev": "strong", "note": "Educational-quality filtering follows the data-quality thesis", "src": "https://arxiv.org/abs/2406.17557"}
+{"f": "flashattention2022", "t": "flashattention3_2024", "rel": "directly built upon", "ev": "documented", "note": "Third generation of the same kernel", "src": "https://arxiv.org/abs/2407.08608"}
+{"f": "gqa2023", "t": "qwen2_2024", "rel": "directly built upon", "ev": "documented", "note": "Qwen2 uses grouped-query attention", "src": "https://arxiv.org/abs/2407.10671"}
+{"f": "rope2021", "t": "qwen2_2024", "rel": "directly built upon", "ev": "strong", "note": "Uses rotary position embeddings", "src": "https://arxiv.org/abs/2407.10671"}
+{"f": "llama3_2024", "t": "llama31_2024", "rel": "directly built upon", "ev": "documented", "note": "Llama 3.1 upgrades Llama 3", "src": "https://arxiv.org/abs/2407.21783"}
+{"f": "chinchilla2022", "t": "llama31_2024", "rel": "influenced", "ev": "strong", "note": "Inference-optimal overtraining rationale", "src": "https://arxiv.org/abs/2407.21783"}
+{"f": "dpo2023", "t": "llama31_2024", "rel": "directly built upon", "ev": "documented", "note": "Post-training uses direct preference optimisation", "src": "https://arxiv.org/abs/2407.21783"}
+{"f": "gqa2023", "t": "llama31_2024", "rel": "directly built upon", "ev": "documented", "note": "Uses grouped-query attention", "src": "https://arxiv.org/abs/2407.21783"}
+{"f": "position_interpolation2023", "t": "llama31_2024", "rel": "influenced", "ev": "strong", "note": "128K context achieved by staged context extension", "src": "https://arxiv.org/abs/2407.21783"}
+{"f": "lets_verify2023", "t": "test_time_compute2024", "rel": "influenced", "ev": "strong", "note": "Verifier-guided search is one of the strategies analysed", "src": "https://arxiv.org/abs/2408.03314"}
+{"f": "tree_of_thoughts2023", "t": "test_time_compute2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Search over reasoning steps", "src": "https://arxiv.org/abs/2408.03314"}
+{"f": "star2022", "t": "test_time_compute2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Revision and self-improvement strategies", "src": "https://arxiv.org/abs/2408.03314"}
+{"f": "self_consistency2022", "t": "test_time_compute2024", "rel": "directly built upon", "ev": "documented", "note": "Sampling and voting is a baseline strategy analysed", "src": "https://arxiv.org/abs/2408.03314"}
+{"f": "cot2022", "t": "o1_2024", "rel": "influenced", "ev": "strong", "note": "Trains long chain-of-thought rather than prompting it", "src": "https://openai.com/index/introducing-openai-o1-preview/"}
+{"f": "lets_verify2023", "t": "o1_2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Process-reward lineage at the same lab, not formally credited", "src": "https://openai.com/index/introducing-openai-o1-preview/"}
+{"f": "star2022", "t": "o1_2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Bootstrapped reasoning precedent", "src": "https://openai.com/index/introducing-openai-o1-preview/"}
+{"f": "christiano2017_rlhf", "t": "o1_2024", "rel": "provided a foundation for", "ev": "plausible-indirect", "note": "Large-scale RL on model outputs", "src": "https://openai.com/index/introducing-openai-o1-preview/"}
+{"f": "claude35_sonnet2024", "t": "claude_computer_use2024", "rel": "directly built upon", "ev": "documented", "note": "Ships on the upgraded 3.5 Sonnet", "src": "https://www.anthropic.com/news/3-5-models-and-computer-use"}
+{"f": "function_calling2023", "t": "claude_computer_use2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Extends tool use beyond declared APIs", "src": "https://www.anthropic.com/news/3-5-models-and-computer-use"}
+{"f": "gpt4v2023", "t": "claude_computer_use2024", "rel": "provided a foundation for", "ev": "strong", "note": "Requires reading screenshots, a vision capability", "src": "https://www.anthropic.com/news/3-5-models-and-computer-use"}
+{"f": "function_calling2023", "t": "mcp2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Standardises what function calling made common", "src": "https://www.anthropic.com/news/model-context-protocol"}
+{"f": "toolformer2023", "t": "mcp2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Tool-use precedent", "src": "https://www.anthropic.com/news/model-context-protocol"}
+{"f": "react2022", "t": "mcp2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Agents calling tools is the use case being standardised", "src": "https://www.anthropic.com/news/model-context-protocol"}
+{"f": "gemini15_2024", "t": "gemini2_2024", "rel": "directly built upon", "ev": "documented", "note": "Next Gemini generation", "src": "https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/"}
+{"f": "claude_computer_use2024", "t": "gemini2_2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Agentic direction including browser control", "src": "https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/"}
+{"f": "o1_2024", "t": "o3_2024", "rel": "directly built upon", "ev": "documented", "note": "o3 scales the o1 reinforcement learning approach", "src": "https://arcprize.org/blog/oai-o3-pub-breakthrough"}
+{"f": "test_time_compute2024", "t": "o3_2024", "rel": "influenced", "ev": "plausible-indirect", "note": "Inference-compute scaling thesis", "src": "https://arcprize.org/blog/oai-o3-pub-breakthrough"}
+{"f": "deepseek_v2_2024", "t": "deepseek_v3_2024", "rel": "directly built upon", "ev": "documented", "note": "Latent attention and MoE validated in V2", "src": "https://arxiv.org/abs/2412.19437"}
+{"f": "deepseekmoe2024", "t": "deepseek_v3_2024", "rel": "directly built upon", "ev": "documented", "note": "Uses the DeepSeekMoE architecture", "src": "https://arxiv.org/abs/2412.19437"}
+{"f": "deepseekmath_grpo2024", "t": "deepseek_v3_2024", "rel": "directly built upon", "ev": "documented", "note": "GRPO used in reinforcement learning post-training", "src": "https://arxiv.org/abs/2412.19437"}
+{"f": "llama31_2024", "t": "deepseek_v3_2024", "rel": "influenced", "ev": "strong", "note": "Benchmarked against Llama 3.1 405B", "src": "https://arxiv.org/abs/2412.19437"}
+{"f": "gpt4o2024", "t": "deepseek_v3_2024", "rel": "influenced", "ev": "strong", "note": "Reports performance comparable to GPT-4o", "src": "https://arxiv.org/abs/2412.19437"}
+{"f": "mixed_precision2017", "t": "deepseek_v3_2024", "rel": "provided a foundation for", "ev": "documented", "note": "FP8 mixed-precision training throughout", "src": "https://arxiv.org/abs/2412.19437"}
+{"f": "deepseekmath_grpo2024", "t": "deepseek_r1_2025", "rel": "directly built upon", "ev": "documented", "note": "R1 is trained with GRPO", "src": "https://arxiv.org/abs/2501.12948"}
+{"f": "deepseek_v3_2024", "t": "deepseek_r1_2025", "rel": "directly built upon", "ev": "documented", "note": "R1 is built on the DeepSeek-V3 base", "src": "https://arxiv.org/abs/2501.12948"}
+{"f": "o1_2024", "t": "deepseek_r1_2025", "rel": "influenced", "ev": "strong", "note": "Explicitly targets o1-level reasoning", "src": "https://arxiv.org/abs/2501.12948"}
+{"f": "test_time_compute2024", "t": "deepseek_r1_2025", "rel": "provided a foundation for", "ev": "strong", "note": "Inference-scaling rationale for RL reasoning", "src": "https://arxiv.org/abs/2501.12948"}
+{"f": "cot2022", "t": "deepseek_r1_2025", "rel": "provided a foundation for", "ev": "documented", "note": "Elicits long chain-of-thought reasoning", "src": "https://arxiv.org/abs/2501.12948"}
+{"f": "o3_release2025", "t": "openai_deep_research2025", "rel": "enabled", "ev": "strong", "note": "Built on a tool-using reasoning model", "src": "https://openai.com/index/introducing-deep-research/", "dateflip": true}
+{"f": "webgpt2021", "t": "openai_deep_research2025", "rel": "influenced", "ev": "plausible-indirect", "note": "Browsing plus citation lineage at the same lab", "src": "https://openai.com/index/introducing-deep-research/"}
+{"f": "claude35_sonnet2024", "t": "claude37_2025", "rel": "directly built upon", "ev": "documented", "note": "Successor to the 3.5 Sonnet line", "src": "https://www.anthropic.com/news/claude-3-7-sonnet"}
+{"f": "o1_2024", "t": "claude37_2025", "rel": "influenced", "ev": "strong", "note": "Response to the reasoning-model paradigm", "src": "https://www.anthropic.com/news/claude-3-7-sonnet"}
+{"f": "claude_computer_use2024", "t": "claude_code2025", "rel": "provided a foundation for", "ev": "strong", "note": "Agentic tool use precedes the coding agent", "src": "https://www.anthropic.com/news/claude-4"}
+{"f": "swe_agent2024", "t": "claude_code2025", "rel": "influenced", "ev": "plausible-indirect", "note": "Agent-computer interface precedent", "src": "https://www.anthropic.com/news/claude-4"}
+{"f": "devin2024", "t": "claude_code2025", "rel": "historically adjacent", "ev": "coincidence", "note": "Earlier product in the same category, not a stated influence", "src": "https://www.anthropic.com/news/claude-4"}
+{"f": "mcp2024", "t": "claude_code2025", "rel": "enabled", "ev": "strong", "note": "Tool connectivity for the coding agent", "src": "https://www.anthropic.com/news/claude-4"}
+{"f": "claude37_2025", "t": "claude_code2025", "rel": "enabled", "ev": "documented", "note": "Shipped alongside Claude 3.7 Sonnet", "src": "https://www.anthropic.com/news/claude-3-7-sonnet"}
+{"f": "gpt4o2024", "t": "gpt45_2025", "rel": "directly built upon", "ev": "strong", "note": "Continues the pretraining-scaled GPT line", "src": "https://openai.com/index/introducing-gpt-4-5/"}
+{"f": "scaling_laws2020", "t": "gpt45_2025", "rel": "influenced", "ev": "strong", "note": "The last major bet on pretraining scale alone", "src": "https://openai.com/index/introducing-gpt-4-5/"}
+{"f": "gemini2_2024", "t": "gemini25_2025", "rel": "directly built upon", "ev": "documented", "note": "Extends Gemini 2.0 thinking modes", "src": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-model-thinking-updates-march-2025/"}
+{"f": "gemini15_2024", "t": "gemini25_2025", "rel": "provided a foundation for", "ev": "strong", "note": "Long-context lineage", "src": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-model-thinking-updates-march-2025/"}
+{"f": "o1_2024", "t": "gemini25_2025", "rel": "influenced", "ev": "strong", "note": "Response to RL-trained reasoning", "src": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-model-thinking-updates-march-2025/"}
+{"f": "llama31_2024", "t": "llama4_2025", "rel": "superseded", "ev": "documented", "note": "Llama 4 succeeds Llama 3.1", "src": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/"}
+{"f": "switch2021", "t": "llama4_2025", "rel": "provided a foundation for", "ev": "strong", "note": "Sparse MoE routing lineage", "src": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/"}
+{"f": "mixtral2023", "t": "llama4_2025", "rel": "influenced", "ev": "plausible-indirect", "note": "Open MoE precedent", "src": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/"}
+{"f": "o1_2024", "t": "o3_release2025", "rel": "directly built upon", "ev": "documented", "note": "Next model in the o-series", "src": "https://openai.com/index/introducing-o3-and-o4-mini/"}
+{"f": "o3_2024", "t": "o3_release2025", "rel": "superseded", "ev": "documented", "note": "December announcement, April release", "src": "https://openai.com/index/introducing-o3-and-o4-mini/"}
+{"f": "function_calling2023", "t": "o3_release2025", "rel": "provided a foundation for", "ev": "strong", "note": "Tool calls inside the reasoning loop", "src": "https://openai.com/index/introducing-o3-and-o4-mini/"}
+{"f": "o3_release2025", "t": "o4mini_2025", "rel": "complementary development", "ev": "documented", "note": "Released together as the o-series update", "src": "https://openai.com/index/introducing-o3-and-o4-mini/"}
+{"f": "qwen2_2024", "t": "qwen3_2025", "rel": "directly built upon", "ev": "documented", "note": "Successor generation", "src": "https://arxiv.org/abs/2505.09388"}
+{"f": "deepseek_r1_2025", "t": "qwen3_2025", "rel": "influenced", "ev": "strong", "note": "Open reasoning trend cited for the thinking mode", "src": "https://arxiv.org/abs/2505.09388"}
+{"f": "claude37_2025", "t": "claude4_2025", "rel": "directly built upon", "ev": "documented", "note": "Extends the hybrid reasoning design", "src": "https://www.anthropic.com/news/claude-4"}
+{"f": "claude3_2024", "t": "claude4_2025", "rel": "superseded", "ev": "documented", "note": "New generation of the Claude family", "src": "https://www.anthropic.com/news/claude-4"}
+{"f": "swe_bench2023", "t": "claude4_2025", "rel": "influenced", "ev": "documented", "note": "SWE-bench Verified is the headline claim", "src": "https://www.anthropic.com/news/claude-4"}
+{"f": "deepseekmoe2024", "t": "kimi_k2_2025", "rel": "influenced", "ev": "strong", "note": "Fine-grained MoE design at trillion scale", "src": "https://arxiv.org/abs/2507.20534"}
+{"f": "deepseek_v3_2024", "t": "kimi_k2_2025", "rel": "influenced", "ev": "plausible-indirect", "note": "Large open MoE reference point", "src": "https://arxiv.org/abs/2507.20534"}
+{"f": "deepseekmath_grpo2024", "t": "kimi_k2_2025", "rel": "provided a foundation for", "ev": "strong", "note": "RL post-training for agentic behaviour", "src": "https://arxiv.org/abs/2507.20534"}
+{"f": "gemini25_2025", "t": "imo_gold_2025", "rel": "directly built upon", "ev": "documented", "note": "An advanced Gemini Deep Think variant", "src": "https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/"}
+{"f": "test_time_compute2024", "t": "imo_gold_2025", "rel": "provided a foundation for", "ev": "strong", "note": "Heavy inference compute per problem", "src": "https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/"}
+{"f": "o3_release2025", "t": "gpt_oss_2025", "rel": "directly built upon", "ev": "documented", "note": "Trained with techniques from the o-series", "src": "https://openai.com/index/introducing-gpt-oss/"}
+{"f": "deepseek_r1_2025", "t": "gpt_oss_2025", "rel": "accelerated", "ev": "plausible-indirect", "note": "Open reasoning competition preceded the release", "src": "https://openai.com/index/introducing-gpt-oss/"}
+{"f": "gpt2_2019", "t": "gpt_oss_2025", "rel": "historically adjacent", "ev": "retrospective", "note": "First OpenAI open weights since GPT-2", "src": "https://openai.com/index/introducing-gpt-oss/"}
+{"f": "o3_release2025", "t": "gpt5_2025", "rel": "directly built upon", "ev": "documented", "note": "Reasoning line folded into the unified system", "src": "https://openai.com/index/introducing-gpt-5/"}
+{"f": "gpt4o2024", "t": "gpt5_2025", "rel": "superseded", "ev": "documented", "note": "GPT-5 unifies the GPT and o-series lines", "src": "https://openai.com/index/introducing-gpt-5/"}
+{"f": "claude37_2025", "t": "gpt5_2025", "rel": "historically adjacent", "ev": "coincidence", "note": "Hybrid reasoning arrived at both labs within months", "src": "https://openai.com/index/introducing-gpt-5/"}
+{"f": "deepseek_r1_2025", "t": "glm45_2025", "rel": "influenced", "ev": "plausible-indirect", "note": "Open reasoning ecosystem", "src": "https://arxiv.org/abs/2508.06471"}
+{"f": "deepseek_v2_2024", "t": "deepseek_v32_2025", "rel": "provided a foundation for", "ev": "strong", "note": "Latent attention plus new sparse attention", "src": "https://api-docs.deepseek.com/news/news250929/"}
+{"f": "deepseek_v3_2024", "t": "deepseek_v32_2025", "rel": "directly built upon", "ev": "documented", "note": "Continues the V3 line", "src": "https://api-docs.deepseek.com/news/news250929/"}
+{"f": "sparse_transformer2019", "t": "deepseek_v32_2025", "rel": "influenced", "ev": "strong", "note": "Sparse attention lineage, now trainable", "src": "https://api-docs.deepseek.com/news/news250929/"}
+{"f": "claude4_2025", "t": "claude_sonnet45_2025", "rel": "directly built upon", "ev": "documented", "note": "The 4.5 line succeeds Claude 4", "src": "https://www.anthropic.com/news/claude-sonnet-4-5"}
+{"f": "gpt5_2025", "t": "gpt51_2025", "rel": "directly built upon", "ev": "documented", "note": "Point release in the GPT-5 series", "src": "https://openai.com/index/gpt-5-1-for-developers/"}
+{"f": "gemini25_2025", "t": "gemini3_2025", "rel": "directly built upon", "ev": "documented", "note": "Gemini 3 succeeds 2.5", "src": "https://blog.google/products-and-platforms/products/gemini/gemini-3/"}
+{"f": "gemini15_2024", "t": "gemini3_2025", "rel": "provided a foundation for", "ev": "strong", "note": "Long-context and multimodal lineage", "src": "https://blog.google/products-and-platforms/products/gemini/gemini-3/"}
+{"f": "claude_sonnet45_2025", "t": "claude_opus45_2025", "rel": "directly built upon", "ev": "documented", "note": "Completes the 4.5 family", "src": "https://www.anthropic.com/news/claude-opus-4-5"}
+{"f": "swe_bench2023", "t": "claude_opus45_2025", "rel": "influenced", "ev": "documented", "note": "First reported above 80% on SWE-bench Verified", "src": "https://www.anthropic.com/news/claude-opus-4-5"}
+{"f": "gpt51_2025", "t": "gpt52_2025", "rel": "directly built upon", "ev": "documented", "note": "Successor point release", "src": "https://openai.com/index/introducing-gpt-5-2/"}
+{"f": "gemini3_2025", "t": "gpt52_2025", "rel": "historically adjacent", "ev": "coincidence", "note": "Rapid competitive response", "src": "https://openai.com/index/introducing-gpt-5-2/"}
+{"f": "imo_gold_2025", "t": "robust_math_eval2025", "rel": "influenced", "ev": "strong", "note": "Motivated a contamination-resistant proof benchmark", "src": "https://arxiv.org/pdf/2511.01846"}
+{"f": "gpt52_2025", "t": "gpt53_codex2026", "rel": "directly built upon", "ev": "documented", "note": "Coding-specialised release in the series", "src": "https://openai.com/index/introducing-gpt-5-3-codex/"}
+{"f": "claude_computer_use2024", "t": "gpt53_codex2026", "rel": "influenced", "ev": "plausible-indirect", "note": "Computer use merged into coding agents", "src": "https://openai.com/index/introducing-gpt-5-3-codex/"}
+{"f": "claude_opus45_2025", "t": "claude_opus46_2026", "rel": "directly built upon", "ev": "documented", "note": "Next Opus point release", "src": "https://www.anthropic.com/news/claude-opus-4-6"}
+{"f": "gemini3_2025", "t": "gemini3_deepthink2026", "rel": "directly built upon", "ev": "documented", "note": "Deep reasoning mode for Gemini 3", "src": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/"}
+{"f": "imo_gold_2025", "t": "gemini3_deepthink2026", "rel": "provided a foundation for", "ev": "strong", "note": "Productises the Deep Think configuration", "src": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/"}
+{"f": "qwen3_2025", "t": "qwen35_2026", "rel": "directly built upon", "ev": "documented", "note": "Successor generation", "src": "https://github.com/QwenLM/Qwen3.5"}
+{"f": "claude_opus46_2026", "t": "claude_sonnet46_2026", "rel": "complementary development", "ev": "documented", "note": "Mid tier of the same generation", "src": "https://www.anthropic.com/news/claude-sonnet-4-6"}
+{"f": "gemini3_2025", "t": "gemini31_2026", "rel": "directly built upon", "ev": "documented", "note": "Iterative upgrade", "src": "https://deepmind.google/models/model-cards/gemini-3-1-pro/"}
+{"f": "gpt53_codex2026", "t": "gpt54_2026", "rel": "directly built upon", "ev": "documented", "note": "Next release in the series", "src": "https://openai.com/index/introducing-gpt-5-4/"}
+{"f": "claude_computer_use2024", "t": "glasswing2026", "rel": "provided a foundation for", "ev": "plausible-indirect", "note": "Agentic capability raises the release question", "src": "https://www.anthropic.com/glasswing"}
+{"f": "llama4_2025", "t": "muse_spark2026", "rel": "superseded", "ev": "documented", "note": "Meta moves from open Llama to a closed model", "src": "https://ai.meta.com/blog/introducing-muse-spark-msl/"}
+{"f": "claude_opus46_2026", "t": "claude_opus47_2026", "rel": "directly built upon", "ev": "documented", "note": "Next Opus point release", "src": "https://www.anthropic.com/news/claude-opus-4-7"}
+{"f": "gpt54_2026", "t": "gpt55_2026", "rel": "directly built upon", "ev": "documented", "note": "Next release in the series", "src": "https://openai.com/index/introducing-gpt-5-5/"}
+{"f": "deepseek_v32_2025", "t": "deepseek_v4_2026", "rel": "directly built upon", "ev": "documented", "note": "Builds on the sparse attention introduced in V3.2", "src": "https://api-docs.deepseek.com/news/news260424/"}
+{"f": "deepseek_v3_2024", "t": "deepseek_v4_2026", "rel": "provided a foundation for", "ev": "strong", "note": "Continues the DeepSeek MoE line", "src": "https://api-docs.deepseek.com/news/news260424/"}
+{"f": "claude_opus47_2026", "t": "claude_opus48_2026", "rel": "directly built upon", "ev": "documented", "note": "Final Opus 4.x release", "src": "https://www.anthropic.com/news/claude-opus-4-8"}
+{"f": "claude_opus48_2026", "t": "claude_sonnet5_2026", "rel": "superseded", "ev": "documented", "note": "Claude 5 generation begins", "src": "https://www.anthropic.com/news/claude-sonnet-5"}
+{"f": "glasswing2026", "t": "claude_fable_mythos_2026", "rel": "provided a foundation for", "ev": "documented", "note": "Mythos Preview under Glasswing preceded the release", "src": "https://www.anthropic.com/news/fable-mythos-access"}
+{"f": "glm45_2025", "t": "glm52_2026", "rel": "directly built upon", "ev": "documented", "note": "Successor generation", "src": "https://huggingface.co/zai-org/GLM-5.2"}
+{"f": "gpt55_2026", "t": "gpt56_sol2026", "rel": "directly built upon", "ev": "documented", "note": "Next series in the GPT-5 line", "src": "https://openai.com/index/previewing-gpt-5-6-sol/"}
+{"f": "kimi_k2_2025", "t": "kimi_k3_2026", "rel": "directly built upon", "ev": "documented", "note": "K3 succeeds K2", "src": "https://huggingface.co/moonshotai/Kimi-K3"}
+{"f": "claude_sonnet5_2026", "t": "claude_opus5_2026", "rel": "complementary development", "ev": "documented", "note": "Flagship tier of the Claude 5 generation", "src": "https://www.anthropic.com/news/claude-opus-5"}
+{"f": "claude_fable_mythos_2026", "t": "claude_opus5_2026", "rel": "complementary development", "ev": "documented", "note": "Opus 5 approaches the gated tier's capability at lower cost", "src": "https://www.anthropic.com/news/claude-opus-5"}
+{"f": "qwen35_2026", "t": "qwen38_2026", "rel": "directly built upon", "ev": "documented", "note": "Successor release", "src": "https://github.com/QwenLM/Qwen3.8"}
+{"f": "claude_fable_mythos_2026", "t": "eu_ai_act_gpai_2026", "rel": "historically adjacent", "ev": "coincidence", "note": "Two 2026 governance events, no causal link", "src": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"}
+{"f": "claude_opus5_2026", "t": "claude_opus55_2026", "rel": "directly built upon", "ev": "documented", "note": "Point release in the Claude 5 line", "src": "https://www.anthropic.com/claude-opus-5-5"}
+{"f": "claude_opus48_2026", "t": "claude_opus5_2026", "rel": "superseded", "ev": "documented", "note": "Opus 5 succeeds the Opus 4.x line", "src": "https://www.anthropic.com/news/claude-opus-5"}

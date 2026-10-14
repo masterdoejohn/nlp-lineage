@@ -1,0 +1,40 @@
+{
+  "n": 10,
+  "id": "retrieval",
+  "title": "Reading more than you remember",
+  "years": "2017 to 2025",
+  "lede": "What should live in the model's weights, and what should it look up?",
+  "body": [
+    "A model's knowledge is frozen at training time, cannot cite a source, and goes stale. In 2020 Facebook AI's RAG paired a generator with a retriever: embed the question, find relevant passages, and answer with them in view. That pattern, retrieval-augmented generation, now sits behind most production systems that answer questions about private or current information.",
+    "The alternative is to read everything at once. Context windows grew from about 2,000 tokens to 100,000 in 2023 and a million in 2024. But in 2023 researchers found models use the middle of a long context poorly, which is one reason good retrieval never went away."
+  ],
+  "keystones": ["rag2020"],
+  "extra": ["sbert2019", "dpr2020", "lost_in_middle2023", "gemini15_2024", "claude_100k2023"],
+  "transition": "Text was never going to be the only input.",
+  "stations": [
+    "sbert2019",
+    "dpr2020",
+    "rag2020",
+    "rope2021",
+    "claude_100k2023",
+    "lost_in_middle2023",
+    "gemini15_2024",
+    "deepseek_v32_2025"
+  ],
+  "all": [
+    "faiss2017",
+    "sbert2019",
+    "dpr2020",
+    "longformer2020",
+    "rag2020",
+    "bigbird2020",
+    "rope2021",
+    "alibi2021",
+    "retro2021",
+    "claude_100k2023",
+    "position_interpolation2023",
+    "lost_in_middle2023",
+    "gemini15_2024",
+    "deepseek_v32_2025"
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "bengio2003_nplm": {
+    "understand": [
+      "Word embeddings as learned vectors",
+      "The curse of dimensionality in counting models",
+      "Next-word prediction as a training objective"
+    ],
+    "prereq": "Basic neural networks and softmax."
+  },
+  "word2vec2013": {
+    "understand": ["Skip-gram and CBOW objectives", "Negative sampling", "Cosine similarity between vectors"],
+    "prereq": "Why Bengio's model learned word vectors in the first place."
+  },
+  "seq2seq2014": {
+    "understand": ["Encoder and decoder", "The fixed-length bottleneck", "Autoregressive generation"],
+    "prereq": "Recurrent networks and LSTM gating."
+  },
+  "bahdanau2014": {
+    "understand": [
+      "Attention as a weighted average",
+      "Alignment scores between positions",
+      "Why the bottleneck hurt long inputs"
+    ],
+    "prereq": "Sequence-to-sequence models."
+  },
+  "transformer2017": {
+    "understand": [
+      "Scaled dot-product self-attention",
+      "Multi-head attention",
+      "Positional encoding",
+      "Residual connections and layer norm"
+    ],
+    "prereq": "Attention in encoder-decoder translation models."
+  },
+  "gpt1_2018": {
+    "understand": [
+      "Causal (left-to-right) language modelling",
+      "Decoder-only Transformers",
+      "Pretrain then fine-tune"
+    ],
+    "prereq": "The Transformer's decoder half."
+  },
+  "bert2018": {
+    "understand": [
+      "Masked language modelling",
+      "Bidirectional context",
+      "Why encoders suit understanding and retrieval"
+    ],
+    "prereq": "The Transformer's encoder half."
+  },
+  "gpt2_2019": {
+    "understand": ["Zero-shot task transfer", "Byte-level BPE tokenization", "Staged release of risky models"],
+    "prereq": "GPT-1 and next-token prediction."
+  },
+  "gpt3_2020": {
+    "understand": [
+      "In-context learning",
+      "Few-shot versus zero-shot prompting",
+      "Why scale changed the interface"
+    ],
+    "prereq": "Scaling laws for language models."
+  },
+  "chinchilla2022": {
+    "understand": [
+      "Compute-optimal allocation",
+      "Roughly 20 tokens per parameter",
+      "Why labs now overtrain small models"
+    ],
+    "prereq": "Kaplan's scaling laws."
+  },
+  "instructgpt2022": {
+    "understand": [
+      "Supervised fine-tuning on demonstrations",
+      "Reward models from human rankings",
+      "PPO against a reward model",
+      "Alignment elicits rather than adds knowledge"
+    ],
+    "prereq": "GPT-3 and the 2017 preference-learning work."
+  },
+  "dpo2023": {
+    "understand": ["Preference pairs", "Why DPO needs no reward model", "The KL constraint to the base model"],
+    "prereq": "The InstructGPT pipeline."
+  },
+  "chatgpt2022": {
+    "understand": [
+      "Capability versus product versus distribution",
+      "Dialogue-formatted training data",
+      "System prompts and conversation state"
+    ],
+    "prereq": "InstructGPT."
+  },
+  "llama2023": {
+    "understand": [
+      "Open weights versus open source",
+      "Overtraining for cheap inference",
+      "RoPE, SwiGLU and pre-norm in practice"
+    ],
+    "prereq": "Chinchilla scaling."
+  },
+  "deepseek_v3_2024": {
+    "understand": [
+      "Mixture-of-experts: total versus active parameters",
+      "Multi-head latent attention",
+      "What a final-run training cost does and does not include"
+    ],
+    "prereq": "Sparse MoE routing and grouped-query attention."
+  },
+  "flashattention2022": {
+    "understand": [
+      "Memory hierarchy on a GPU",
+      "Tiling to avoid writing the attention matrix",
+      "Exact versus approximate attention"
+    ],
+    "prereq": "Self-attention and why it is quadratic."
+  },
+  "qlora2023": {
+    "understand": [
+      "Low-rank adapters",
+      "4-bit NormalFloat quantization",
+      "Why the frozen base model dominates memory"
+    ],
+    "prereq": "LoRA and 8-bit quantization."
+  },
+  "rag2020": {
+    "understand": [
+      "Dense retrieval with embeddings",
+      "Vector search",
+      "Conditioning generation on retrieved passages"
+    ],
+    "prereq": "Sentence embeddings and BERT encoders."
+  },
+  "clip2021": {
+    "understand": [
+      "Contrastive learning",
+      "A shared image-text embedding space",
+      "Zero-shot classification by text prompt"
+    ],
+    "prereq": "The Vision Transformer."
+  },
+  "gpt4o2024": {
+    "understand": ["Native versus cascaded multimodality", "Audio as tokens", "Why latency matters for voice"],
+    "prereq": "CLIP and multimodal encoders."
+  },
+  "cot2022": {
+    "understand": ["Chain-of-thought exemplars", "Why intermediate steps help", "Emergence and its measurement"],
+    "prereq": "Few-shot prompting."
+  },
+  "o1_2024": {
+    "understand": [
+      "Test-time compute as a scaling axis",
+      "Reinforcement learning on reasoning",
+      "Hidden reasoning tokens"
+    ],
+    "prereq": "Chain of thought and process supervision."
+  },
+  "deepseek_r1_2025": {
+    "understand": [
+      "GRPO",
+      "Reasoning from pure reinforcement learning",
+      "Distilling reasoning into small models"
+    ],
+    "prereq": "o1 and DeepSeekMath's GRPO."
+  },
+  "react2022": {
+    "understand": [
+      "The thought, action, observation loop",
+      "Tool calls as model output",
+      "Why grounding reduces hallucination"
+    ],
+    "prereq": "Chain-of-thought prompting."
+  },
+  "mcp2024": {
+    "understand": [
+      "Tools, resources and prompts as protocol primitives",
+      "Why a standard beats M times N integrations",
+      "Client and server roles"
+    ],
+    "prereq": "Function calling."
+  },
+  "gpt5_2025": {
+    "understand": [
+      "Routing between fast and reasoning models",
+      "Unified systems versus single models",
+      "Reading vendor benchmark claims"
+    ],
+    "prereq": "o-series reasoning models."
+  },
+  "claude_fable_mythos_2026": {
+    "understand": [
+      "Tiered access as a release strategy",
+      "Export controls applied to models",
+      "What is and is not publicly documented"
+    ],
+    "prereq": "Project Glasswing."
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "id": "agent",
+  "name": "Agents",
+  "hex": "#DB7424",
+  "branches": ["agents"]
+}

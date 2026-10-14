@@ -1,0 +1,16 @@
+{
+  "n": 7,
+  "id": "public",
+  "title": "The assistant goes public",
+  "years": "2021 to 2023",
+  "lede": "What changed when anyone could talk to one?",
+  "body": [
+    "The first mass-market language model product was not a chatbot. GitHub Copilot put a code model inside developers' editors in mid-2021. But the inflection came on 30 November 2022, when OpenAI released ChatGPT, a free chat interface to the InstructGPT recipe. It reached an estimated hundred million users within about two months.",
+    "It is worth being precise about what ChatGPT was. It introduced no new capability; OpenAI described it as a sibling of InstructGPT. It was a breakthrough in interface and distribution. The capability jump came four months later with GPT-4, and Anthropic's Claude made the frontier a competition."
+  ],
+  "keystones": ["chatgpt2022"],
+  "extra": ["github_copilot2021", "gpt4_2023", "claude2023"],
+  "transition": "From here the story splits. Several threads develop at once, so each of the next chapters follows one of them from its origin to the present.",
+  "stations": ["github_copilot2021", "chatgpt2022", "claude2023", "gpt4_2023"],
+  "all": ["github_copilot2021", "chatgpt2022", "gpt35_2022", "claude2023", "gpt4_2023"]
+}

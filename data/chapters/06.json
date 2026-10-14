@@ -1,0 +1,39 @@
+{
+  "n": 6,
+  "id": "alignment",
+  "title": "Teaching models what people want",
+  "years": "2017 to 2023",
+  "lede": "How do you train a model toward a goal you can judge but not write down?",
+  "body": [
+    "The answer began outside language entirely. In 2017 researchers at OpenAI and DeepMind trained a reward model from human comparisons, asking which of two behaviours was better, and then optimised against it. By 2019 the same method was fine-tuning language models; by 2020 it produced summaries people preferred to human-written ones.",
+    "In 2022 InstructGPT applied it to instruction following. A 1.3-billion-parameter aligned model was preferred to the raw 175-billion one. That result is the key to this chapter: alignment does not add much knowledge. It steers and draws out what pretraining already put there. Anthropic then wrote the rules down as a constitution, and in 2023 DPO showed the whole reinforcement-learning loop could be replaced by a simple loss."
+  ],
+  "keystones": ["instructgpt2022", "dpo2023"],
+  "extra": ["christiano2017_rlhf", "flan2021"],
+  "transition": "By late 2022 the technique was mature. What it lacked was an audience.",
+  "stations": [
+    "christiano2017_rlhf",
+    "ziegler2019_rlhf_lm",
+    "stiennon2020_summarize",
+    "flan2021",
+    "instructgpt2022",
+    "hh_rlhf2022",
+    "constitutional_ai2022",
+    "dpo2023"
+  ],
+  "all": [
+    "christiano2017_rlhf",
+    "ziegler2019_rlhf_lm",
+    "stiennon2020_summarize",
+    "flan2021",
+    "t0_2021",
+    "askell2021",
+    "lamda2022",
+    "instructgpt2022",
+    "hh_rlhf2022",
+    "flan_scaling2022",
+    "constitutional_ai2022",
+    "self_instruct2022",
+    "dpo2023"
+  ]
+}

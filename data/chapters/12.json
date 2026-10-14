@@ -1,0 +1,54 @@
+{
+  "n": 12,
+  "id": "reasoning",
+  "title": "Thinking longer",
+  "years": "2022 to 2025",
+  "lede": "What if a model spent more effort on harder questions?",
+  "body": [
+    "In 2022 researchers found that showing a model worked examples, with the reasoning written out, made it reason step by step too. Sampling several reasoning paths and voting helped more. The implication took two years to land: computation at inference time can substitute for size.",
+    "In September 2024 OpenAI's o1 trained that behaviour in with reinforcement learning, producing long hidden reasoning before answering. In January 2025 DeepSeek-R1 reproduced the result openly, showing reasoning can emerge from reinforcement learning alone, and published the method. Within months every major lab offered a model that thinks before it answers."
+  ],
+  "keystones": ["cot2022", "o1_2024", "deepseek_r1_2025"],
+  "extra": [
+    "self_consistency2022",
+    "lets_verify2023",
+    "deepseekmath_grpo2024",
+    "test_time_compute2024",
+    "imo_gold_2025"
+  ],
+  "transition": "A model that can reason about a task can also start carrying it out.",
+  "stations": [
+    "cot2022",
+    "self_consistency2022",
+    "lets_verify2023",
+    "deepseekmath_grpo2024",
+    "test_time_compute2024",
+    "o1_2024",
+    "o3_2024",
+    "deepseek_r1_2025",
+    "claude37_2025",
+    "gemini25_2025",
+    "imo_gold_2025"
+  ],
+  "all": [
+    "cot2022",
+    "alphacode2022",
+    "self_consistency2022",
+    "star2022",
+    "zs_cot2022",
+    "tree_of_thoughts2023",
+    "lets_verify2023",
+    "deepseekmath_grpo2024",
+    "test_time_compute2024",
+    "o1_2024",
+    "o3_2024",
+    "deepseek_r1_2025",
+    "claude37_2025",
+    "gemini25_2025",
+    "o3_release2025",
+    "o4mini_2025",
+    "imo_gold_2025",
+    "robust_math_eval2025",
+    "gemini3_deepthink2026"
+  ]
+}

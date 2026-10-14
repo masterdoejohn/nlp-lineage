@@ -1,0 +1,25 @@
+{
+  "n": 2,
+  "id": "vectors",
+  "title": "Words become vectors",
+  "years": "2013 to 2016",
+  "lede": "What happens when learning word meanings becomes cheap?",
+  "body": [
+    "In 2013 Tomas Mikolov's team at Google stripped Bengio's model down to almost nothing and trained it on billions of words in under a day. The resulting vectors had a famous property: the direction from man to woman was roughly the direction from king to queen. Meaning had geometry, and anyone could compute it.",
+    "The same period produced the other half of the modern recipe. Sequence-to-sequence models read a whole sentence with one recurrent network and wrote a translation with another, end to end. And subword tokenization solved the rare-word problem by spelling unfamiliar words out of pieces. By 2016 Google had put neural translation into production."
+  ],
+  "keystones": ["word2vec2013", "seq2seq2014"],
+  "extra": ["sennrich_bpe2015", "cho2014_gru", "dai_le2015", "gnmt2016"],
+  "transition": "There was a flaw at the centre of sequence-to-sequence: the whole input had to fit through one fixed-size vector.",
+  "stations": ["word2vec2013", "cho2014_gru", "seq2seq2014", "sennrich_bpe2015", "dai_le2015", "gnmt2016"],
+  "all": [
+    "word2vec2013",
+    "cho2014_gru",
+    "seq2seq2014",
+    "glove2014",
+    "adam2014",
+    "sennrich_bpe2015",
+    "dai_le2015",
+    "gnmt2016"
+  ]
+}
