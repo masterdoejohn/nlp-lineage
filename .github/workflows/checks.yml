@@ -39,7 +39,8 @@ jobs:
         run: python build.py
 
       - name: The committed page matches the build
-        run: git diff --exit-code -- dist/ || { echo "dist/llm-lineage.html is out of date: run python build.py and commit the result"; exit 1; }
+        run: |
+          git diff --exit-code -- dist/ || { echo "dist/llm-lineage.html is out of date. Run python build.py and commit the result."; exit 1; }
 
       - name: Interaction checks
         run: python tests/test_interact.py
