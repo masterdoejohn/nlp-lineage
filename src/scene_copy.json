@@ -1,0 +1,183 @@
+{
+ "1": {
+  "label": "Next-word counts from a sample text, a zero for an unseen pair, and similar words grouped in a learned space",
+  "note": [
+   "From the sample text",
+   "Counts come from the eight-sentence sample text used in experiment 1.1. Word positions in the learned space are illustrative."
+  ],
+  "steps": [
+   "In 1948 Claude Shannon treated English as a source of symbols and measured how predictable the next symbol is. A language model does exactly this: it gives every possible next word a probability.",
+   "For the next forty years, language models were counts: how often does this word follow the one before it? IBM used counts like these to translate text with probabilities instead of hand-written grammar rules.",
+   "Counting has a ceiling. Most sentences you will ever read have never been written before, and a pair the model never saw gets a probability of zero. The sample text never shows a bird eating, so “bird ate” is impossible.",
+   "In 2003 Yoshua Bengio’s group proposed learning a vector for every word, so that similar words share what the model knows about them. “Bird” sits near “cat” and “dog”, and borrows their evidence."
+  ]
+ },
+ "2": {
+  "label": "Word vectors where the step from man to woman matches king to queen, and a sequence-to-sequence model squeezing a sentence through one vector",
+  "note": [
+   "Illustrative values",
+   "Two hand-placed dimensions stand in for hundreds. The sentence is an example."
+  ],
+  "steps": [
+   "In 2013 Tomas Mikolov’s team at Google stripped Bengio’s model down to almost nothing and trained it on 1.6 billion words in under a day. Every word became a point, and words used in similar ways landed close together.",
+   "The vectors had a famous property: the direction from “man” to “woman” was roughly the direction from “king” to “queen”. Meaning had geometry, and anyone could compute it.",
+   "The same period produced the other half of the modern recipe. Sequence to sequence (2014) read a whole sentence with one recurrent network and wrote a translation with another, trained end to end.",
+   "There was a flaw at the centre: the whole input had to fit through one fixed-size vector. The longer the sentence, the more was lost."
+  ]
+ },
+ "3": {
+  "label": "Attention lines from the decoder to every input word, recurrence removed, and sixteen sequential steps compared with one parallel step over 256 pairs",
+  "note": [
+   "Illustrative values",
+   "Attention weights are invented. The step and pair counts are exact for a 16-word sentence."
+  ],
+  "steps": [
+   "Squeezing a long sentence into one vector loses information, and translation quality fell apart on long inputs. The decoder only ever saw the last state of the chain.",
+   "In 2014 Dzmitry Bahdanau, working with Kyunghyun Cho and Yoshua Bengio, let the decoder look back over every input word and weight each by relevance. That mechanism is attention, and it starts here, three years before the paper with attention in its title.",
+   "In 2017 a Google team asked what would happen if attention were the only mechanism, with no recurrence at all. The answer was the Transformer: every word attends to every other word.",
+   "Its real advantage was not accuracy but parallelism. A recurrent network must take its steps one after another; attention scores every pair at once, which is exactly what GPUs are good at."
+  ]
+ },
+ "4": {
+  "label": "Separate task models replaced by one pretrained model, and the fork between GPT’s look-back mask and BERT’s full view",
+  "note": [
+   "Illustrative values",
+   "The diagram simplifies; the masks are exact for a seven-word sentence."
+  ],
+  "steps": [
+   "Until 2018 most models were trained from scratch for one job: one model for translation, another for sentiment, another for answering questions.",
+   "Then three ideas arrived within months of each other. ELMo, GPT and BERT all learned language first from plain text, and tasks later. One pretrained model could be adapted to many jobs.",
+   "That fork matters. OpenAI’s GPT pretrained by predicting the next word, so it may only look back. Google’s BERT hid words and predicted them from both directions.",
+   "BERT dominated research for three years and still powers search and embeddings. GPT looked like the weaker choice, until GPT-2 in 2019 showed that at 1.5 billion parameters it could translate, summarise and answer questions it was never trained on."
+  ]
+ },
+ "5": {
+  "label": "The scaling-law line on log axes, model sizes from GPT-2 to PaLM by date, and Chinchilla beating the larger Gopher",
+  "note": [
+   "From the data",
+   "Model sizes, dates and token counts come from the milestones. The loss line is the paper’s fitted formula for parameters alone."
+  ],
+  "steps": [
+   "In January 2020 OpenAI published scaling laws: a model’s test loss falls predictably as parameters, data and compute grow. On logarithmic axes it is a straight line, across seven orders of magnitude. Scale stopped being a gamble and became a budget.",
+   "Four months later GPT-3, at 175 billion parameters, showed something new: give it a few examples in the prompt and it does the task, with no retraining. Prompting was born, and models kept growing.",
+   "In 2022 DeepMind’s Chinchilla corrected the recipe. Its 70-billion-parameter model, trained on 1.4 trillion tokens, beat the 280-billion-parameter Gopher, trained on 300 billion. Scale data and parameters together: about 20 tokens per parameter."
+  ]
+ },
+ "6": {
+  "label": "People compare two answers, a reward model learns the preference and steers the model; a 1.3B aligned model preferred to the 175B base; DPO removes the loop",
+  "note": [
+   "From the data",
+   "Model sizes come from the InstructGPT milestone; circle areas are to scale. The answers are examples."
+  ],
+  "steps": [
+   "How do you train toward a goal you can judge but not write down? In 2017 researchers at OpenAI and DeepMind showed people two behaviours, asked which was better, and trained a reward model on those choices.",
+   "The model is then optimised against that reward model. By 2019 the method was fine-tuning language models, and by 2020 it produced summaries people preferred to human-written ones.",
+   "In 2022 InstructGPT applied it to instruction following. A 1.3-billion-parameter aligned model was preferred to the raw 175-billion-parameter one. Alignment does not add much knowledge: it steers and draws out what pretraining already put there.",
+   "Anthropic then wrote the rules down as a constitution, and in 2023 DPO showed the whole reinforcement-learning loop could be replaced by a simple loss on the preference pairs."
+  ]
+ },
+ "7": {
+  "label": "A timeline from Copilot to ChatGPT, GPT-4 and Claude, after which the route splits into six threads",
+  "note": [
+   "From the data",
+   "Dates come from the milestones. The split shows how the next six chapters are organised."
+  ],
+  "steps": [
+   "The first mass-market language model product was not a chatbot. In June 2021 GitHub Copilot put a code model inside developers’ editors.",
+   "The inflection came on 30 November 2022, when OpenAI released ChatGPT, a free chat interface to the InstructGPT recipe. It reached an estimated hundred million users within about two months.",
+   "It introduced no new capability; OpenAI described it as a sibling of InstructGPT. The capability jump came four months later with GPT-4, and Anthropic’s Claude made the frontier a competition.",
+   "From here the story splits. Several threads develop at once, so each of the next six chapters follows one of them from its origin to the present."
+  ]
+ },
+ "8": {
+  "label": "Two lanes over time: models behind an API and models with downloadable weights, with Meta’s path crossing from open to closed",
+  "note": [
+   "From the data",
+   "Dates and licences come from the milestones. Placement shows access only, not quality."
+  ],
+  "steps": [
+   "Until 2023 the best models lived behind APIs: you could send them text, but not download or study them.",
+   "Meta’s LLaMA changed that in February 2023: small models, trained far longer than Chinchilla suggested, released to researchers. The weights leaked within days, and within weeks people had fine-tuned them into assistants for a few hundred dollars.",
+   "Llama 2 added a commercial licence; Mistral showed a 7-billion-parameter model could beat far larger ones under a fully permissive licence. By 2025 the open frontier had moved to DeepSeek, Qwen and Moonshot.",
+   "Most of these are open-weight rather than open-source: custom licences restrict use and the training data is rarely released. In 2026 Meta itself stopped releasing open models."
+  ]
+ },
+ "9": {
+  "label": "Memory for a 65-billion-parameter model at 16, 8 and 4 bits against GPU sizes, and a LoRA adapter beside a frozen matrix",
+  "note": [
+   "Exact arithmetic",
+   "Memory is parameters × bits ÷ 8 for the weights alone. 24, 48 and 80 GB are common GPU sizes."
+  ],
+  "steps": [
+   "A model built for a datacentre needs datacentre memory. A 65-billion-parameter model stored at 16 bits needs 130 GB for its weights alone, more than any single common GPU.",
+   "Quantization shrank weights from 16 bits to 8 and then 4, with little loss. The same model needs 65 GB at 8 bits and 32.5 GB at 4.",
+   "LoRA let you fine-tune a model by training a tiny adapter beside it, often under 1% of the parameters, while the original weights stay frozen.",
+   "QLoRA (2023) combined the two, so a 65-billion-parameter model could be fine-tuned on one 48 GB GPU. Serving changed too: vLLM managed memory like an operating system, and llama.cpp ran models on ordinary CPUs."
+  ]
+ },
+ "10": {
+  "label": "Retrieval feeding passages into the model, context windows growing from 2,000 to a million tokens, and accuracy sagging in the middle of long contexts",
+  "note": [
+   "Illustrative values",
+   "Window sizes come from the chapter. The U-shaped curve shows the reported shape, not measured values."
+  ],
+  "steps": [
+   "A model’s knowledge is frozen at training time. It cannot cite a source, and it goes stale.",
+   "In 2020 Facebook AI’s RAG paired a generator with a retriever: embed the question, find relevant passages, and answer with them in view. That pattern now sits behind most systems that answer questions about private or current information.",
+   "The alternative is to read everything at once. Context windows grew from about 2,000 tokens to 100,000 in 2023 and a million in 2024.",
+   "But in 2023 researchers found models use the middle of a long context poorly: accuracy is high when the passage is at the start or end and sags in the middle. That is one reason good retrieval never went away."
+  ]
+ },
+ "11": {
+  "label": "An image cut into patches that become a row of tokens, images and captions pulled together into one space, and a three-stage voice pipeline collapsing into one model",
+  "note": [
+   "Illustrative values",
+   "The picture and captions are examples. The 400 million pairs and 320 milliseconds come from the milestones."
+  ],
+  "steps": [
+   "The Vision Transformer (2020) cut an image into patches and treated each patch as a token, so one architecture could handle pixels and words.",
+   "Each patch takes its place in the sequence, exactly as a word would.",
+   "OpenAI’s CLIP (2021) trained image and text encoders together on 400 million web pairs until matching pictures and captions landed in the same place. That shared space is the bridge every vision-language model crosses.",
+   "Early systems chained separate models for speech and text. In 2024 GPT-4o answered spoken questions in about 320 milliseconds on average by handling audio natively in one model."
+  ]
+ },
+ "12": {
+  "label": "One reasoning chain, then several sampled chains voting on an answer, then a group of answers scored right or wrong with pushes up and down",
+  "note": [
+   "Illustrative values",
+   "The question, the paths and the group of eight are examples. GRPO’s arithmetic is exact."
+  ],
+  "steps": [
+   "In 2022 researchers found that showing a model worked examples, with the reasoning written out, made it reason step by step too.",
+   "Sampling several reasoning paths and voting helped more. The implication took two years to land: computation at answer time can substitute for size.",
+   "In September 2024 OpenAI’s o1 trained that behaviour in with reinforcement learning, producing long hidden reasoning before answering.",
+   "In January 2025 DeepSeek-R1 reproduced the result openly. Its method, GRPO, samples a group of answers and pushes each one up or down by how it compares with the group. Reasoning emerged from reinforcement learning alone, and the method was published."
+  ]
+ },
+ "13": {
+  "label": "The think, act, observe loop; SWE-bench scores from under 2% to a vendor-reported 80.9%; and a shared protocol replacing one connection per model and tool pair",
+  "note": [
+   "From the data",
+   "Scores come from the milestones; the 80.9% is vendor-reported on SWE-bench Verified, a different subset from the 2023 test."
+  ],
+  "steps": [
+   "In 2021 WebGPT gave a model a text browser and taught it to search and cite. In 2022 ReAct combined reasoning and acting into one loop: think, act, observe, repeat. Almost every agent since is built on that loop.",
+   "In 2023 SWE-bench asked models to fix real GitHub issues. The best model of the day solved under 2 percent.",
+   "Then the tooling caught up. Function calling made tool use a standard API feature, computer use let a model operate a screen, and the Model Context Protocol standardised how models connect to tools: each side implements it once, instead of once per pair.",
+   "Coding agents became everyday tools in 2025, and reported scores passed 80 percent on SWE-bench Verified. Those figures are reported by the vendors, on a different, human-checked subset of the test."
+  ]
+ },
+ "14": {
+  "label": "All ten research threads converging into the layers of a 2026 frontier model, a router on top, and a 2026 timeline of access tiers and regulation",
+  "note": [
+   "From the data",
+   "Layers summarise chapters 2 to 13. Dates come from the milestones."
+  ],
+  "steps": [
+   "A 2026 frontier model is the sum of this route. Every thread you followed arrives in one system.",
+   "A Transformer, pretrained on filtered web-scale data, aligned with preference optimisation, reasoning with reinforcement-learned chains of thought, reading long context and images, and calling tools as an agent.",
+   "GPT-5’s router made the reasoning depth automatic, deciding per request how much to think. Releases now arrive monthly.",
+   "Two things are new. Frontier models are increasingly released in tiers of access rather than simply published, and governments have become direct participants: in June 2026 a US export-control directive briefly took a deployed model offline, and the EU AI Act’s obligations for general-purpose models applied from August 2026."
+  ]
+ }
+}

@@ -1,0 +1,90 @@
+<title>How language models came to be</title>
+<meta name="description" content="A guided, explorable history of language models from 1948 to 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+/*__CSS__*/
+</style>
+
+<a class="skip" href="#ch-1">Skip to the first chapter</a>
+
+<div class="topbar" role="navigation" aria-label="Chapters">
+  <div class="bar-in">
+    <a class="bar-home" href="#top">How language models came to be</a>
+    <div class="bar-route" id="bar-route"><span class="track" aria-hidden="true"></span><span class="fill" id="bar-fill" aria-hidden="true"></span></div>
+    <p class="bar-where" id="where" aria-live="polite">The route</p>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="page hero-grid">
+    <div>
+      <h1>How language models came to be</h1>
+      <p class="dek">A route through 78 years of research, from a 1948 paper about information to the models of 2026.</p>
+      <p class="hero-meta" id="hero-meta">Fourteen stops along ten research threads. Every connection drawn here comes from a source. Scroll to travel: at each stop a diagram changes as the story moves, and <span id="lab-count">fourteen</span> experiments let you run the main ideas yourself.</p>
+    </div>
+    <figure class="hero-map" id="hero-map">
+      <figcaption id="hero-cap">Each coloured line is a research thread. It starts in the year of its first milestone in this history and runs to the present, where the threads meet in today's frontier models. The lines group work by theme; they do not claim cause and effect. Years before 2012 are compressed, at the break in the axis.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<nav class="routeidx page" aria-labelledby="ri-h">
+  <h2 id="ri-h">The route</h2>
+  <ol class="ri" id="route"></ol>
+</nav>
+
+<main id="story"><noscript><p class="page noscript">The fourteen chapters, their diagrams and the experiments are built by JavaScript. Turn JavaScript on to read the route.</p></noscript></main>
+
+<section class="section" id="network" aria-labelledby="network-h">
+  <div class="page">
+    <h2 id="network-h">The whole system</h2>
+    <p class="intro">Every station from the story on one map, in date order. The chapters after ChatGPT overlap in time; here you can watch threads that developed in parallel run side by side. Select any station to open its study card.</p>
+  </div>
+  <div class="page netwrap"><figure class="map" id="netmap" style="margin:0"></figure></div>
+</section>
+
+<section class="section" id="trace" aria-labelledby="trace-h">
+  <div class="page">
+    <h2 id="trace-h">Trace a lineage</h2>
+    <p class="intro">Pick a model and follow its documented influences back through time. The family tree uses only relationships the sources support, so some familiar links are missing and some are marked as indirect.</p>
+    <div class="picker" id="picker" role="group" aria-label="Choose a model to trace"></div>
+    <label class="opt"><input type="checkbox" id="weak"> Include indirect and uncertain influences</label>
+    <p class="trace-sum" id="trace-sum" aria-live="polite"></p>
+    <ol class="trace-list" id="trace-list"></ol>
+    <button class="btn-solid" id="trace-more" hidden></button>
+  </div>
+</section>
+
+<footer>
+  <div class="page foot-grid">
+    <div>
+      <h2>Reading the evidence</h2>
+      <div class="keyrow"><svg width="44" height="10" aria-hidden="true"><line x1="2" y1="5" x2="42" y2="5" stroke="currentColor" stroke-width="5"/></svg> A line is a research thread, not a chain of cause and effect.</div>
+      <div class="keyrow"><svg width="44" height="30" aria-hidden="true"><line x1="22" y1="6" x2="22" y2="24" stroke="currentColor" stroke-width="2.5"/><circle cx="22" cy="6" r="5" fill="var(--paper)" stroke="currentColor" stroke-width="2.5"/><circle cx="22" cy="24" r="5" fill="var(--paper)" stroke="currentColor" stroke-width="2.5"/></svg> A station joined by a stem belongs to more than one thread.</div>
+      <p style="margin-top:18px">Station positions show date and thread membership, taken from each milestone's tagged research areas. They do not show influence. Influence appears only in a station's study card and in the lineage tracer, and only where a source documents it: the later work cites, extends or uses the earlier one. Links that are indirect, a matter of timing, or a later interpretation are labelled as such.</p>
+      <p>Dates, authors, institutions and relationships come from primary sources: arXiv, conference proceedings, journals and official lab publications. Benchmark figures from product announcements are marked as reported by the vendor. The narrative and study notes are written from that research rather than quoted from it. Coverage runs to September 2026.</p>
+    </div>
+    <div>
+      <h2>Reading the scenes and experiments</h2>
+      <p>Every scene and experiment carries a label that says what kind of numbers it uses.</p>
+      <div class="keyrow tagrow"><span class="tag">From the data</span> <span>Dates, sizes and figures taken from the milestones on this page.</span></div>
+      <div class="keyrow tagrow"><span class="tag">Illustrative values</span> <span>Invented numbers that show how an idea works. They are not research results.</span></div>
+      <div class="keyrow tagrow"><span class="tag">Formula from the paper</span> <span>The formula and constants come from the paper; the picture around them is simplified.</span></div>
+      <div class="keyrow tagrow"><span class="tag">Exact arithmetic</span> <span>A real calculation on inputs you choose.</span></div>
+      <div class="keyrow tagrow"><span class="tag">Real computation</span> <span>A real search over this page&rsquo;s own milestones.</span></div>
+      <div class="keyrow tagrow"><span class="tag">Scripted, with real lookups</span> <span>Reasoning steps written in advance; the tool calls really run.</span></div>
+      <p style="margin-top:14px">The experiments are teaching models, not reproductions of the original systems. Each one says in its technical detail what it simplifies.</p>
+    </div>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-title"><div class="sheet-in" id="sheet-in"></div></dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/*__JS__*/
+</script>

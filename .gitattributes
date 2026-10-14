@@ -1,0 +1,3 @@
+# keep LF everywhere: build.py writes LF, and the tour build is compared byte for byte
+* text=auto eol=lf
+*.png binary

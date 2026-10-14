@@ -1,0 +1,12 @@
+{
+  "name": "llm-lineage",
+  "private": true,
+  "description": "How language models came to be: build and test tooling. The page itself loads GSAP from cdnjs; this local copy only lets the tests run offline.",
+  "scripts": {
+    "build": "python build.py",
+    "test": "python tests/test_interact.py && python tests/test_redesign.py"
+  },
+  "devDependencies": {
+    "gsap": "3.12.5"
+  }
+}

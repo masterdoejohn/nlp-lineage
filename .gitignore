@@ -1,0 +1,11 @@
+node_modules/
+shots/
+tests/test.html
+_check.js
+__pycache__/
+CLAUDE.local.md
+
+# private working notes: kept on disk, never committed (they carry personal details)
+CLAUDE.md
+docs/HANDOFF.md
+docs/PRODUCT.md
