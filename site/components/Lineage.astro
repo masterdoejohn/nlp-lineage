@@ -1,0 +1,73 @@
+---
+// The tour's lineage tracer, drawn at build time for one milestone in one direction. There are two lists,
+// without and with weak links, because milestones on the same day can come in a different order in each.
+// Two checkboxes switch between them, and between the short and the full list, with CSS alone, so it works
+// without JavaScript. Browsers without :has() show the full list with weak links, each still marked in words.
+import { byId, chapterByN } from '../lib/data';
+import { trace, via, type Dir } from '../lib/lineage';
+import { relGroup, isWeak, QUAL, TRACE_VERB, TRACE_FROM, year } from '../lib/labels';
+
+interface Props { id: string; dir: Dir }
+const { id, dir } = Astro.props;
+const root = byId[id];
+const s = trace(id, dir, false), w = trace(id, dir, true);
+const words = dir === 'before'
+  ? { kin: 'ancestors', direct: 'its direct parents', far: 'reaching back to', none: 'ancestors' }
+  : { kin: 'descendants', direct: 'its direct descendants', far: 'reaching forward to', none: 'descendants' };
+
+function summary(t: typeof s, weak: boolean, all: boolean) {
+  if (!t.all.length) return `No ${weak ? 'recorded' : 'documented'} ${words.none} are recorded for ${root.short}${weak ? '' : ' without weak links'}.`;
+  const far = byId[t.all[t.all.length - 1]];
+  const chs = new Set(t.all.map((i) => byId[i].ch)).size;
+  const tps = t.brief.filter((i) => byId[i].tp).length;
+  return `${root.short} has ${t.all.length} ${weak ? `recorded ${words.kin}, including indirect ones,` : `documented ${words.kin}`} across ${chs} chapter${chs === 1 ? '' : 's'}, ` +
+    `${words.far} ${far.short} in ${year(far)}. ` +
+    (all || t.all.length === t.brief.length ? 'Showing all of them.'
+      : tps ? `Showing ${words.direct} and the ${tps} turning point${tps === 1 ? '' : 's'} among them.` : `Showing ${words.direct}.`);
+}
+function viaText(mid: string, t: typeof s, weak: boolean) {
+  return via(mid, t, dir, weak, new Set([id, ...t.brief])).map((r) => {
+    const g = relGroup(r.rel);
+    const other = byId[dir === 'before' ? r.t : r.f];
+    const q = isWeak(r.ev) ? ` (${QUAL[r.ev]})` : '';
+    return dir === 'before' ? `${other.short} ${TRACE_VERB[g]}${q}` : `${TRACE_FROM[g]} ${other.short}${q}`;
+  });
+}
+const hasWeakExtra = w.all.length > s.all.length;
+const hasMore = s.all.length > s.brief.length || w.all.length > w.brief.length;
+const uid = `lin-${dir}`;
+---
+<div class="lin" data-dir={dir}>
+  {(hasWeakExtra || hasMore) && (
+    <div class="lin-opts">
+      {hasWeakExtra && <label><input type="checkbox" class="lin-weak" id={`${uid}-weak`} /><span>Include indirect and uncertain influences</span></label>}
+      {hasMore && (
+        <label><input type="checkbox" class="lin-all" id={`${uid}-all`} /><span>Show all <span class="m-s">{s.all.length}</span><span class="m-w">{w.all.length}</span> {words.kin}</span></label>
+      )}
+    </div>
+  )}
+  <p class="lin-sum v-sb">{summary(s, false, false)}</p>
+  <p class="lin-sum v-sa">{summary(s, false, true)}</p>
+  <p class="lin-sum v-wb">{summary(w, true, false)}</p>
+  <p class="lin-sum v-wa">{summary(w, true, true)}</p>
+  {[{ t: s, weak: false, mode: 'm-s' }, { t: w, weak: true, mode: 'm-w' }].map(({ t, weak, mode }) => t.all.length > 0 && (
+    <ol class={`lin-list ${mode}`} style={`--c:var(--c-${root.lines[0]})`}>
+      <li class="root"><span class="yr">{year(root)}</span><span class="sw" aria-hidden="true"></span><span><span class="nm">{root.short}</span><span class="via">This milestone.</span></span></li>
+      {t.all.map((mid) => {
+        const m = byId[mid];
+        const vs = viaText(mid, t, weak);
+        return (
+          <li class={['it', t.brief.includes(mid) && 'in-b', m.tp && 'tp'].filter(Boolean).join(' ')} style={`--c:var(--c-${m.lines[0]})`}>
+            <span class="yr">{year(m)}</span>
+            <span class="sw" aria-hidden="true"></span>
+            <span>
+              <a class="nm" href={`/milestones/${mid}/`}>{m.short}</a>{m.tp && <span class="tp-tag"> Turning point</span>}
+              <span class="via">{vs.map((v, k) => <>{k > 0 && <br />}{v}</>)}</span>
+              <span class="ch muted">Chapter {m.ch}. {chapterByN[m.ch].title}</span>
+            </span>
+          </li>
+        );
+      })}
+    </ol>
+  ))}
+</div>

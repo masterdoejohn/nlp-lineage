@@ -10,7 +10,7 @@ import sys, re, json, threading, functools, pathlib
 from html.parser import HTMLParser
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlsplit
-from harness import ROOT, SHOTS, page, OVERFLOW_JS
+from harness import ROOT, SHOTS, page, route, OVERFLOW_JS
 sys.path.insert(0, str(ROOT))
 from lineage_data import load_milestones, load_relationships, DATA
 from playwright.sync_api import sync_playwright
@@ -65,7 +65,7 @@ def parse(p):
 # ---------------- part 1: the built HTML ----------------
 pages = {p: parse(p) for p in sorted(BUILD.rglob('*.html')) if 'tour' not in p.relative_to(BUILD).parts}
 rel = lambda p: '/' + p.relative_to(BUILD).as_posix()
-want = len(ms) + len(threads) + len(terms) + 1 + 3 + 1  # home + milestones/threads/glossary indexes + 404
+want = len(ms) + len(threads) + len(terms) + 1 + 3 + 1 + 2  # home + milestones/threads/glossary indexes + 404 + timeline, search
 ok('page count matches the data', len(pages) == want, f'{len(pages)} pages, expected {want}')
 ok('every milestone has a page', all((BUILD / 'milestones' / i / 'index.html').exists() for i in ms))
 ok('every thread has a page', all((BUILD / 'threads' / t['id'] / 'index.html').exists() for t in threads))
@@ -119,6 +119,15 @@ ok('each weak relationship appears on both of its milestone pages', shown_weak =
 glued = sorted({(rel(p), m.group(0)[-30:]) for p in pages for m in re.finditer(r'[A-Za-z0-9]<(?:a|span)(?=[\s>])[^>]*>(?=[A-Za-z0-9])', p.read_text(encoding='utf-8'))})
 ok('no word is glued to the link or number after it', not glued, glued[:5])
 
+tl = (BUILD / 'timeline' / 'index.html').read_text(encoding='utf-8')
+wide, narrow = tl.split('class="tt-narrow', 1)
+for label, part in (('table', wide), ('list', narrow)):
+    found = re.findall(r'href="/milestones/([a-z0-9_]+)/"', part)
+    ok(f'the timeline {label} lists every milestone exactly once', sorted(found) == sorted(ms), (len(found), len(set(found))))
+tp_marked = len(re.findall(r'class="tp"', wide))
+ok('the timeline marks every turning point', tp_marked == sum(1 for m in ms.values() if m['tp']), tp_marked)
+ok('the search index was built', (BUILD / 'pagefind' / 'pagefind.js').exists())
+
 dashes = [rel(p) for p, x in pages.items() if '\u2014' in ''.join(x.text)]
 dashes += ['/tour/'] if '\u2014' in (BUILD / 'tour' / 'index.html').read_text(encoding='utf-8') else []
 ok('no em dashes on any page', not dashes, dashes[:5])
@@ -130,7 +139,7 @@ def pairs(text, name):
     return dict(re.findall(r"'?([\w-]+)'?\s*:\s*'([^']*)'", m.group(1))) if m else None
 tour_js = (ROOT / 'src' / 'app_a.js').read_text(encoding='utf-8')
 site_ts = (ROOT / 'site' / 'lib' / 'labels.ts').read_text(encoding='utf-8')
-for name in ('GROUP_IN', 'GROUP_OUT', 'QUAL'):
+for name in ('GROUP_IN', 'GROUP_OUT', 'QUAL', 'TRACE_VERB'):
     a, b = pairs(tour_js, name), pairs(site_ts, name)
     ok(f'site wording matches the tour: {name}', a and a == b, (a, b))
 
@@ -162,7 +171,7 @@ srv = ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=s
 threading.Thread(target=srv.serve_forever, daemon=True).start()
 BASE = f'http://127.0.0.1:{srv.server_address[1]}'
 first_tp = next(i for i, m in ms.items() if m['tp'])
-PAGES = ['/', '/milestones/', f'/milestones/{first_tp}/', '/milestones/transformer2017/', '/threads/', f'/threads/{threads[0]["id"]}/', '/glossary/', '/404.html']
+PAGES = ['/', '/milestones/', '/milestones/?thread=lm&tp=1', f'/milestones/{first_tp}/', '/milestones/transformer2017/', '/timeline/', '/search/?q=attention', '/threads/', f'/threads/{threads[0]["id"]}/', '/glossary/', '/404.html']
 
 with sync_playwright() as p:
     b = p.chromium.launch()
@@ -171,7 +180,7 @@ with sync_playwright() as p:
         errs = []
         ctx, pg = page(b, w, hgt, scheme=scheme, errs=errs)
         for path in PAGES:
-            pg.goto(BASE + path); pg.wait_for_load_state('networkidle')
+            pg.goto(BASE + path); pg.wait_for_load_state('networkidle'); pg.wait_for_timeout(300 if 'search' in path else 0)
             o = pg.evaluate(OVERFLOW_JS)
             ok(T + f'{path} has no horizontal overflow', o['sw'] <= o['vw'] and not o['wide'], o)
             bad = pg.evaluate(CONTRAST_JS)
@@ -182,6 +191,65 @@ with sync_playwright() as p:
                 pg.screenshot(path=str(SHOTS / f'site-phone-{scheme}-milestone.png'), full_page=True)
         ok(T + 'no console errors', not [e for e in errs if 'ERR_FAILED' not in e], errs[:4])
         ctx.close()
+    # filters on the milestones list, and the address keeping them
+    ctx, pg = page(b, 1440, 900)
+    pg.goto(BASE + '/milestones/'); pg.wait_for_load_state('networkidle')
+    vis = lambda: pg.evaluate('document.querySelectorAll("#list li[data-kind]:not([hidden])").length')
+    ok('[filters] the form appears and shows all milestones', pg.is_visible('#filters') and pg.evaluate('document.getElementById("filters-d").open') and vis() == len(ms), vis())
+    pg.select_option('select[name=thread]', 'lm')
+    want_lm = sum(1 for m in ms.values() if 'lm' in m['lines'])
+    ok('[filters] thread filter matches the data', vis() == want_lm, (vis(), want_lm))
+    pg.select_option('select[name=kind]', 'model'); pg.select_option('select[name=from]', '2020')
+    want_k = sum(1 for m in ms.values() if 'lm' in m['lines'] and m['type'] == 'model' and m['date'][:4] >= '2020')
+    ok('[filters] thread, kind and year combine', vis() == want_k, (vis(), want_k))
+    ok('[filters] the address keeps the filters', 'thread=lm' in pg.url and 'kind=model' in pg.url and 'from=2020' in pg.url, pg.url)
+    pg.click('button[type=reset]'); pg.wait_for_timeout(100)
+    ok('[filters] clearing shows every milestone again', vis() == len(ms), vis())
+    pg.goto(BASE + '/milestones/?tp=1&claim=peer-reviewed'); pg.wait_for_load_state('networkidle')
+    want_c = sum(1 for m in ms.values() if m['tp'] and m['claim'] == 'peer-reviewed')
+    ok('[filters] filters load from the address', vis() == want_c, (vis(), want_c))
+    empty_years = pg.evaluate('[...document.querySelectorAll("#list .year-block")].filter(b => !b.hidden && !b.querySelector("li:not([hidden])")).length')
+    ok('[filters] years with no matches are hidden', empty_years == 0, empty_years)
+    ctx.close()
+
+    # search
+    ctx, pg = page(b, 1440, 900)
+    pg.goto(BASE + '/search/?q=transformer'); pg.wait_for_selector('#results li', timeout=8000)
+    urls = pg.eval_on_selector_all('#results .r-title', 'els => els.map(e => e.getAttribute("href"))')
+    ok('[search] finds the Transformer milestone', '/milestones/transformer2017/' in urls, urls[:5])
+    n_hits = int(pg.inner_text('#s-status').split()[0])
+    ok('[search] reports how many results it found', 'results for "transformer"' in pg.inner_text('#s-status') and pg.locator('#results li').count() == min(n_hits, 20), pg.inner_text('#s-status'))
+    ctx.close()
+
+    # before and after: the same lineage as the tour's tracer, for every model the tracer offers
+    tctx = b.new_context(viewport={'width': 1440, 'height': 900}, reduced_motion='reduce')
+    sctx = b.new_context(viewport={'width': 1440, 'height': 900})
+    tp_, sp_ = tctx.new_page(), sctx.new_page()
+    route(tp_)
+    tp_.goto(BASE + '/tour/'); tp_.wait_for_timeout(1200)
+    trace_ids = json.loads((DATA / 'trace.json').read_text(encoding='utf-8'))
+    tour_names = lambda: tp_.eval_on_selector_all('#trace-list .nm', 'els => els.map(e => e.textContent.trim())')
+    site_names = lambda: sp_.evaluate("""[...document.querySelectorAll('.lin[data-dir=before] .lin-list li')]
+        .filter(li => li.checkVisibility()).map(li => li.querySelector('.nm').textContent.trim())""")
+    B4 = '.lin[data-dir=before] '
+    for tid in trace_ids:
+        short = ms[tid]['short']
+        sp_.goto(BASE + f'/milestones/{tid}/'); sp_.wait_for_load_state('networkidle')
+        for weak in (False, True):
+            if tp_.is_checked('#weak') != weak: tp_.click('#weak')
+            tp_.click(f'#picker button:text-is("{short}")'); tp_.wait_for_timeout(150)
+            if sp_.locator(B4 + '.lin-weak').count() and sp_.is_checked(B4 + '.lin-weak') != weak: sp_.click(B4 + '.lin-weak')
+            if sp_.locator(B4 + '.lin-all').count() and sp_.is_checked(B4 + '.lin-all'): sp_.click(B4 + '.lin-all')
+            a, s_ = tour_names(), site_names()
+            mode = 'with' if weak else 'without'
+            ok(f'[lineage] {short}, {mode} weak links, short list matches the tour', a == s_, (a[:6], s_[:6], len(a), len(s_)))
+            if tp_.is_visible('#trace-more'):
+                tp_.click('#trace-more'); tp_.wait_for_timeout(150)
+                if sp_.locator(B4 + '.lin-all').count(): sp_.click(B4 + '.lin-all')
+                a, s_ = tour_names(), site_names()
+                ok(f'[lineage] {short}, {mode} weak links, full list matches the tour', a == s_, (len(a), len(s_), [x for x in a if x not in s_][:3], [x for x in s_ if x not in a][:3]))
+    tctx.close(); sctx.close()
+
     # the tour's chapters are built by script, so check the chapter links land on a chapter
     errs = []
     ctx, pg = page(b, 1440, 900, errs=errs)

@@ -1,8 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import RelList from '../../components/RelList.astro';
+import Lineage from '../../components/Lineage.astro';
 import { milestones, threadById, chapterByN, study, phases, incoming, outgoing, termsFor, type Milestone } from '../../lib/data';
 import { when, cap, access, host, claimFlag } from '../../lib/labels';
+import { linkTerms } from '../../lib/glossary';
 
 export function getStaticPaths() {
   return milestones.map((m) => ({ params: { id: m.id }, props: { m } }));
@@ -14,6 +16,10 @@ const st = study[m.id];
 const flags = [m.tp ? 'A turning point in this history.' : null, claimFlag(m)].filter(Boolean);
 const ins = incoming(m.id), outs = outgoing(m.id);
 const terms = termsFor(m.id);
+// glossary links: the first mention of each of this milestone's terms, in reading order
+const linked = new Set<string>();
+const story = ([['Before it', m.before], ['The problem', m.problem], ['What it introduced', m.breakthrough], ['Why it matters', m.why], ['What modern models inherit', m.inherits], ['What came next', m.next]] as [string, string][])
+  .map(([h, t]) => [h, linkTerms(t, terms, linked)] as [string, string]);
 const facts: [string, string][] = [
   ['Date', when(m)],
   ['What the date marks', m.dtype.startsWith('arXiv') ? m.dtype : cap(m.dtype)],
@@ -23,9 +29,9 @@ const facts: [string, string][] = [
 ];
 if (m.other) facts.push(['Other dates', m.other]);
 ---
-<Base title={m.short} description={m.problem}>
-  <header class="field" style={`--c:var(--c-${home.id});--on:var(--on-${home.id})`}>
-    <p class="meta">{when(m)} · {home.name}</p>
+<Base title={m.short} description={m.problem} indexed>
+  <header class="field" data-pagefind-meta={`sub:${when(m)}, ${cap(m.type)}`} style={`--c:var(--c-${home.id});--on:var(--on-${home.id})`}>
+    <p class="meta" data-pagefind-ignore>{when(m)} · {home.name}</p>
     <h1 class="title">{m.short}</h1>
   </header>
 
@@ -34,14 +40,14 @@ if (m.other) facts.push(['Other dates', m.other]);
     <p class="by">{m.authors}</p>
 
     <dl class="facts">
-      {facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+      {facts.map(([k, v]) => <div><dt>{k}</dt>{' '}<dd>{v}</dd></div>)}
       <div>
-        <dt>Threads</dt>
+        <dt>Threads</dt>{' '}
         <dd><ul class="marks">{m.lines.map((l) => <li><a class="mark" style={`--c:var(--c-${l})`} href={`/threads/${l}/`}>{threadById[l].name}</a></li>)}</ul></dd>
       </div>
-      <div><dt>In the guided tour</dt><dd><a href={`/tour/#ch-${chap.n}`}>Chapter {chap.n}. {chap.title}</a></dd></div>
+      <div><dt>In the guided tour</dt>{' '}<dd><a href={`/tour/#ch-${chap.n}`}>Chapter {chap.n}. {chap.title}</a></dd></div>
       {m.phase.length > 0 && (
-        <div><dt>Learning phases</dt><dd>{m.phase.map((p) => `${p}. ${phases[String(p)]}`).join('; ')}</dd></div>
+        <div><dt>Learning phases</dt>{' '}<dd>{m.phase.map((p) => `${p}. ${phases[String(p)]}`).join('; ')}</dd></div>
       )}
     </dl>
 
@@ -57,12 +63,7 @@ if (m.other) facts.push(['Other dates', m.other]);
   <section class="sec" aria-labelledby="h-story">
     <h2 id="h-story">What it changed</h2>
     <div class="story">
-      <div><h3>Before it</h3><p>{m.before}</p></div>
-      <div><h3>The problem</h3><p>{m.problem}</p></div>
-      <div><h3>What it introduced</h3><p>{m.breakthrough}</p></div>
-      <div><h3>Why it matters</h3><p>{m.why}</p></div>
-      <div><h3>What modern models inherit</h3><p>{m.inherits}</p></div>
-      <div><h3>What came next</h3><p>{m.next}</p></div>
+      {story.map(([h, html]) => <div><h3>{h}</h3><p set:html={html} /></div>)}
     </div>
   </section>
 
@@ -76,8 +77,17 @@ if (m.other) facts.push(['Other dates', m.other]);
     </section>
   )}
 
-  <section class="sec" aria-labelledby="h-rel">
-    <h2 id="h-rel">Before and after</h2>
+  <section class="sec" aria-labelledby="h-lin" data-pagefind-ignore>
+    <h2 id="h-lin">Before and after</h2>
+    <p class="lead small muted" style="margin:0 0 var(--s5)">The milestones it descends from, and the milestones that descend from it. Work developed alongside it is not counted. Weak links are left out unless you include them.</p>
+    <div class="rels">
+      <div><h3 class="h3">Before: where it came from</h3><Lineage id={m.id} dir="before" /></div>
+      <div><h3 class="h3">After: what it led to</h3><Lineage id={m.id} dir="after" /></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-rel" data-pagefind-ignore>
+    <h2 id="h-rel">Direct links and their sources</h2>
     <div class="rels">
       <div><h3 class="h3">Where it came from</h3><RelList rels={ins} dir="in" /></div>
       <div><h3 class="h3">What it led to</h3><RelList rels={outs} dir="out" /></div>

@@ -2731,7 +2731,7 @@ function openCard(id, from){
     <h4>What it led to</h4>${relList(id, 'out')}
     ${phase ? `<h4>On the study roadmap</h4><p>${esc(phase)}</p>` : ''}
     </div>
-    <div class="sh-actions"><a href="${esc(n.src)}" target="_blank" rel="noopener">Read the source</a><button type="button" id="trace-this">Trace its lineage</button><a href="#ch-${chap.n}" id="goto-ch">Go to chapter ${chap.n}</a></div>`;
+    <div class="sh-actions"><a href="/milestones/${esc(n.id)}/">Open the full page</a><a href="${esc(n.src)}" target="_blank" rel="noopener">Read the source</a><button type="button" id="trace-this">Trace its lineage</button><a href="#ch-${chap.n}" id="goto-ch">Go to chapter ${chap.n}</a></div>`;
   sheetIn.querySelector('#close').onclick = () => sheet.close();
   sheetIn.querySelectorAll('[data-go]').forEach(b => b.onclick = () => { openCard(b.dataset.go); sheetIn.scrollTop = 0; });
   sheetIn.querySelector('#trace-this').onclick = () => { sheet.close(); setTrace(id, true); document.getElementById('trace').scrollIntoView(); };

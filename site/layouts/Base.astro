@@ -3,14 +3,17 @@
 import '../../src/tokens.css';
 import '../styles/site.css';
 
-interface Props { title: string; description: string }
-const { title, description } = Astro.props;
+// indexed: the page's main content goes into the search index (milestone, thread and glossary pages)
+interface Props { title: string; description: string; indexed?: boolean }
+const { title, description, indexed = false } = Astro.props;
 const path = Astro.url.pathname;
 const nav = [
   ['/milestones/', 'Milestones'],
+  ['/timeline/', 'Timeline'],
   ['/threads/', 'Threads'],
   ['/glossary/', 'Glossary'],
   ['/tour/', 'Guided tour'],
+  ['/search/', 'Search'],
 ];
 const fullTitle = title === 'NLP Lineage' ? title : `${title} · NLP Lineage`;
 ---
@@ -43,7 +46,7 @@ const fullTitle = title === 'NLP Lineage' ? title : `${title} · NLP Lineage`;
       </div>
     </header>
     <p class="preview sheet">Preview. This site is unfinished and not yet public.</p>
-    <main id="main" class="sheet">
+    <main id="main" class="sheet" data-pagefind-body={indexed ? '' : undefined}>
       <slot />
     </main>
     <footer class="foot">
