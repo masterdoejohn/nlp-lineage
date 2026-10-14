@@ -72,6 +72,8 @@ This plan was agreed on 14 October 2026. It turns the single-page history "How l
 - **Site:** Astro, with Pagefind for search.
 - **Hosting:** Vercel, at a free `nlp-lineage.vercel.app` address. A domain can be bought later.
 - **Data:** one file per milestone, glossary term and thread, plus a script that checks the evidence rules.
+  - The data files are JSON: one field per line, with short lists on one line. `docs/DATA.md` describes them. This was decided in phase 2.
+  - Prose that is longer than a field, such as the paper summaries, goes in Markdown files.
   - The tour's `payload.json` is generated from these files and is never edited by hand.
 - **Repository:** one public repository, `masterdoejohn/nlp-lineage`, which holds the data, the site and the tour.
 - **Licence:** the content is CC BY 4.0, credited to Zeeshan Arif.
