@@ -1,10 +1,12 @@
 """Assemble the single-file page.
 
-src/shell.html + src/style.css + data/payload.json + src/scene_copy.json + the scripts in src/ -> one HTML file.
+src/shell.html + src/style.css + the data files (via lineage_data.py) + src/scene_copy.json + the scripts in src/
+-> one HTML file. Run check_data.py first to check the data against the evidence rules.
 Usage: python build.py [output_path]      (default: dist/llm-lineage.html)
 Needs Python 3.9+ and Node (for a syntax check of the inlined script).
 """
 import json, re, subprocess, sys, pathlib
+from lineage_data import load_payload
 
 try:
     sys.stdout.reconfigure(encoding='utf-8')
@@ -12,11 +14,11 @@ except Exception:
     pass
 
 ROOT = pathlib.Path(__file__).resolve().parent
-SRC, DATA = ROOT / 'src', ROOT / 'data'
+SRC = ROOT / 'src'
 OUT = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'dist' / 'llm-lineage.html'
 read = lambda p: p.read_text(encoding='utf-8')
 
-P = json.loads(read(DATA / 'payload.json'))
+P = load_payload()
 shell = read(SRC / 'shell.html')
 css = read(SRC / 'style.css')
 # order matters: scene_builders defines SCENES, which app_a uses to build the chapters; the labs mount into

@@ -1,0 +1,14 @@
+{
+  "id": "lm",
+  "name": "Language modelling",
+  "hex": "#1F4E8C",
+  "branches": [
+    "statistical_lm",
+    "neural_lm",
+    "sequence_modeling",
+    "attention",
+    "transformer_arch",
+    "tokenization",
+    "pretraining"
+  ]
+}

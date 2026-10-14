@@ -1,0 +1,6 @@
+{
+  "id": "multi",
+  "name": "Multimodality",
+  "hex": "#15919C",
+  "branches": ["multimodal"]
+}

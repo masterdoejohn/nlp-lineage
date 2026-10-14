@@ -1,0 +1,6 @@
+{
+  "id": "eff",
+  "name": "Efficiency and infrastructure",
+  "hex": "#2C8558",
+  "branches": ["efficiency_long_context", "infrastructure"]
+}

@@ -1,5 +1,5 @@
 """Checks for the redesigned page: structure, scroll-driven scenes, fallbacks, navigation, contrast, overflow."""
-import json
+import json, sys
 from playwright.sync_api import sync_playwright
 from harness import wrap, page, OVERFLOW_JS
 URL = wrap()
@@ -159,3 +159,4 @@ with sync_playwright() as p:
 fails = [r for r in results if not r[1]]
 for r in results: print(('PASS ' if r[1] else 'FAIL ') + r[0] + ('' if r[1] else '  -> ' + str(r[2])[:400]))
 print(f'\n{len(results) - len(fails)}/{len(results)} passed')
+sys.exit(1 if fails else 0)  # a failed check must fail the run, so the automatic checks on a pull request see it

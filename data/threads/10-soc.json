@@ -1,0 +1,6 @@
+{
+  "id": "soc",
+  "name": "Products and governance",
+  "hex": "#3A3F42",
+  "branches": ["productization", "governance"]
+}

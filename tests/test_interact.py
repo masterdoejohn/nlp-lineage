@@ -150,3 +150,4 @@ with sync_playwright() as p:
 fails = [r for r in results if not r[1]]
 for r in results: print(('PASS ' if r[1] else 'FAIL ') + r[0] + ('' if r[1] else '  -> ' + str(r[2])[:300]))
 print(f'\n{len(results) - len(fails)}/{len(results)} passed')
+sys.exit(1 if fails else 0)  # a failed check must fail the run, so the automatic checks on a pull request see it

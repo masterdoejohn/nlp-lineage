@@ -1,0 +1,32 @@
+{
+  "n": 4,
+  "id": "pretraining",
+  "title": "Pretrain once, use everywhere",
+  "years": "2018 to 2019",
+  "lede": "Could one model learn language first, and tasks later?",
+  "body": [
+    "Until 2018 most models were trained from scratch for one job. Then three ideas arrived within months of each other. ELMo showed that a language model's internal states make excellent word representations. OpenAI's GPT pretrained the Transformer's decoder on plain text by predicting the next word. Google's BERT pretrained the encoder by predicting masked words from both directions.",
+    "That fork matters. BERT dominated research for three years and still powers search and embeddings. GPT's next-word prediction looked like the weaker choice, until GPT-2 in 2019 showed that at 1.5 billion parameters it could translate, summarise and answer questions it was never trained on. T5 then reframed every task as text in, text out."
+  ],
+  "keystones": ["gpt1_2018", "bert2018", "gpt2_2019"],
+  "extra": ["elmo2018", "t5_2019", "megatron2019"],
+  "transition": "GPT-2 suggested that size itself was doing the work. The next question was how much.",
+  "stations": ["elmo2018", "gpt1_2018", "bert2018", "gpt2_2019", "megatron2019", "t5_2019"],
+  "all": [
+    "ulmfit2018",
+    "elmo2018",
+    "gpt1_2018",
+    "sentencepiece2018",
+    "bert2018",
+    "transformer_xl2019",
+    "gpt2_2019",
+    "webtext2019",
+    "sparse_transformer2019",
+    "roberta2019",
+    "megatron2019",
+    "zero2019",
+    "c4_2019",
+    "t5_2019",
+    "bart2019"
+  ]
+}

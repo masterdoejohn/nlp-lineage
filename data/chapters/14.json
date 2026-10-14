@@ -1,0 +1,47 @@
+{
+  "n": 14,
+  "id": "now",
+  "title": "Where the threads meet now",
+  "years": "2024 to 2026",
+  "lede": "What does a frontier model look like when every thread converges?",
+  "body": [
+    "A 2026 frontier model is the sum of this route: a Transformer, pretrained on filtered web-scale data, aligned with preference optimisation, reasoning with reinforcement-learned chains of thought, reading long context and images, and calling tools as an agent. GPT-5's router made the reasoning depth automatic. Releases now arrive monthly.",
+    "Two things are new. Frontier models are increasingly released in tiers of access rather than simply published, and governments have become direct participants: the EU AI Act's obligations for general-purpose models applied from August 2026, and in June 2026 a US export-control directive briefly took a deployed model offline."
+  ],
+  "keystones": ["gpt5_2025", "claude_fable_mythos_2026"],
+  "extra": ["claude3_2024", "gemini3_2025", "glasswing2026", "eu_ai_act_gpai_2026"],
+  "transition": "",
+  "stations": [
+    "claude3_2024",
+    "gpt5_2025",
+    "gemini3_2025",
+    "glasswing2026",
+    "claude_fable_mythos_2026",
+    "eu_ai_act_gpai_2026"
+  ],
+  "all": [
+    "claude3_2024",
+    "chatbot_arena2024",
+    "claude35_sonnet2024",
+    "gemini2_2024",
+    "gpt45_2025",
+    "gpt5_2025",
+    "gpt51_2025",
+    "gemini3_2025",
+    "gpt52_2025",
+    "claude_opus46_2026",
+    "claude_sonnet46_2026",
+    "gemini31_2026",
+    "gpt54_2026",
+    "glasswing2026",
+    "claude_opus47_2026",
+    "gpt55_2026",
+    "claude_opus48_2026",
+    "claude_sonnet5_2026",
+    "claude_fable_mythos_2026",
+    "gpt56_sol2026",
+    "claude_opus5_2026",
+    "eu_ai_act_gpai_2026",
+    "claude_opus55_2026"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "n": 3,
+  "id": "attention",
+  "title": "Attention, then only attention",
+  "years": "2014 to 2017",
+  "lede": "What if the model could look back at the input instead of remembering it?",
+  "body": [
+    "Squeezing a long sentence into one vector loses information, and translation quality fell apart on long inputs. In 2014 Dzmitry Bahdanau, working with Kyunghyun Cho and Yoshua Bengio, let the decoder look back over every input word and weight each by relevance. That mechanism is attention, and it starts here, three years before the paper with attention in its title.",
+    "In 2017 a Google team asked what would happen if attention were the only mechanism, with no recurrence at all. The answer was the Transformer. Its real advantage was not accuracy but parallelism: every position could be processed at once, which is exactly what GPUs are good at. That is what made the next decade of scaling affordable."
+  ],
+  "keystones": ["bahdanau2014", "transformer2017"],
+  "extra": ["luong2015", "resnet2015", "layernorm2016"],
+  "transition": "The Transformer was built for translation. Within a year, two labs used it for something far more general.",
+  "stations": ["bahdanau2014", "luong2015", "resnet2015", "layernorm2016", "transformer2017"],
+  "all": [
+    "bahdanau2014",
+    "luong2015",
+    "resnet2015",
+    "layernorm2016",
+    "shazeer2017_moe",
+    "convs2s2017",
+    "transformer2017",
+    "cove2017"
+  ]
+}

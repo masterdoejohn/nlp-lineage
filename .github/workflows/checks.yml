@@ -1,0 +1,48 @@
+name: checks
+
+# Runs on every pull request and on every push to main. Nothing should be merged unless all steps pass.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install tools
+        run: |
+          pip install -r requirements.txt
+          npm ci
+          python -m playwright install --with-deps chromium
+
+      - name: Check the data against the rules
+        run: python check_data.py
+
+      - name: Build the page
+        run: python build.py
+
+      - name: The committed page matches the build
+        run: git diff --exit-code -- dist/ || { echo "dist/llm-lineage.html is out of date: run python build.py and commit the result"; exit 1; }
+
+      - name: Interaction checks
+        run: python tests/test_interact.py
+
+      - name: Redesign checks
+        run: python tests/test_redesign.py

@@ -1,0 +1,25 @@
+{
+  "n": 11,
+  "id": "senses",
+  "title": "Seeing and hearing",
+  "years": "2020 to 2024",
+  "lede": "Can one model share a single understanding across images, sound and words?",
+  "body": [
+    "The Vision Transformer cut images into patches and treated them as tokens, so one architecture could handle pixels and words. OpenAI's CLIP then trained image and text encoders together on 400 million web pairs until matching pictures and captions landed in the same place. That shared space is the bridge every vision-language model crosses.",
+    "Early multimodal models bolted a vision encoder onto a language model. By 2023 Gemini was trained on several modalities from the start, and in 2024 GPT-4o answered spoken questions in about a third of a second by handling audio natively rather than chaining separate systems."
+  ],
+  "keystones": ["clip2021", "gpt4o2024"],
+  "extra": ["vit2020", "flamingo2022", "llava2023", "whisper2022"],
+  "transition": "Seeing more is one direction. Thinking longer is another.",
+  "stations": ["vit2020", "clip2021", "flamingo2022", "whisper2022", "llava2023", "gpt4o2024"],
+  "all": [
+    "vit2020",
+    "clip2021",
+    "flamingo2022",
+    "whisper2022",
+    "llava2023",
+    "gpt4v2023",
+    "gemini1_2023",
+    "gpt4o2024"
+  ]
+}
