@@ -12,6 +12,7 @@
   "branches": ["attention"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [1],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/1508.04025",

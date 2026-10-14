@@ -12,6 +12,7 @@
   "branches": ["reasoning", "governance"],
   "imp": ["ALIGNMENT"],
   "tp": false,
+  "level": "milestone",
   "phase": [2],
   "lic": "n/a",
   "claim": "peer-reviewed",

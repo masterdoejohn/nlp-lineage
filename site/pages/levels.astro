@@ -1,0 +1,51 @@
+---
+// How a milestone's level is decided: the rule, its numbers, and its limits. The rule is lineage_data.py's
+// (TP_DIRECT, TP_THREADS, RECENT_FROM); check_data.py rejects any level that does not follow it.
+import Base from '../layouts/Base.astro';
+import { milestones } from '../lib/data';
+import { influence } from '../lib/lineage';
+import { year, TP_DIRECT, TP_THREADS, RECENT_FROM } from '../lib/labels';
+
+const count = (l: string) => milestones.filter((m) => m.level === l).length;
+const tps = milestones.filter((m) => m.level === 'turning-point').map((m) => ({ m, ...influence(m.id) }));
+---
+<Base title="How levels are decided" description="Each milestone is a turning point, a milestone or notable. The level is measured from the documented relationships, not chosen by hand.">
+  <p class="kicker">Levels</p>
+  <h1 class="title">How levels are decided</h1>
+  <div class="prose lead">
+    <p>Each milestone has one of three levels. The level is measured from the documented relationships in the data. Nobody chooses it by hand, and a check rejects any level that does not follow the rule.</p>
+  </div>
+
+  <section class="sec" aria-labelledby="h-rule">
+    <h2 id="h-rule">The rule</h2>
+    <dl class="rule-list">
+      <div><dt>Turning point ({count('turning-point')})</dt> <dd>At least {TP_DIRECT} later milestones build on it directly, were influenced by it, or succeeded it. Its descendants also reach at least {TP_THREADS} of the 10 research threads.</dd></div>
+      <div><dt>Milestone ({count('milestone')})</dt> <dd>At least one later milestone descends from it, but not enough for a turning point. Recent work with no successors yet is also here.</dd></div>
+      <div><dt>Notable ({count('notable')})</dt> <dd>No later milestone in the data is documented as descending from it, and it is dated before {RECENT_FROM}.</dd></div>
+    </dl>
+    <div class="prose sec">
+      <p>Only firm links count: links whose evidence is documented or strong. Weak links (indirect influence, timing only, or a later reading) do not count. Work developed alongside a milestone is not counted as descending from it. These are the same rules as "Before and after" on each milestone page.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-limits">
+    <h2 id="h-limits">What the rule cannot see</h2>
+    <ul class="prose" style="padding-left:1.2em">
+      <li>It measures documented influence, not fame. A famous milestone can be a "milestone" when few later milestones in the data are documented as building on it directly. ChatGPT and word2vec are examples. The fix is to document more relationships, with sources, not to change the level by hand.</li>
+      <li>Recent work cannot qualify yet. A milestone from {RECENT_FROM} or later has had little time to gain successors, so it is never called notable, and its page says it is too recent to judge.</li>
+      <li>The data has 200 milestones. Influence on work outside the data is not counted.</li>
+    </ul>
+  </section>
+
+  <section class="sec" aria-labelledby="h-tp">
+    <h2 id="h-tp">The {tps.length} turning points</h2>
+    <ul class="rows">
+      {tps.map(({ m, direct, threads }) => (
+        <li>
+          <span><a class="name" href={`/milestones/${m.id}/`}>{m.short}</a><span class="sub">{m.title}</span></span>
+          <span class="kind">{year(m)}. {direct} direct, {threads} threads</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

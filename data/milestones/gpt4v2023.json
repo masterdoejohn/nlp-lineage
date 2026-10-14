@@ -12,6 +12,7 @@
   "branches": ["multimodal", "productization"],
   "imp": ["PRODUCTIZATION"],
   "tp": false,
+  "level": "milestone",
   "phase": [3],
   "lic": "API only",
   "src": "https://openai.com/index/gpt-4v-system-card/",

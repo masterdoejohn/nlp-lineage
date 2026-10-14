@@ -3,7 +3,8 @@ import Base from '../../layouts/Base.astro';
 import RelList from '../../components/RelList.astro';
 import Lineage from '../../components/Lineage.astro';
 import { milestones, threadById, chapterByN, study, phases, incoming, outgoing, termsFor, type Milestone } from '../../lib/data';
-import { when, cap, access, host, claimFlag } from '../../lib/labels';
+import { when, cap, access, host, claimFlag, levelReason } from '../../lib/labels';
+import { influence } from '../../lib/lineage';
 import { linkTerms } from '../../lib/glossary';
 
 export function getStaticPaths() {
@@ -13,7 +14,8 @@ const { m } = Astro.props as { m: Milestone };
 const home = threadById[m.lines[0]];
 const chap = chapterByN[m.ch];
 const st = study[m.id];
-const flags = [m.tp ? 'A turning point in this history.' : null, claimFlag(m)].filter(Boolean);
+const inf = influence(m.id);
+const flags = [claimFlag(m)].filter(Boolean);
 const ins = incoming(m.id), outs = outgoing(m.id);
 const terms = termsFor(m.id);
 // glossary links: the first mention of each of this milestone's terms, in reading order
@@ -51,7 +53,10 @@ if (m.other) facts.push(['Other dates', m.other]);
       )}
     </dl>
 
-    {flags.length > 0 && <div class="flags">{flags.map((f) => <p class="flag">{f}</p>)}</div>}
+    <div class="flags">
+      <p class="flag" data-level={m.level}>{levelReason(m, inf.direct, inf.threads)} <a href="/levels/">How levels are decided</a></p>
+      {flags.map((f) => <p class="flag">{f}</p>)}
+    </div>
 
     <div class="actions">
       <a class="btn btn-ink" href={m.src} rel="noopener">Read the primary source ({host(m.src)})</a>

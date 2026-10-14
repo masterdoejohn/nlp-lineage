@@ -12,6 +12,7 @@
   "branches": ["agents"],
   "imp": ["ECOSYSTEM"],
   "tp": false,
+  "level": "notable",
   "phase": [7],
   "lic": "MIT",
   "src": "https://github.com/Significant-Gravitas/AutoGPT",

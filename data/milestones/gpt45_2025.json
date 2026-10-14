@@ -12,6 +12,7 @@
   "branches": ["pretraining", "scaling"],
   "imp": ["SCALING"],
   "tp": false,
+  "level": "milestone",
   "phase": [2],
   "lic": "API only",
   "claim": "vendor-reported",

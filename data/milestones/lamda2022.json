@@ -12,6 +12,7 @@
   "branches": ["instruction_alignment", "productization"],
   "imp": ["ALIGNMENT"],
   "tp": false,
+  "level": "notable",
   "phase": [2],
   "lic": "internal",
   "src": "https://arxiv.org/abs/2201.08239",

@@ -65,7 +65,7 @@ def parse(p):
 # ---------------- part 1: the built HTML ----------------
 pages = {p: parse(p) for p in sorted(BUILD.rglob('*.html')) if 'tour' not in p.relative_to(BUILD).parts}
 rel = lambda p: '/' + p.relative_to(BUILD).as_posix()
-want = len(ms) + len(threads) + len(terms) + 1 + 3 + 1 + 2  # home + milestones/threads/glossary indexes + 404 + timeline, search
+want = len(ms) + len(threads) + len(terms) + 1 + 3 + 1 + 3  # home + milestones/threads/glossary indexes + 404 + timeline, search, levels
 ok('page count matches the data', len(pages) == want, f'{len(pages)} pages, expected {want}')
 ok('every milestone has a page', all((BUILD / 'milestones' / i / 'index.html').exists() for i in ms))
 ok('every thread has a page', all((BUILD / 'threads' / t['id'] / 'index.html').exists() for t in threads))
@@ -119,6 +119,17 @@ ok('each weak relationship appears on both of its milestone pages', shown_weak =
 glued = sorted({(rel(p), m.group(0)[-30:]) for p in pages for m in re.finditer(r'[A-Za-z0-9]<(?:a|span)(?=[\s>])[^>]*>(?=[A-Za-z0-9])', p.read_text(encoding='utf-8'))})
 ok('no word is glued to the link or number after it', not glued, glued[:5])
 
+# levels: the site's thresholds are the data rule's, every page states its stored level, the levels page lists the turning points
+import lineage_data
+lab = (ROOT / 'site' / 'lib' / 'labels.ts').read_text(encoding='utf-8')
+m_th = re.search(r"TP_DIRECT = (\d+), TP_THREADS = (\d+), RECENT_FROM = '(\d+)'", lab)
+ok('site level thresholds match lineage_data.py', m_th and (int(m_th[1]), int(m_th[2]), m_th[3]) == (lineage_data.TP_DIRECT, lineage_data.TP_THREADS, lineage_data.RECENT_FROM), m_th and m_th.groups())
+wrong_level = [i for i, m in ms.items() if f'data-level="{m["level"]}"' not in (BUILD / 'milestones' / i / 'index.html').read_text(encoding='utf-8')]
+ok('every milestone page states its level from the data', not wrong_level, wrong_level[:5])
+lv = (BUILD / 'levels' / 'index.html').read_text(encoding='utf-8')
+listed = re.findall(r'class="name" href="/milestones/([a-z0-9_]+)/"', lv)
+ok('the levels page lists exactly the turning points', sorted(listed) == sorted(i for i, m in ms.items() if m['level'] == 'turning-point'), len(listed))
+
 tl = (BUILD / 'timeline' / 'index.html').read_text(encoding='utf-8')
 wide, narrow = tl.split('class="tt-narrow', 1)
 for label, part in (('table', wide), ('list', narrow)):
@@ -171,7 +182,7 @@ srv = ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=s
 threading.Thread(target=srv.serve_forever, daemon=True).start()
 BASE = f'http://127.0.0.1:{srv.server_address[1]}'
 first_tp = next(i for i, m in ms.items() if m['tp'])
-PAGES = ['/', '/milestones/', '/milestones/?thread=lm&tp=1', f'/milestones/{first_tp}/', '/milestones/transformer2017/', '/timeline/', '/search/?q=attention', '/threads/', f'/threads/{threads[0]["id"]}/', '/glossary/', '/404.html']
+PAGES = ['/', '/milestones/', '/milestones/?thread=lm&level=turning-point', '/levels/', f'/milestones/{first_tp}/', '/milestones/transformer2017/', '/timeline/', '/search/?q=attention', '/threads/', f'/threads/{threads[0]["id"]}/', '/glossary/', '/404.html']
 
 with sync_playwright() as p:
     b = p.chromium.launch()
@@ -205,8 +216,8 @@ with sync_playwright() as p:
     ok('[filters] the address keeps the filters', 'thread=lm' in pg.url and 'kind=model' in pg.url and 'from=2020' in pg.url, pg.url)
     pg.click('button[type=reset]'); pg.wait_for_timeout(100)
     ok('[filters] clearing shows every milestone again', vis() == len(ms), vis())
-    pg.goto(BASE + '/milestones/?tp=1&claim=peer-reviewed'); pg.wait_for_load_state('networkidle')
-    want_c = sum(1 for m in ms.values() if m['tp'] and m['claim'] == 'peer-reviewed')
+    pg.goto(BASE + '/milestones/?level=turning-point'); pg.wait_for_load_state('networkidle')
+    want_c = sum(1 for m in ms.values() if m['level'] == 'turning-point')
     ok('[filters] filters load from the address', vis() == want_c, (vis(), want_c))
     empty_years = pg.evaluate('[...document.querySelectorAll("#list .year-block")].filter(b => !b.hidden && !b.querySelector("li:not([hidden])")).length')
     ok('[filters] years with no matches are hidden', empty_years == 0, empty_years)

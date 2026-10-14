@@ -12,6 +12,7 @@
   "branches": ["statistical_lm", "representation"],
   "imp": ["FOUNDATIONAL"],
   "tp": false,
+  "level": "notable",
   "phase": [],
   "lic": "n/a",
   "src": "https://aclanthology.org/J92-4003/",

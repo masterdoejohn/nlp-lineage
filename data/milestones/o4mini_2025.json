@@ -12,6 +12,7 @@
   "branches": ["reasoning", "efficiency_long_context"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [2],
   "lic": "API only",
   "claim": "vendor-reported",

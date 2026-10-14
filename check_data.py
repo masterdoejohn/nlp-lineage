@@ -3,6 +3,7 @@
 Exits with code 1 and lists every problem it finds. It checks what a script can check:
   - every file is valid JSON in the canonical layout (lineage_data.dumps_entry), so diffs stay small
   - every milestone has the required fields, a valid date for its precision and an https primary source
+  - every milestone's level matches the rule in lineage_data.py (docs/LEVELS.md), and tp matches the level
   - every relationship joins two known milestones, has an evidence type, a note and an https source,
     and carries "dateflip": true exactly when it points from a later milestone to an earlier one
   - chapters, threads, study notes, phases, the tracer and glossary terms only name things that exist
@@ -13,7 +14,8 @@ A new value for a controlled vocabulary (type, claim, imp, dtype, rel, ev) is re
 below on purpose, in the same pull request.
 """
 import json, re, sys, datetime
-from lineage_data import DATA, milestone_files, thread_files, chapter_files, dumps_entry, dumps_relationship
+from lineage_data import (DATA, milestone_files, thread_files, chapter_files, dumps_entry, dumps_relationship,
+                          influence, expected_level, TP_DIRECT, TP_THREADS, RECENT_FROM)
 
 try:
     sys.stdout.reconfigure(encoding='utf-8')
@@ -35,7 +37,8 @@ ID_RX = re.compile(r'^[a-z][a-z0-9_]*\d{4}[a-z0-9_]*$')  # build.py finds ids in
 DATE_RX = {'day': re.compile(r'^\d{4}-\d{2}-\d{2}$'), 'month': re.compile(r'^\d{4}-\d{2}(-\d{2})?$'), 'year': re.compile(r'^\d{4}$')}
 TEXT = ['id', 'title', 'short', 'date', 'dprec', 'dtype', 'authors', 'inst', 'type', 'lic', 'src',
         'before', 'problem', 'breakthrough', 'why', 'next', 'inherits', 'claim']  # must be non-empty
-FIELDS = set(TEXT) | {'other', 'branches', 'imp', 'tp', 'phase', 'ord', 'ch', 'lines'}  # 'featured' is optional
+FIELDS = set(TEXT) | {'other', 'branches', 'imp', 'tp', 'level', 'phase', 'ord', 'ch', 'lines'}
+LEVELS = {'turning-point', 'milestone', 'notable'}  # 'featured' is optional
 
 problems = []
 def bad(where, msg):
@@ -179,6 +182,24 @@ for i, line in enumerate(rp.read_text(encoding='utf-8').split('\n'), 1):
         bad(w, '"dateflip" is only for relationships that point from a later milestone to an earlier one')
 if not rp.read_text(encoding='utf-8').endswith('\n'):
     bad('relationships.jsonl', 'the file must end with a newline')
+
+# ---- levels: measured from the firm relationships, never set by hand (docs/LEVELS.md)
+rels_ok = [json.loads(l) for l in rp.read_text(encoding='utf-8').splitlines() if l.strip()]
+rels_ok = [r for r in rels_ok if isinstance(r, dict) and r.get('f') in ms and r.get('t') in ms and 'ev' in r and 'rel' in r]
+inf = influence(list(ms.values()), rels_ok)
+for i, n in ms.items():
+    w = f'milestones/{i}.json'
+    if n['level'] not in LEVELS:
+        bad(w, f'level must be one of {sorted(LEVELS)}')
+        continue
+    direct, reach = inf[i]
+    want = expected_level(n, direct, reach)
+    if n['level'] != want:
+        bad(w, f'level is "{n["level"]}" but the relationships make it "{want}" ({direct} direct successors, '
+               f'descendants on {reach} threads; turning point needs {TP_DIRECT} and {TP_THREADS}, notable means none '
+               f'and dated before {RECENT_FROM}). Update the level, or the relationships if they are wrong.')
+    if n['tp'] != (n['level'] == 'turning-point'):
+        bad(w, 'tp must be true exactly when level is "turning-point"')
 
 # ---- chapters
 cf = chapter_files()

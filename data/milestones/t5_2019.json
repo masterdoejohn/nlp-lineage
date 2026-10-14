@@ -12,6 +12,7 @@
   "branches": ["pretraining", "transformer_arch"],
   "imp": ["FOUNDATIONAL", "TRANSFORMATIVE"],
   "tp": true,
+  "level": "turning-point",
   "phase": [2],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/1910.10683",

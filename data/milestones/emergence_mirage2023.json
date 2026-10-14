@@ -12,6 +12,7 @@
   "branches": ["scaling", "reasoning"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "notable",
   "phase": [2],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/2304.15004",

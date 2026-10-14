@@ -12,6 +12,7 @@
   "branches": ["pretraining", "open_weight_ecosystem", "data"],
   "imp": ["ECOSYSTEM"],
   "tp": false,
+  "level": "notable",
   "phase": [2, 8],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/2311.16867",

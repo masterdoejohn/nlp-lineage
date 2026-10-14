@@ -12,6 +12,7 @@
   "branches": ["pretraining", "sequence_modeling"],
   "imp": ["FOUNDATIONAL"],
   "tp": false,
+  "level": "milestone",
   "phase": [2],
   "lic": "MIT",
   "src": "https://arxiv.org/abs/1910.13461",

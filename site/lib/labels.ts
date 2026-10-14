@@ -27,6 +27,20 @@ export const CLAIM_LABEL: Record<string, string> = {
   'n-a': 'Not applicable',
 };
 
+// Levels (docs/LEVELS.md). The thresholds are lineage_data.py's TP_DIRECT, TP_THREADS and RECENT_FROM;
+// tests/test_site.py checks they match.
+export const TP_DIRECT = 4, TP_THREADS = 5, RECENT_FROM = '2025';
+export const LEVEL_LABEL: Record<string, string> = { 'turning-point': 'Turning point', 'milestone': 'Milestone', 'notable': 'Notable' };
+export const LEVEL_PLURAL: Record<string, string> = { 'turning-point': 'Turning points', 'milestone': 'Milestones', 'notable': 'Notable' };
+/** One sentence saying why this milestone has its level, in its own numbers. */
+export function levelReason(m: Milestone, direct: number, threads: number): string {
+  const succ = `${direct} later milestone${direct === 1 ? '' : 's'} ${direct === 1 ? 'descends' : 'descend'} directly from it`;
+  if (m.level === 'turning-point') return `A turning point: ${succ}, and its descendants reach ${threads} of the 10 threads.`;
+  if (m.level === 'notable') return 'Notable: no later milestone in the data is documented as descending from it.';
+  if (direct === 0 && m.date.slice(0, 4) >= RECENT_FROM) return 'Too recent for its influence to be judged: no later milestone in the data descends from it yet.';
+  return `A milestone: ${succ}${direct ? `, and its descendants reach ${threads} of the 10 threads` : ''}.`;
+}
+
 // Weak evidence is always shown with one of these qualifiers (PLAN.md: weak links stay visibly marked).
 export const QUAL: Record<string, string> = {
   'plausible-indirect': 'indirect influence',

@@ -12,6 +12,7 @@
   "branches": ["multimodal", "scaling", "productization"],
   "imp": ["TRANSFORMATIVE", "PRODUCTIZATION"],
   "tp": true,
+  "level": "turning-point",
   "phase": [2, 3],
   "lic": "API only",
   "src": "https://arxiv.org/abs/2303.08774",

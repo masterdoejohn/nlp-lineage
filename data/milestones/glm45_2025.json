@@ -12,6 +12,7 @@
   "branches": ["reasoning", "agents", "open_weight_ecosystem"],
   "imp": ["ECOSYSTEM"],
   "tp": false,
+  "level": "milestone",
   "phase": [6],
   "lic": "MIT open weights",
   "claim": "mixed",

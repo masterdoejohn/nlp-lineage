@@ -12,6 +12,7 @@
   "branches": ["productization", "instruction_alignment"],
   "imp": ["PRODUCTIZATION", "ALIGNMENT"],
   "tp": false,
+  "level": "milestone",
   "phase": [3],
   "lic": "API only",
   "src": "https://www.anthropic.com/news/introducing-claude",

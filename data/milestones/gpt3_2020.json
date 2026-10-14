@@ -12,6 +12,7 @@
   "branches": ["scaling", "pretraining"],
   "imp": ["TRANSFORMATIVE", "SCALING"],
   "tp": true,
+  "level": "turning-point",
   "phase": [2, 3],
   "lic": "API only",
   "src": "https://arxiv.org/abs/2005.14165",

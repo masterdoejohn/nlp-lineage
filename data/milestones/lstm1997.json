@@ -12,6 +12,7 @@
   "branches": ["neural_lm", "sequence_modeling"],
   "imp": ["FOUNDATIONAL"],
   "tp": true,
+  "level": "turning-point",
   "phase": [],
   "lic": "n/a",
   "src": "https://direct.mit.edu/neco/article/9/8/1735/6109/Long-Short-Term-Memory",

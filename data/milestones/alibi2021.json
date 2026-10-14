@@ -12,6 +12,7 @@
   "branches": ["transformer_arch", "efficiency_long_context"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [1],
   "lic": "MIT",
   "src": "https://arxiv.org/abs/2108.12409",

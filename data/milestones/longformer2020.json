@@ -12,6 +12,7 @@
   "branches": ["efficiency_long_context", "transformer_arch"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [1],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/2004.05150",

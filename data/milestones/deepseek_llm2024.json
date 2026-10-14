@@ -12,6 +12,7 @@
   "branches": ["scaling", "open_weight_ecosystem"],
   "imp": ["SCALING"],
   "tp": false,
+  "level": "milestone",
   "phase": [2],
   "lic": "MIT code, DeepSeek model licence",
   "src": "https://arxiv.org/abs/2401.02954",

@@ -12,6 +12,7 @@
   "branches": ["scaling", "pretraining"],
   "imp": ["FOUNDATIONAL", "SCALING"],
   "tp": true,
+  "level": "turning-point",
   "phase": [2, 8],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/2203.15556",

@@ -12,6 +12,7 @@
   "branches": ["efficiency_long_context", "open_weight_ecosystem"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "notable",
   "phase": [6],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/2210.17323",

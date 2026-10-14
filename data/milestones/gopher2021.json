@@ -12,6 +12,7 @@
   "branches": ["scaling", "pretraining"],
   "imp": ["SCALING"],
   "tp": false,
+  "level": "milestone",
   "phase": [2],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/2112.11446",

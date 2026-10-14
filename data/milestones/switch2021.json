@@ -12,6 +12,7 @@
   "branches": ["efficiency_long_context", "scaling", "infrastructure"],
   "imp": ["SCALING"],
   "tp": false,
+  "level": "milestone",
   "phase": [8],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/2101.03961",

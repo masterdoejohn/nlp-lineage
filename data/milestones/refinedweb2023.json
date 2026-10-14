@@ -12,6 +12,7 @@
   "branches": ["data", "pretraining"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [8],
   "lic": "ODC-By (subset)",
   "src": "https://arxiv.org/abs/2306.01116",

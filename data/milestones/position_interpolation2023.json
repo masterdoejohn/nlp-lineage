@@ -12,6 +12,7 @@
   "branches": ["efficiency_long_context"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [1, 4],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/2306.15595",

@@ -12,6 +12,7 @@
   "branches": ["representation", "pretraining"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [4],
   "lic": "BSD",
   "src": "https://arxiv.org/abs/1708.00107",

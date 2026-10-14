@@ -12,6 +12,7 @@
   "branches": ["representation", "retrieval_tools"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "notable",
   "phase": [4],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/1908.10084",

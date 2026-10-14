@@ -12,6 +12,7 @@
   "branches": ["sequence_modeling", "productization"],
   "imp": ["PRODUCTIZATION"],
   "tp": false,
+  "level": "notable",
   "phase": [],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/1609.08144",

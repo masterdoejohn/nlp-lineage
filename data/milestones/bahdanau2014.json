@@ -12,6 +12,7 @@
   "branches": ["attention", "sequence_modeling"],
   "imp": ["TRANSFORMATIVE", "FOUNDATIONAL"],
   "tp": true,
+  "level": "turning-point",
   "phase": [1],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/1409.0473",

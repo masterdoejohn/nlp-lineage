@@ -12,6 +12,7 @@
   "branches": ["data", "pretraining"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [8],
   "lic": "MIT",
   "src": "https://arxiv.org/abs/2306.11644",

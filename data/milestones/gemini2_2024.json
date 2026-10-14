@@ -12,6 +12,7 @@
   "branches": ["multimodal", "agents", "productization"],
   "imp": ["PRODUCTIZATION"],
   "tp": false,
+  "level": "milestone",
   "phase": [3],
   "lic": "API only",
   "src": "https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/",

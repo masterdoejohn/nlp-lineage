@@ -12,6 +12,7 @@
   "branches": ["transformer_arch", "attention"],
   "imp": ["FOUNDATIONAL"],
   "tp": true,
+  "level": "turning-point",
   "phase": [1],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/2104.09864",

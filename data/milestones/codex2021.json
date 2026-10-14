@@ -12,6 +12,7 @@
   "branches": ["pretraining", "reasoning"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "milestone",
   "phase": [3],
   "lic": "API only",
   "src": "https://arxiv.org/abs/2107.03374",

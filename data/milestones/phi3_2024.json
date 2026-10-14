@@ -12,6 +12,7 @@
   "branches": ["open_weight_ecosystem", "data"],
   "imp": ["ECOSYSTEM"],
   "tp": false,
+  "level": "notable",
   "phase": [6],
   "lic": "MIT",
   "src": "https://arxiv.org/abs/2404.14219",

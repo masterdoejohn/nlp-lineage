@@ -12,6 +12,7 @@
   "branches": ["retrieval_tools", "agents"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "notable",
   "phase": [3, 7],
   "lic": "n/a",
   "src": "https://arxiv.org/abs/2302.04761",

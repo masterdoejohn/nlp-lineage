@@ -12,6 +12,7 @@
   "branches": ["sequence_modeling", "transformer_arch", "efficiency_long_context"],
   "imp": ["ENABLING"],
   "tp": false,
+  "level": "notable",
   "phase": [1, 8],
   "lic": "Apache 2.0",
   "src": "https://arxiv.org/abs/2312.00752",

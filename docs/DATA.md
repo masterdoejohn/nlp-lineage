@@ -34,7 +34,8 @@ Each entry has its own file, so each change is small and easy to review.
 | `src` | The primary source, as an https link. |
 | `before`, `problem`, `breakthrough`, `why`, `next`, `inherits` | The narrative: the state before it, the problem, the idea, why it mattered, what came next, and what it inherited. |
 | `claim` | Who stands behind the reported results: `vendor-reported`, `peer-reviewed`, `official`, `mixed` or `n-a`. |
-| `tp`, `imp` | Turning point (true or false), and the kinds of impact. |
+| `level`, `tp` | The level: `turning-point`, `milestone` or `notable`. It is measured from the relationships, as described in [LEVELS.md](LEVELS.md). `tp` is `true` exactly when the level is `turning-point`. |
+| `imp` | The kinds of impact. |
 | `featured` | Either `true` or left out. It comes from the original research data. The page does not use it at present. |
 | `lines`, `branches` | The research threads it belongs to (the first one is its home thread), and the topics within them. |
 | `phase` | The learning phases it belongs to, from 1 to 8. It can be empty. |
@@ -79,6 +80,7 @@ It exits with an error and lists every problem it finds.
   - Every required field is present.
   - The file name matches the id.
   - The date is a real date that fits its precision, and `ord` matches it.
+  - The level follows the rule in [LEVELS.md](LEVELS.md), and `tp` matches it.
   - The source is an https link.
   - Every thread, topic, phase and chapter it names exists.
 - **Relationships:**

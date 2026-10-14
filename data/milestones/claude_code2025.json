@@ -12,6 +12,7 @@
   "branches": ["agents", "retrieval_tools"],
   "imp": ["PRODUCTIZATION"],
   "tp": false,
+  "level": "milestone",
   "phase": [7],
   "lic": "subscription",
   "claim": "vendor-reported",

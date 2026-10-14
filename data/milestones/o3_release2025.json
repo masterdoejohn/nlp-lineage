@@ -12,6 +12,7 @@
   "branches": ["reasoning", "agents"],
   "imp": ["TRANSFORMATIVE"],
   "tp": false,
+  "level": "milestone",
   "phase": [2, 7],
   "lic": "API only",
   "claim": "vendor-reported",

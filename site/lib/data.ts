@@ -9,7 +9,7 @@ const jsonFiles = (dir: string) => (existsSync(dir) ? readdirSync(dir).filter((f
 
 export interface Milestone {
   id: string; title: string; short: string; date: string; dprec: 'day' | 'month' | 'year'; dtype: string; other: string;
-  authors: string; inst: string; type: string; branches: string[]; imp: string[]; tp: boolean; phase: number[];
+  authors: string; inst: string; type: string; branches: string[]; imp: string[]; tp: boolean; level: 'turning-point' | 'milestone' | 'notable'; phase: number[];
   lic: string; src: string; before: string; problem: string; breakthrough: string; why: string; next: string;
   inherits: string; claim: string; ord: number; ch: number; lines: string[]; featured?: true;
 }
