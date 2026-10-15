@@ -1,0 +1,7 @@
+{
+  "id": "rule-based-reward-model",
+  "term": "Rule-based reward model",
+  "definition": "A language model used as a judge that checks an answer against a written rubric, such as \"a refusal in the desired style\", and gives a reward during reinforcement learning.",
+  "introduced_by": "gpt4_2023",
+  "used_by": []
+}

@@ -1,0 +1,7 @@
+{
+  "id": "dense-retrieval",
+  "term": "Dense retrieval",
+  "definition": "Finding relevant passages by turning both the question and every passage into vectors, then picking the passages whose vectors are closest to the question's. It matches meaning, not only shared words.",
+  "introduced_by": "dpr2020",
+  "used_by": ["rag2020"]
+}

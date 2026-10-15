@@ -1,0 +1,7 @@
+{
+  "id": "sliding-window-attention",
+  "term": "Sliding-window attention",
+  "definition": "Attention in which each token looks only at a fixed number of nearby tokens, so the cost grows in step with the length of the text instead of with its square. A few tokens can be given global attention to reach the whole text.",
+  "introduced_by": "longformer2020",
+  "used_by": ["mistral7b2023"]
+}

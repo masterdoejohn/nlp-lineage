@@ -1,0 +1,7 @@
+{
+  "id": "normalfloat",
+  "term": "4-bit NormalFloat (NF4)",
+  "definition": "A way of storing model weights in 4 bits each, with the 16 possible values spread to suit weights that follow a bell-shaped distribution. It lets a large frozen model fit in much less memory during fine-tuning.",
+  "introduced_by": "qlora2023",
+  "used_by": []
+}

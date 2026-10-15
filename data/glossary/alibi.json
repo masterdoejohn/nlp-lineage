@@ -1,0 +1,7 @@
+{
+  "id": "alibi",
+  "term": "Attention with linear biases (ALiBi)",
+  "definition": "A way to give attention a sense of word order without position vectors: each attention score is lowered by an amount that grows with the distance between the two tokens.",
+  "introduced_by": "alibi2021",
+  "used_by": ["bloom2022"]
+}

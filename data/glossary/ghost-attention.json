@@ -1,0 +1,7 @@
+{
+  "id": "ghost-attention",
+  "term": "Ghost Attention (GAtt)",
+  "definition": "A training-data method that teaches a chat model to keep following an instruction given at the start of a conversation, such as \"act as Napoleon\", for many turns.",
+  "introduced_by": "llama2_2023",
+  "used_by": []
+}

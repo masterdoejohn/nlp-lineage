@@ -1,0 +1,14 @@
+{
+  "id": "chain-of-thought",
+  "term": "Chain of thought",
+  "definition": "A series of reasoning steps, written in plain language, that a model produces before its final answer. Showing such steps in prompt examples, or training a model to produce them, helps on multi-step problems.",
+  "introduced_by": "cot2022",
+  "used_by": [
+    "self_consistency2022",
+    "zs_cot2022",
+    "palm2022",
+    "flan_scaling2022",
+    "o1_2024",
+    "deepseek_r1_2025"
+  ]
+}

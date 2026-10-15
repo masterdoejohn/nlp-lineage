@@ -1,0 +1,7 @@
+{
+  "id": "in-context-learning",
+  "term": "In-context learning",
+  "definition": "When a model does a new task from instructions or examples written in its input, without any change to its weights. It works only during that one input; nothing is stored afterwards.",
+  "introduced_by": "gpt3_2020",
+  "used_by": ["cot2022", "flamingo2022"]
+}

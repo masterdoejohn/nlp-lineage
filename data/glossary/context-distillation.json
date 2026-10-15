@@ -1,0 +1,7 @@
+{
+  "id": "context-distillation",
+  "term": "Context distillation",
+  "definition": "Training a model to behave, without a special instruction, as it would with that instruction. For example, the model is fine-tuned on the safer answers it gives when told \"You are a safe and responsible assistant\".",
+  "introduced_by": "askell2021",
+  "used_by": ["llama2_2023"]
+}
