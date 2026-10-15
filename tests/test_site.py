@@ -198,6 +198,7 @@ no_credit = [rel(p_) for p_, x in pages.items() if 'https://creativecommons.org/
 ok('every page links to the content licence and the about page', not no_credit, no_credit[:5])
 ab = (BUILD / 'about' / 'index.html').read_text(encoding='utf-8')
 ok('the about page states both licences and how to report a problem', all(k in ab for k in ('CC BY 4.0', 'MIT licence', 'Report a problem', 'no cookies')))
+ok('the about page gives the number of summaries', f'<p>{len(summarised)} milestones have full summaries' in ab, len(summarised))
 
 tl = (BUILD / 'timeline' / 'index.html').read_text(encoding='utf-8')
 wide, narrow = tl.split('class="tt-narrow', 1)
