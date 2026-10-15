@@ -1,7 +1,7 @@
 """Checks for the reference site (site/ -> build/). Build it first: npm run site:build
 Usage: python tests/test_site.py [--webkit]      (screenshots of a few pages go to shots/site-*.png)
 
-Part 1 reads every built page as HTML: page count, one h1, unique titles, noindex, internal links, the evidence
+Part 1 reads every built page as HTML: page count, one h1, unique titles, indexing and the sitemap, internal links, the evidence
 rules on milestone pages, and no em dashes. It also checks the site uses the tour's exact relationship wording.
 Part 2 opens a few pages in Chromium at phone and desktop widths, in both themes: console errors, horizontal
 overflow, text contrast (WCAG AA), and that the tour's chapter links land on a chapter.
@@ -35,7 +35,7 @@ class Page(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.h1 = 0; self.title = ''; self._t = False; self.links = []; self.meta = {}; self.lang = None
-        self.rel_items = []; self._li = None; self.text = []
+        self.rel_items = []; self._li = None; self.text = []; self.canonical = None
 
     def handle_starttag(self, tag, a):
         a = dict(a)
@@ -44,6 +44,7 @@ class Page(HTMLParser):
         if tag == 'title': self._t = True
         if tag == 'meta' and 'name' in a: self.meta[a['name']] = a.get('content', '')
         if tag == 'a' and a.get('href'): self.links.append(a['href'])
+        if tag == 'link' and a.get('rel') == 'canonical': self.canonical = a.get('href')
         if tag == 'li' and 'data-dir' in a:
             self._li = {'dir': a['data-dir'], 'ev': a.get('data-ev'), 'cls': a.get('class') or '', 'text': ''}
             self.rel_items.append(self._li)
@@ -78,8 +79,21 @@ ok('every page has exactly one h1', not bad_h1, bad_h1[:5])
 titles = [x.title for x in pages.values()]
 dup = [t for t in set(titles) if titles.count(t) > 1]
 ok('page titles are unique', not dup, dup[:5])
-no_idx = [rel(p) for p, x in pages.items() if 'noindex' not in x.meta.get('robots', '')]
-ok('every page asks not to be indexed (unlisted until launch)', not no_idx, no_idx[:5])
+# launched (docs/LAUNCH.md): no page asks search engines to stay away, every page names its own address, and the
+# sitemap lists every page
+SITE = 'https://nlp-lineage.vercel.app'
+idx = [rel(p) for p, x in pages.items() if 'noindex' in x.meta.get('robots', '')]
+ok('no page asks not to be indexed', not idx, idx[:5])
+canon = {rel(p): x.canonical for p, x in pages.items() if rel(p).endswith('/index.html')}
+bad_canon = [(k, v) for k, v in canon.items() if v != SITE + k.removesuffix('index.html')]
+ok('every page has a canonical link to its own address', not bad_canon, bad_canon[:3])
+robots = (BUILD / 'robots.txt').read_text(encoding='utf-8') if (BUILD / 'robots.txt').exists() else ''
+ok('robots.txt allows everything and names the sitemap', 'Allow: /' in robots and 'Disallow' not in robots and f'Sitemap: {SITE}/sitemap.xml' in robots, robots)
+smap = set(re.findall(r'<loc>([^<]+)</loc>', (BUILD / 'sitemap.xml').read_text(encoding='utf-8'))) if (BUILD / 'sitemap.xml').exists() else set()
+want_map = {SITE + k.removesuffix('index.html') for k in canon} | {SITE + '/tour/'}
+ok('the sitemap lists every page, and only those', smap == want_map, (sorted(smap - want_map)[:3], sorted(want_map - smap)[:3]))
+vj = json.loads((ROOT / 'vercel.json').read_text(encoding='utf-8'))
+ok('vercel.json sends no noindex header', 'noindex' not in json.dumps(vj), vj.get('headers'))
 no_desc = [rel(p) for p, x in pages.items() if not x.meta.get('description', '').strip()]
 ok('every page has a description', not no_desc, no_desc[:5])
 

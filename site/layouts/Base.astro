@@ -37,8 +37,7 @@ A source that shows the correct information, if you have one:
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <!-- Unlisted until launch (docs/PLAN.md, phase 7): search engines are asked not to index it. -->
-    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href={pageUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet" />
@@ -58,7 +57,6 @@ A source that shows the correct information, if you have one:
         </nav>
       </div>
     </header>
-    <p class="preview sheet">Preview. This site is unfinished and not yet public.</p>
     <main id="main" class="sheet" data-pagefind-body={indexed ? '' : undefined}>
       <slot />
     </main>

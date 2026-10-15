@@ -27,7 +27,6 @@ a:hover{text-decoration-thickness:3px}
 .bar nav a{display:inline-block;padding-block:var(--s2);font-weight:700;font-size:var(--t-sm);text-decoration:none;border-bottom:3px solid transparent}
 .bar nav a:hover{border-bottom-color:var(--rule-2)}
 .bar nav a[aria-current="page"]{border-bottom-color:var(--ink)}
-.preview{font-size:var(--t-cap);color:var(--muted);padding-block:var(--s2)}
 
 main{padding-block:var(--s6) var(--s9)}
 
