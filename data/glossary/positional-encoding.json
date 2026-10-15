@@ -1,0 +1,7 @@
+{
+  "id": "positional-encoding",
+  "term": "Positional encoding",
+  "definition": "Information added to each token's vector to tell the model where the token is in the sequence, because attention alone ignores word order. The Transformer used a fixed pattern of sine and cosine waves; later models learned it or used other methods.",
+  "introduced_by": "transformer2017",
+  "used_by": ["bert2018"]
+}

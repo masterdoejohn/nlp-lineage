@@ -1,0 +1,7 @@
+{
+  "id": "word-embedding",
+  "term": "Word embedding",
+  "definition": "A list of numbers (a vector) that represents a word. It is learned so that words used in similar contexts get similar vectors, which lets a model share what it learns between related words.",
+  "introduced_by": "bengio2003_nplm",
+  "used_by": ["word2vec2013", "glove2014"]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "multi-query-attention",
+  "term": "Multi-query attention",
+  "definition": "A form of multi-head attention in which all the heads share a single set of keys and values. It makes generation faster because much less data must be loaded from memory at each step.",
+  "introduced_by": "mqa2019",
+  "used_by": ["palm2022", "gqa2023"]
+}

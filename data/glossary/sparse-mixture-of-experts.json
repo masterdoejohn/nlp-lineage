@@ -1,0 +1,7 @@
+{
+  "id": "sparse-mixture-of-experts",
+  "term": "Sparse mixture of experts",
+  "definition": "A mixture of experts in which a gating network sends each token to only a few of many experts. The model can have a very large number of weights while each token uses only a small part of them.",
+  "introduced_by": "shazeer2017_moe",
+  "used_by": ["gshard2020", "switch2021", "mixtral2023", "deepseekmoe2024"]
+}

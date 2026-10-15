@@ -1,0 +1,7 @@
+{
+  "id": "residual-connection",
+  "term": "Residual connection",
+  "definition": "A shortcut that adds a layer's input to its output. The layer only has to learn a correction to its input, which makes very deep networks much easier to train.",
+  "introduced_by": "resnet2015",
+  "used_by": ["transformer2017", "sparse_transformer2019"]
+}

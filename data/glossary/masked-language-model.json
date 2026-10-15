@@ -1,0 +1,7 @@
+{
+  "id": "masked-language-model",
+  "term": "Masked language model",
+  "definition": "A pretraining task in which some tokens of a text are hidden and the model must predict them from the words on both sides. It is like a fill-in-the-blank test.",
+  "introduced_by": "bert2018",
+  "used_by": ["roberta2019", "t5_2019"]
+}

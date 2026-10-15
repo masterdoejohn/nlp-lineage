@@ -1,0 +1,7 @@
+{
+  "id": "skip-gram",
+  "term": "Skip-gram",
+  "definition": "A simple training task for word embeddings: given one word, predict the words around it. Its sister task, continuous bag of words, does the reverse.",
+  "introduced_by": "word2vec2013",
+  "used_by": []
+}

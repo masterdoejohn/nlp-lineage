@@ -1,0 +1,7 @@
+{
+  "id": "byte-pair-encoding",
+  "term": "Byte-pair encoding (BPE)",
+  "definition": "A way to split text into tokens. Start from single characters, then repeatedly merge the most frequent pair into a new token. Common words become one token, and rare words are split into smaller pieces, so any word can be written.",
+  "introduced_by": "sennrich_bpe2015",
+  "used_by": ["gpt2_2019", "roberta2019", "scaling_laws2020", "gpt3_2020", "llama2023", "llama2_2023"]
+}
