@@ -1,0 +1,52 @@
+---
+// About the site: what it is, where its information comes from, how it is made, the licences, and how to report a problem.
+import Base from '../layouts/Base.astro';
+import { milestones, relationships, terms } from '../lib/data';
+import { getCollection } from 'astro:content';
+
+const summaries = await getCollection('summaries');
+const fromPages = summaries.filter((s) => s.data.source_kind === 'pages').length;
+const turning = milestones.filter((m) => m.level === 'turning-point').length;
+---
+<Base title="About this site" description="What NLP Lineage is, where its information comes from, how the summaries are made, and how to report a problem.">
+  <p class="kicker">About</p>
+  <h1 class="title">About this site</h1>
+  <div class="prose lead">
+    <p>NLP Lineage is a free reference on how natural language processing led to modern language models. It covers the events that caused big changes, the papers behind them, and what to learn first.</p>
+  </div>
+
+  <div class="prose about">
+    <h2 class="h2">What it covers</h2>
+    <p>The site describes {milestones.length} milestones and {relationships.length} documented relationships between them, from Shannon's information theory in 1948 to the models of today. Each milestone has its own page, with the work it built on and the work that built on it.</p>
+    <p>The site is in English. Early NLP history, before the milestones that modern models directly build on, will be added later.</p>
+
+    <h2 class="h2">Where the information comes from</h2>
+    <p>Every milestone and every relationship comes from a primary source, such as the paper itself or the developer's own announcement. The source is linked on the page.</p>
+    <p>Each relationship has a strength of evidence. Weak links, such as indirect influence, timing only, or a later reading of history, stay visible and are marked as weak. They never count towards a milestone's level. <a href="/levels/">How levels are decided</a> explains the rule.</p>
+
+    <h2 class="h2">How the summaries are made</h2>
+    <p>The {turning} turning points have full summaries. Each one was drafted with Claude, an AI model made by Anthropic, from the full text of the paper, and then reviewed by Zeeshan Arif. Every number in a summary is labelled with what it measures. Where a paper gives two different numbers for the same result, the summary reports both.</p>
+    <p>{fromPages} of the summaries cover models that have no paper. They are drafted from the developer's official web pages instead, and each says so at the top.</p>
+    <p>The other milestones show a shorter record from the research data, marked "Full summary in progress".</p>
+
+    <h2 class="h2">The glossary and the learning path</h2>
+    <p>The <a href="/glossary/">glossary</a> has {terms.length} terms. Each term names the milestone that introduced it, so a term is added only where the research data supports that claim.</p>
+    <p>The <a href="/learn/">learning path</a> groups the milestones into eight study phases, with short notes on what to learn first.</p>
+
+    <h2 class="h2">How it is written</h2>
+    <p>The text follows the principles of ASD-STE100 Simplified Technical English: short sentences, one idea in each, and technical words explained the first time they appear. It does not claim to comply with the standard.</p>
+
+    <h2 class="h2">Licence and credit</h2>
+    <p>The text and data are published under the <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">Creative Commons Attribution 4.0 licence (CC BY 4.0)</a>. You may copy and adapt them for any purpose if you give credit, for example: "NLP Lineage, by Zeeshan Arif, CC BY 4.0", with a link to the page you used.</p>
+    <p>The code of the site is published under the <a href="https://github.com/masterdoejohn/nlp-lineage/blob/main/LICENSE" rel="noopener">MIT licence</a>.</p>
+
+    <h2 class="h2">Report a problem</h2>
+    <p>If something is wrong or missing, use "Report a problem on this page" at the bottom of any page. It opens a new issue on GitHub with the page's address filled in. You need a free GitHub account to send it. A link to a source that shows the correct information helps most.</p>
+
+    <h2 class="h2">Privacy</h2>
+    <p>The site has no accounts, no cookies and no visitor statistics. Its pages load their fonts from Google Fonts, so Google receives your browser's request for those fonts, including your IP address.</p>
+
+    <h2 class="h2">Status</h2>
+    <p>This is a preview. The site is not yet public, and search engines are asked not to index it.</p>
+  </div>
+</Base>

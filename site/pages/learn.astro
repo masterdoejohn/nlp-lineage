@@ -1,0 +1,92 @@
+---
+// The learning path: the eight study phases of the research data (data/phases.json and each milestone's phase list),
+// with the study notes (data/study.json) and the glossary terms that the phase's milestones introduced.
+import Base from '../layouts/Base.astro';
+import { milestones, phases, study, terms } from '../lib/data';
+import { year, LEVEL_LABEL } from '../lib/labels';
+
+const path = Object.entries(phases).map(([n, title]) => {
+  const ms = milestones.filter((m) => m.phase.includes(Number(n)));
+  const ids = new Set(ms.map((m) => m.id));
+  const start = ms.filter((m) => study[m.id]);
+  const tps = ms.filter((m) => m.level === 'turning-point' && !study[m.id]);
+  const rest = ms.filter((m) => m.level !== 'turning-point' && !study[m.id]);
+  // terms to know: those introduced by a milestone in this phase, in the order the milestones appeared
+  const order = new Map(ms.map((m, i) => [m.id, i]));
+  const words = terms.filter((t) => ids.has(t.introduced_by)).sort((a, b) => order.get(a.introduced_by)! - order.get(b.introduced_by)!);
+  return { n, title, ms, start, tps, rest, words };
+});
+---
+<Base title="Learning path" description="Eight phases for learning how modern language models work, with the milestones to understand first, the terms to know and short study notes.">
+  <p class="kicker">{path.length} phases</p>
+  <h1 class="title">Learning path</h1>
+  <div class="prose lead">
+    <p>The path groups the milestones into eight phases, from the Transformer to training a model from scratch. It is a suggested order for study, not a course, and you can start with any phase.</p>
+    <p>Each phase starts with the milestones that have study notes: what to learn to understand them, and what helps to know first. Then come the terms to know and the other milestones in the phase. A milestone can be in more than one phase.</p>
+  </div>
+
+  <ol class="phase-index sec" aria-label="Phases">
+    {path.map((p) => <li><a href={`#phase-${p.n}`}>{p.n}. {p.title}</a></li>)}
+  </ol>
+
+  {path.map((p) => (
+    <section class="sec phase" id={`phase-${p.n}`} aria-labelledby={`h-phase-${p.n}`}>
+      <h2 id={`h-phase-${p.n}`}><span class="phase-n">Phase {p.n}.</span> {p.title}</h2>
+      <p class="phase-count">{p.ms.length} milestones, {p.start.length} with study notes</p>
+
+      {p.start.length > 0 && (
+        <>
+          <h3 class="h3 phase-h">Start with</h3>
+          <ul class="study-list">
+            {p.start.map((m) => (
+              <li>
+                <p class="study-head"><a class="name" href={`/milestones/${m.id}/`}>{m.short}</a> <span class="kind">{year(m)}. {LEVEL_LABEL[m.level]}</span></p>
+                <p class="study-label">To understand it, learn</p>
+                <ul class="study-points">{study[m.id].understand.map((u) => <li>{u}</li>)}</ul>
+                <p class="study-label">Helpful first</p>
+                <p>{study[m.id].prereq}</p>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {p.words.length > 0 && (
+        <>
+          <h3 class="h3 phase-h">Terms to know</h3>
+          <ul class="marks term-marks">
+            {p.words.map((t) => <li><a href={`/glossary/${t.id}/`}>{t.term}</a></li>)}
+          </ul>
+        </>
+      )}
+
+      {p.tps.length > 0 && (
+        <>
+          <h3 class="h3 phase-h">Turning points in this phase</h3>
+          <ul class="rows">
+            {p.tps.map((m) => (
+              <li>
+                <span><a class="name" href={`/milestones/${m.id}/`}>{m.short}</a><span class="sub">{m.title}</span></span>
+                <span class="kind">{year(m)}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {p.rest.length > 0 && (
+        <details class="more">
+          <summary>The other {p.rest.length} milestones in this phase</summary>
+          <ul class="rows">
+            {p.rest.map((m) => (
+              <li>
+                <span><a class="name" href={`/milestones/${m.id}/`}>{m.short}</a></span>
+                <span class="kind">{year(m)}. {LEVEL_LABEL[m.level]}</span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+    </section>
+  ))}
+</Base>
