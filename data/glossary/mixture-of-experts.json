@@ -3,5 +3,5 @@
   "term": "Mixture of experts",
   "definition": "A network made of several smaller networks, called experts, plus a gating network that decides how much each expert contributes for a given input. Different experts can specialise in different kinds of input.",
   "introduced_by": "jacobs1991_moe",
-  "used_by": ["shazeer2017_moe"]
+  "used_by": ["shazeer2017_moe", "deepseek_v3_2024"]
 }

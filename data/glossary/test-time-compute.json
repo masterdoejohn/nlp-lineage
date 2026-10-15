@@ -3,5 +3,5 @@
   "term": "Test-time compute",
   "definition": "The computation a model spends while answering a question, as opposed to during training. Spending more, for example by reasoning for longer or trying several answers, can improve results on hard problems.",
   "introduced_by": "test_time_compute2024",
-  "used_by": ["o1_2024"]
+  "used_by": ["o1_2024", "deepseek_r1_2025", "gpt5_2025"]
 }

@@ -29,7 +29,7 @@ const others = summaries.length - turningDone;
 
     <h2 class="h2">How the summaries are made</h2>
     <p>{summaries.length} milestones have full summaries: {turningDone === turning ? `all ${turning} turning points` : `${turningDone} of the ${turning} turning points`}{others > 0 && `, and ${others} other milestones`}. Each one was drafted with Claude, an AI model made by Anthropic, from the full text of the paper, and then reviewed by Zeeshan Arif. Every number in a summary is labelled with what it measures. Where a paper gives two different numbers for the same result, the summary reports both.</p>
-    <p>{fromPages} of the summaries cover models that have no paper. They are drafted from the developer's official web pages instead, and each says so at the top.</p>
+    <p>{fromPages} of the summaries cover milestones that have no paper, such as products, protocols and events. They are drafted from the developer's official web pages instead, and each says so at the top.</p>
     <p>The other milestones show a shorter record from the research data, marked "Full summary in progress".</p>
 
     <h2 class="h2">The glossary and the learning path</h2>
