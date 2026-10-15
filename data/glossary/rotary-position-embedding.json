@@ -3,5 +3,12 @@
   "term": "Rotary position embedding (RoPE)",
   "definition": "A way to give attention a sense of word order by rotating each query and key vector by an angle that depends on its position. When two tokens are compared, only the distance between them matters.",
   "introduced_by": "rope2021",
-  "used_by": ["llama2023", "llama2_2023", "position_interpolation2023", "qwen2_2024", "deepseek_v2_2024"]
+  "used_by": [
+    "llama2023",
+    "position_interpolation2023",
+    "llama2_2023",
+    "deepseek_v2_2024",
+    "qwen2_2024",
+    "deepseek_v3_2024"
+  ]
 }
