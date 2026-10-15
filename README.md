@@ -9,7 +9,7 @@ The site is a preview and is not yet public. [docs/PLAN.md](docs/PLAN.md) descri
 | Path | What it is |
 |---|---|
 | `data/` | The research data: one file per milestone, thread, chapter and glossary term. [docs/DATA.md](docs/DATA.md) describes it. |
-| `site/` | The reference site (Astro): milestone, thread and glossary pages, a timeline, filters, and "before and after" for every milestone. It builds to `build/`, and Pagefind then adds a search index. |
+| `site/` | The reference site (Astro): milestone, thread and glossary pages, a timeline, filters, a learning path, an about page, and "before and after" for every milestone. It builds to `build/`, and Pagefind then adds a search index. |
 | `src/`, `build.py` | The guided tour, "How language models came to be": one HTML page with scroll-driven diagrams. It builds to `dist/llm-lineage.html`. |
 | `src/tokens.css` | The design tokens (colours, type, spacing), shared by the site and the tour. [docs/DESIGN.md](docs/DESIGN.md) describes the design. |
 | `check_data.py` | Checks the data against the rules a script can check. |
@@ -41,3 +41,8 @@ Every pull request runs all of these (see `.github/workflows/checks.yml`), and `
 - **Plain language:** the writing follows ASD-STE100 principles: short sentences, one idea per sentence, and technical terms defined at first use. It does not claim to comply with the standard.
 - **No em dashes.**
 - **Honest evidence:** no relationship without a source. Weak links (indirect, timing only, later interpretation) are always marked as weak. Every number says what kind of number it is.
+
+## Licences
+
+- **Text and data** (everything in `data/`, and the site and tour text that comes from it): [CC BY 4.0](LICENSE-CONTENT.md). Credit: "NLP Lineage, by Zeeshan Arif, CC BY 4.0".
+- **Code** (the site, the tour, the scripts and the tests): [MIT](LICENSE).
