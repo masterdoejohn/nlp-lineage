@@ -138,7 +138,9 @@ for i in ms:
     html = (BUILD / 'milestones' / i / 'index.html').read_text(encoding='utf-8')
     if i in summarised:
         src = re.search(r'(?m)^source: (.+)$', summarised[i])[1].strip()
-        if 'data-summary' not in html or 'Drafted with Claude from the paper on' not in html or f'href="{src}"' not in html:
+        from_pages = re.search(r'(?m)^source_kind: pages$', summarised[i])
+        drafted = 'Drafted with Claude from official web pages (there is no paper) on' if from_pages else 'Drafted with Claude from the paper on'
+        if 'data-summary' not in html or drafted not in html or f'href="{src}"' not in html:
             missing_sum.append(i)
         if 'Full summary in progress' in html:
             wrong_status.append(i)

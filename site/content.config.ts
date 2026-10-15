@@ -9,6 +9,7 @@ const summaries = defineCollection({
     milestone: z.string(),
     source: z.string().url(),
     source_note: z.string().optional(),
+    source_kind: z.enum(['paper', 'pages']).optional(),  // pages: no paper exists, so official web pages were read
     version: z.string(),
     read: z.coerce.date(),  // YAML reads 2026-10-15 as a date
     reviewed_by: z.string(),
