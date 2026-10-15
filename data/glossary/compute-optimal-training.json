@@ -1,0 +1,7 @@
+{
+  "id": "compute-optimal-training",
+  "term": "Compute-optimal training",
+  "definition": "Choosing the model size and the amount of training data that give the lowest loss for a fixed training budget. Chinchilla found that both should grow at about the same rate.",
+  "introduced_by": "chinchilla2022",
+  "used_by": ["llama2023", "deepseek_llm2024"]
+}

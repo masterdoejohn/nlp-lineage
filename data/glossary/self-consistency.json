@@ -1,0 +1,7 @@
+{
+  "id": "self-consistency",
+  "term": "Self-consistency",
+  "definition": "Asking a model the same question several times, letting it reason differently each time, and taking the most common final answer. Also called majority voting.",
+  "introduced_by": "self_consistency2022",
+  "used_by": ["llama2023", "test_time_compute2024"]
+}

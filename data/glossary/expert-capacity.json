@@ -1,0 +1,7 @@
+{
+  "id": "expert-capacity",
+  "term": "Expert capacity",
+  "definition": "In a mixture-of-experts layer, the most tokens one expert may take in a batch. It keeps the work balanced between experts; tokens sent to a full expert skip the layer.",
+  "introduced_by": "gshard2020",
+  "used_by": []
+}

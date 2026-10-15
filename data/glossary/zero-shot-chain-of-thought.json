@@ -1,0 +1,7 @@
+{
+  "id": "zero-shot-chain-of-thought",
+  "term": "Zero-shot chain of thought",
+  "definition": "Getting a model to reason step by step with no worked examples, only by adding a short phrase such as \"Let's think step by step\" to the prompt.",
+  "introduced_by": "zs_cot2022",
+  "used_by": []
+}

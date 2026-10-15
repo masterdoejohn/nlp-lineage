@@ -1,0 +1,7 @@
+{
+  "id": "retrieval-augmented-generation",
+  "term": "Retrieval-augmented generation (RAG)",
+  "definition": "Answering with the help of a search step. The system first retrieves passages related to the question from a collection of documents, then the language model writes its answer using those passages.",
+  "introduced_by": "rag2020",
+  "used_by": []
+}

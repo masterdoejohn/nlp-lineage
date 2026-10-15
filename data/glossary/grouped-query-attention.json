@@ -1,0 +1,7 @@
+{
+  "id": "grouped-query-attention",
+  "term": "Grouped-query attention (GQA)",
+  "definition": "A form of multi-head attention in which the heads are split into groups, and each group shares one set of keys and values. It is nearly as fast as multi-query attention while keeping nearly all the quality of standard attention.",
+  "introduced_by": "gqa2023",
+  "used_by": ["llama2_2023", "mistral7b2023", "llama3_2024", "llama31_2024", "qwen2_2024"]
+}

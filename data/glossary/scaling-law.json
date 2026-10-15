@@ -1,0 +1,7 @@
+{
+  "id": "scaling-law",
+  "term": "Scaling law",
+  "definition": "A simple formula, usually a power law, that predicts how a model's test loss falls as its size, its training data or its training compute grows. It lets developers estimate the result of a large training run from smaller ones.",
+  "introduced_by": "scaling_laws2020",
+  "used_by": ["gpt3_2020", "chinchilla2022", "gpt4_2023", "deepseek_llm2024"]
+}

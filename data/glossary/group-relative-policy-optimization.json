@@ -1,0 +1,7 @@
+{
+  "id": "group-relative-policy-optimization",
+  "term": "Group relative policy optimization (GRPO)",
+  "definition": "A reinforcement learning method for language models. For each question it samples a group of answers and scores each one against the group's average, so no separate model is needed to estimate the expected score.",
+  "introduced_by": "deepseekmath_grpo2024",
+  "used_by": ["deepseek_v3_2024", "deepseek_r1_2025"]
+}

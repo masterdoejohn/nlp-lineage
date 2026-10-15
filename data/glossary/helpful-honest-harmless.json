@@ -1,0 +1,7 @@
+{
+  "id": "helpful-honest-harmless",
+  "term": "Helpful, honest and harmless (HHH)",
+  "definition": "A short statement of what an AI assistant should be: helpful (it does what the user needs), honest (it does not make up or mislead) and harmless (it does not cause harm).",
+  "introduced_by": "askell2021",
+  "used_by": ["instructgpt2022", "hh_rlhf2022"]
+}

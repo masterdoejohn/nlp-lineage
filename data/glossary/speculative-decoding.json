@@ -1,0 +1,7 @@
+{
+  "id": "speculative-decoding",
+  "term": "Speculative decoding",
+  "definition": "A way to generate text faster. A small, fast model drafts several tokens, and the large model checks them all at once, keeping those it agrees with. The output is the same as the large model would give on its own.",
+  "introduced_by": "speculative_decoding2022",
+  "used_by": []
+}
