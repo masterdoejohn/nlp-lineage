@@ -1,0 +1,7 @@
+{
+  "id": "next-sentence-prediction",
+  "term": "Next sentence prediction",
+  "definition": "A pretraining task in which the model sees two spans of text and predicts whether the second really follows the first or was chosen at random.",
+  "introduced_by": "bert2018",
+  "used_by": []
+}

@@ -1,0 +1,7 @@
+{
+  "id": "adam",
+  "term": "Adam",
+  "definition": "A widely used method for updating a network's weights during training. It gives each weight its own step size, based on running averages of its recent gradients. AdamW is a common variant with a different form of weight decay.",
+  "introduced_by": "adam2014",
+  "used_by": ["transformer2017", "scaling_laws2020", "chinchilla2022", "llama2023", "llama2_2023"]
+}

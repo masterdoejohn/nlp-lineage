@@ -1,0 +1,7 @@
+{
+  "id": "statistical-machine-translation",
+  "term": "Statistical machine translation",
+  "definition": "Translation treated as a probability problem: a system learns from large collections of translated sentence pairs which output is most likely for an input, instead of following hand-written rules. Phrase-based systems are the best-known kind.",
+  "introduced_by": "brown1990_smt",
+  "used_by": ["seq2seq2014"]
+}

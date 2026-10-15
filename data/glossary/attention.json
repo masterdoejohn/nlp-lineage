@@ -1,0 +1,7 @@
+{
+  "id": "attention",
+  "term": "Attention",
+  "definition": "A way for a model to look back at all parts of its input and weight each part by how relevant it is at the current step. The output is the weighted average of those parts.",
+  "introduced_by": "bahdanau2014",
+  "used_by": ["transformer2017", "sparse_transformer2019"]
+}

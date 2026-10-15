@@ -1,0 +1,7 @@
+{
+  "id": "mixed-precision-training",
+  "term": "Mixed precision training",
+  "definition": "Training with 16-bit numbers for most calculations, which is faster and uses less memory, while keeping a 32-bit copy of the weights so that small updates are not lost.",
+  "introduced_by": "mixed_precision2017",
+  "used_by": ["sparse_transformer2019", "chinchilla2022"]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "lstm",
+  "term": "Long short-term memory (LSTM)",
+  "definition": "A type of recurrent network, which reads a sequence one step at a time. It has a memory cell and gates: small learned switches that decide what to store, keep and output. This lets it carry information across many steps.",
+  "introduced_by": "lstm1997",
+  "used_by": ["seq2seq2014", "dai_le2015", "shazeer2017_moe"]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "layer-normalisation",
+  "term": "Layer normalisation",
+  "definition": "A step that rescales the numbers in each example's vector to a standard range, using only that example. It keeps the values in a deep network stable during training.",
+  "introduced_by": "layernorm2016",
+  "used_by": ["transformer2017", "gpt2_2019", "t5_2019"]
+}

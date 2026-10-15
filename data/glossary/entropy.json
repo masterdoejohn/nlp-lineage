@@ -1,0 +1,7 @@
+{
+  "id": "entropy",
+  "term": "Entropy",
+  "definition": "A measure of how unpredictable a source of symbols is: the average number of bits needed to encode each symbol. For language, it sets a floor on how well any model can predict the next word.",
+  "introduced_by": "shannon1948",
+  "used_by": ["scaling_laws2020", "chinchilla2022"]
+}

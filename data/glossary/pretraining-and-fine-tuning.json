@@ -1,0 +1,7 @@
+{
+  "id": "pretraining-and-fine-tuning",
+  "term": "Pretraining and fine-tuning",
+  "definition": "A two-step recipe. First, train a model on a large amount of plain text with no labels, for example by predicting the next word (pretraining). Then train it a little more on a smaller labelled dataset for the task you want (fine-tuning).",
+  "introduced_by": "dai_le2015",
+  "used_by": ["gpt1_2018", "ulmfit2018", "bert2018", "t5_2019"]
+}

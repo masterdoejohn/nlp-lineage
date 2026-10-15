@@ -1,0 +1,14 @@
+{
+  "id": "reinforcement-learning-from-human-feedback",
+  "term": "Reinforcement learning from human feedback (RLHF)",
+  "definition": "A way to train a model towards what people prefer. People compare pairs of outputs, a reward model learns to predict their choices, and the main model is then trained with reinforcement learning to get high scores from the reward model.",
+  "introduced_by": "christiano2017_rlhf",
+  "used_by": [
+    "ziegler2019_rlhf_lm",
+    "stiennon2020_summarize",
+    "instructgpt2022",
+    "chatgpt2022",
+    "gpt4_2023",
+    "llama2_2023"
+  ]
+}

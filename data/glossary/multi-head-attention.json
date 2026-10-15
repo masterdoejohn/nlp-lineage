@@ -1,0 +1,7 @@
+{
+  "id": "multi-head-attention",
+  "term": "Multi-head attention",
+  "definition": "Several attention operations, called heads, run side by side on smaller projections of the same vectors. Each head can attend to a different kind of relation, and their outputs are joined.",
+  "introduced_by": "transformer2017",
+  "used_by": ["bert2018", "sparse_transformer2019", "gqa2023"]
+}

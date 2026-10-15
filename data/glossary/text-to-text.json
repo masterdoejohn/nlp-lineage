@@ -1,0 +1,7 @@
+{
+  "id": "text-to-text",
+  "term": "Text-to-text format",
+  "definition": "Writing every task as text in and text out, with a short prefix that names the task. One model, one training objective and one way of decoding can then serve translation, classification, summarisation and more.",
+  "introduced_by": "t5_2019",
+  "used_by": ["t0_2021", "flan_scaling2022"]
+}

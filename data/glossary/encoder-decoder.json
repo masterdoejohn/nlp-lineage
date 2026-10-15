@@ -1,0 +1,7 @@
+{
+  "id": "encoder-decoder",
+  "term": "Encoder-decoder",
+  "definition": "A model in two parts. The encoder reads the input, such as a sentence, and turns it into internal vectors. The decoder then writes the output, such as the translation, one token at a time from those vectors.",
+  "introduced_by": "cho2014_gru",
+  "used_by": ["seq2seq2014", "bahdanau2014", "transformer2017", "t5_2019", "gshard2020"]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "gated-recurrent-unit",
+  "term": "Gated recurrent unit (GRU)",
+  "definition": "A simpler relative of the LSTM. It uses two gates, small learned switches, to decide how much of its memory to keep and how much to replace at each step.",
+  "introduced_by": "cho2014_gru",
+  "used_by": []
+}

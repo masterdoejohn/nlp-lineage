@@ -1,0 +1,7 @@
+{
+  "id": "sparse-attention",
+  "term": "Sparse attention",
+  "definition": "Attention in which each position looks at only a chosen subset of other positions, instead of all of them. It cuts the cost of attention on long sequences.",
+  "introduced_by": "sparse_transformer2019",
+  "used_by": ["gpt3_2020", "longformer2020", "bigbird2020"]
+}
