@@ -3,5 +3,5 @@
   "term": "Few-shot prompting",
   "definition": "Putting a few solved examples of a task in the prompt, then the new question, so that the model continues the pattern. With one example it is called one-shot; with only an instruction and no examples, zero-shot.",
   "introduced_by": "gpt3_2020",
-  "used_by": ["cot2022", "llama2023", "gpt4_2023"]
+  "used_by": ["cot2022", "react2022", "llama2023", "gpt4_2023"]
 }

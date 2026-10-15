@@ -5,8 +5,9 @@
   "introduced_by": "cot2022",
   "used_by": [
     "self_consistency2022",
-    "zs_cot2022",
     "palm2022",
+    "zs_cot2022",
+    "react2022",
     "flan_scaling2022",
     "o1_2024",
     "deepseek_r1_2025"

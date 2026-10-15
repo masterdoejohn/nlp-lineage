@@ -3,5 +3,5 @@
   "term": "Instruction tuning",
   "definition": "Fine-tuning a language model on many different tasks, each written as a plain-language instruction with its answer, so that the model learns to follow instructions for tasks it has not seen.",
   "introduced_by": "flan2021",
-  "used_by": ["flan_scaling2022", "self_instruct2022", "llama2023", "alpaca2023"]
+  "used_by": ["flan_scaling2022", "self_instruct2022", "llama2023", "alpaca2023", "qlora2023"]
 }
