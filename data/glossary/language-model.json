@@ -3,5 +3,14 @@
   "term": "Language model",
   "definition": "A model that gives a probability to each possible next word or token, given the text so far. Repeating this one token at a time lets it score a whole text or write new text.",
   "introduced_by": "shannon1948",
-  "used_by": ["dai_le2015", "gpt2_2019", "gpt3_2020", "scaling_laws2020", "chinchilla2022", "llama2023"]
+  "used_by": [
+    "bengio2003_nplm",
+    "dai_le2015",
+    "gpt1_2018",
+    "gpt2_2019",
+    "gpt3_2020",
+    "scaling_laws2020",
+    "chinchilla2022",
+    "llama2023"
+  ]
 }

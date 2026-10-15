@@ -7,6 +7,9 @@ import { getCollection } from 'astro:content';
 const summaries = await getCollection('summaries');
 const fromPages = summaries.filter((s) => s.data.source_kind === 'pages').length;
 const turning = milestones.filter((m) => m.level === 'turning-point').length;
+const ids = new Set(summaries.map((s) => s.id));
+const turningDone = milestones.filter((m) => m.level === 'turning-point' && ids.has(m.id)).length;
+const others = summaries.length - turningDone;
 ---
 <Base title="About this site" description="What NLP Lineage is, where its information comes from, how the summaries are made, and how to report a problem.">
   <p class="kicker">About</p>
@@ -25,7 +28,7 @@ const turning = milestones.filter((m) => m.level === 'turning-point').length;
     <p>Each relationship has a strength of evidence. Weak links, such as indirect influence, timing only, or a later reading of history, stay visible and are marked as weak. They never count towards a milestone's level. <a href="/levels/">How levels are decided</a> explains the rule.</p>
 
     <h2 class="h2">How the summaries are made</h2>
-    <p>The {turning} turning points have full summaries. Each one was drafted with Claude, an AI model made by Anthropic, from the full text of the paper, and then reviewed by Zeeshan Arif. Every number in a summary is labelled with what it measures. Where a paper gives two different numbers for the same result, the summary reports both.</p>
+    <p>{summaries.length} milestones have full summaries: {turningDone === turning ? `all ${turning} turning points` : `${turningDone} of the ${turning} turning points`}{others > 0 && `, and ${others} other milestones`}. Each one was drafted with Claude, an AI model made by Anthropic, from the full text of the paper, and then reviewed by Zeeshan Arif. Every number in a summary is labelled with what it measures. Where a paper gives two different numbers for the same result, the summary reports both.</p>
     <p>{fromPages} of the summaries cover models that have no paper. They are drafted from the developer's official web pages instead, and each says so at the top.</p>
     <p>The other milestones show a shorter record from the research data, marked "Full summary in progress".</p>
 
