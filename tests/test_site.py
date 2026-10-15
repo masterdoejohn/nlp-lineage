@@ -65,7 +65,7 @@ def parse(p):
 # ---------------- part 1: the built HTML ----------------
 pages = {p: parse(p) for p in sorted(BUILD.rglob('*.html')) if 'tour' not in p.relative_to(BUILD).parts}
 rel = lambda p: '/' + p.relative_to(BUILD).as_posix()
-want = len(ms) + len(threads) + len(terms) + 1 + 3 + 1 + 3  # home + milestones/threads/glossary indexes + 404 + timeline, search, levels
+want = len(ms) + len(threads) + len(terms) + 1 + 3 + 1 + 5  # home + milestones/threads/glossary indexes + 404 + timeline, search, levels, learn, about
 ok('page count matches the data', len(pages) == want, f'{len(pages)} pages, expected {want}')
 ok('every milestone has a page', all((BUILD / 'milestones' / i / 'index.html').exists() for i in ms))
 ok('every thread has a page', all((BUILD / 'threads' / t['id'] / 'index.html').exists() for t in threads))
@@ -149,6 +149,42 @@ for i in ms:
 ok('every summary is on its milestone page, with its provenance line and source', not missing_sum, missing_sum)
 ok('"Full summary in progress" shows exactly where there is no summary', not wrong_status, wrong_status[:5])
 
+# the learning path: every phase, each with all its milestones, and every study note of a milestone in a phase
+import html as htmllib
+from urllib.parse import parse_qs
+phase_names = json.loads((DATA / 'phases.json').read_text(encoding='utf-8'))
+study = json.loads((DATA / 'study.json').read_text(encoding='utf-8'))
+lp = (BUILD / 'learn' / 'index.html').read_text(encoding='utf-8')
+sections = {s.split('"', 1)[0]: s for s in lp.split('id="phase-')[1:]}
+ok('the learning path has a section for every phase, in order', list(sections) == list(phase_names), list(sections))
+not_listed = [(n, i) for i, m in ms.items() for n in map(str, m['phase']) if f'href="/milestones/{i}/"' not in sections.get(n, '')]
+ok('every milestone is listed in each of its phases', not not_listed, not_listed[:5])
+no_notes = [i for i, n in study.items() if ms[i]['phase'] and not all(htmllib.escape(u, quote=False) in lp for u in n['understand'])]
+ok('every study note of a milestone in a phase is on the learning path', not no_notes, no_notes[:5])
+
+# "Report a problem": every page links to a new GitHub issue that names that page and nothing else
+ISSUE = 'https://github.com/masterdoejohn/nlp-lineage/issues/new?'
+bad_report = []
+for p_, x in pages.items():
+    links = [l for l in x.links if l.startswith(ISSUE)]
+    if len(links) != 1:
+        bad_report.append((rel(p_), 'links', len(links))); continue
+    q = parse_qs(urlsplit(links[0]).query)
+    want_path = rel(p_).removesuffix('index.html')
+    body = q.get('body', [''])[0]
+    if set(q) != {'title', 'body'} or not body.startswith('Page: https://nlp-lineage.vercel.app/') or (want_path.endswith('/') and f'Page: https://nlp-lineage.vercel.app{want_path}\n' not in body):
+        bad_report.append((rel(p_), q))
+ok('every page has one "Report a problem" link, pre-filled with that page only', not bad_report, bad_report[:3])
+
+# the licences: the files, the footer credit and the about page
+lic, lic_c = (ROOT / 'LICENSE').read_text(encoding='utf-8'), (ROOT / 'LICENSE-CONTENT.md').read_text(encoding='utf-8')
+ok('the code licence is MIT', lic.startswith('MIT License') and 'Copyright (c) 2026 Zeeshan Arif' in lic)
+ok('the content licence is CC BY 4.0', 'creativecommons.org/licenses/by/4.0/' in lic_c and 'data/' in lic_c)
+no_credit = [rel(p_) for p_, x in pages.items() if 'https://creativecommons.org/licenses/by/4.0/' not in x.links or '/about/' not in x.links]
+ok('every page links to the content licence and the about page', not no_credit, no_credit[:5])
+ab = (BUILD / 'about' / 'index.html').read_text(encoding='utf-8')
+ok('the about page states both licences and how to report a problem', all(k in ab for k in ('CC BY 4.0', 'MIT licence', 'Report a problem', 'no cookies')))
+
 tl = (BUILD / 'timeline' / 'index.html').read_text(encoding='utf-8')
 wide, narrow = tl.split('class="tt-narrow', 1)
 for label, part in (('table', wide), ('list', narrow)):
@@ -201,7 +237,7 @@ srv = ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=s
 threading.Thread(target=srv.serve_forever, daemon=True).start()
 BASE = f'http://127.0.0.1:{srv.server_address[1]}'
 first_tp = next(i for i, m in ms.items() if m['tp'])
-PAGES = ['/', '/milestones/', '/milestones/?thread=lm&level=turning-point', '/levels/', f'/milestones/{first_tp}/', '/milestones/transformer2017/', '/timeline/', '/search/?q=attention', '/threads/', f'/threads/{threads[0]["id"]}/', '/glossary/', '/404.html']
+PAGES = ['/', '/milestones/', '/milestones/?thread=lm&level=turning-point', '/levels/', f'/milestones/{first_tp}/', '/milestones/transformer2017/', '/timeline/', '/search/?q=attention', '/threads/', f'/threads/{threads[0]["id"]}/', '/glossary/', '/learn/', '/about/', '/404.html']
 
 with sync_playwright() as p:
     b = p.chromium.launch()

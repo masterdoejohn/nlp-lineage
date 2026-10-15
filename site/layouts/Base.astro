@@ -12,10 +12,23 @@ const nav = [
   ['/timeline/', 'Timeline'],
   ['/threads/', 'Threads'],
   ['/glossary/', 'Glossary'],
+  ['/learn/', 'Learning path'],
   ['/tour/', 'Guided tour'],
   ['/search/', 'Search'],
 ];
 const fullTitle = title === 'NLP Lineage' ? title : `${title} · NLP Lineage`;
+// "Report a problem" opens a new GitHub issue with the page's address filled in. Nothing about the reader is sent.
+const pageUrl = new URL(path, Astro.site).href;
+const issue = 'https://github.com/masterdoejohn/nlp-lineage/issues/new?' + new URLSearchParams({
+  title: `Problem on ${title}`,
+  body: `Page: ${pageUrl}
+
+What is wrong:
+
+
+A source that shows the correct information, if you have one:
+`,
+}).toString();
 ---
 <!doctype html>
 <html lang="en">
@@ -52,6 +65,12 @@ const fullTitle = title === 'NLP Lineage' ? title : `${title} · NLP Lineage`;
     <footer class="foot">
       <div class="sheet">
         <p>Every milestone and relationship comes from a primary source, linked on its page. Weak links are marked as weak.</p>
+        <p>Content: <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a>, Zeeshan Arif. Code: <a href="https://github.com/masterdoejohn/nlp-lineage/blob/main/LICENSE" rel="noopener">MIT licence</a>.</p>
+        <ul class="foot-links">
+          <li><a href="/about/">About this site</a></li>
+          <li><a href={issue} rel="noopener" data-report>Report a problem on this page</a></li>
+          <li><a href="https://github.com/masterdoejohn/nlp-lineage" rel="noopener">Source on GitHub</a></li>
+        </ul>
       </div>
     </footer>
   </body>

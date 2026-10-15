@@ -125,6 +125,29 @@ h3.h3{font-family:var(--display);font-weight:800;font-stretch:78%;font-size:1.18
 
 /* ---------- footer ---------- */
 .foot{border-top:1.5px solid var(--ink);background:var(--panel);padding-block:var(--s6);font-size:var(--t-sm);color:var(--ink-2)}
+.foot p+p{margin-top:var(--s3)}
+.foot-links{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);margin-top:var(--s4)}
+.foot-links a{display:inline-block;padding-block:var(--s2);font-weight:700}
+
+/* ---------- learning path ---------- */
+.phase-index{padding-left:1.4em;max-width:40em}
+.phase-index li{padding-block:var(--s1)}
+.phase{scroll-margin-top:var(--s5)}
+.phase>h2 .phase-n{color:var(--muted)}
+.phase-count{font-size:var(--t-sm);color:var(--ink-2);margin-top:calc(-1 * var(--s2))}
+.phase-h{margin-top:var(--s6)}
+.study-list{list-style:none;border-top:1.5px solid var(--ink);max-width:48em}
+.study-list>li{padding:var(--s4) 0;border-bottom:1px solid var(--rule)}
+.study-head .name{font-weight:700}
+.study-head .kind{font-size:var(--t-cap);color:var(--muted)}
+.study-label{font-size:var(--t-cap);font-weight:700;color:var(--muted);margin-top:var(--s3)}
+.study-points{padding-left:1.2em}
+.term-marks a{display:inline-block;padding-block:var(--s1)}
+.more{margin-top:var(--s5)}
+.more>summary{cursor:pointer;font-weight:700;font-size:var(--t-sm);padding:var(--s3) 0;min-height:44px}
+
+/* ---------- about ---------- */
+.about h2{margin-top:var(--s7)}
 
 /* ---------- before and after: the tour's tracer (src/style.css, .trace-list), drawn at build time ---------- */
 .lin+.lin{margin-top:var(--s7)}

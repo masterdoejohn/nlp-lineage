@@ -6,6 +6,7 @@ export default defineConfig({
   srcDir: './site',
   outDir: './build',
   publicDir: './public',
+  site: 'https://nlp-lineage.vercel.app',  // used for the page address in "Report a problem" links
   trailingSlash: 'always',
   build: { format: 'directory' },
   devToolbar: { enabled: false },
