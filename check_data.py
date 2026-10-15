@@ -256,7 +256,8 @@ for p in term_files:
 SUMMARY_HEADINGS = ['What it changed', 'The problem before it', 'The idea', 'What it showed',
                     'Limits, and what came later', 'What to know first', 'How to read it', 'Links']
 FORBIDDEN_START = chr(39) + chr(34) + '[{#&*!|>%@`'  # characters that change a YAML value's meaning
-SUMMARY_KEYS, SUMMARY_OPTIONAL = {'milestone', 'source', 'version', 'read', 'reviewed_by'}, {'source_note'}
+SUMMARY_KEYS, SUMMARY_OPTIONAL = {'milestone', 'source', 'version', 'read', 'reviewed_by'}, {'source_note', 'source_kind'}
+REPORTED = {'paper': '**Reported in the paper.**', 'pages': '**Reported by the sources.**'}  # first words of "What it showed"
 LINK_RX = re.compile(r'\]\((/[^)]*)\)')
 term_ids = {p.stem for p in term_files}
 sp = DATA / 'summaries'
@@ -279,7 +280,11 @@ for p in summary_files:
             continue
         meta[k] = v.strip()
     if set(meta) - SUMMARY_KEYS - SUMMARY_OPTIONAL or SUMMARY_KEYS - set(meta):
-        bad(w, f'header fields must be {sorted(SUMMARY_KEYS)}, plus an optional source_note (found {sorted(meta)})')
+        bad(w, f'header fields must be {sorted(SUMMARY_KEYS)}, plus optional source_note and source_kind (found {sorted(meta)})')
+    kind = meta.get('source_kind', 'paper')
+    if kind not in REPORTED:
+        bad(w, f'source_kind must be one of {sorted(REPORTED)} (found {kind})')
+        kind = 'paper'
     if meta.get('milestone', p.stem) != p.stem:
         bad(w, 'milestone in the header must match the file name')
     if 'source' in meta and not meta['source'].startswith('https://'):
@@ -297,8 +302,8 @@ for p in summary_files:
         for h, sec in zip(SUMMARY_HEADINGS, sections):
             if not sec.strip():
                 bad(w, f'section "{h}" is empty')
-        if not sections[3].strip().startswith('**Reported in the paper.**'):
-            bad(w, '"What it showed" must start with **Reported in the paper.** so every number there is labelled')
+        if not sections[3].strip().startswith(REPORTED[kind]):
+            bad(w, f'"What it showed" must start with {REPORTED[kind]} so every number there is labelled')
     if re.search(r'(?m)^#(?!# )', body) or re.search(r'(?m)^### ', body):
         bad(w, 'use only the eight ## headings')
     for link in LINK_RX.findall(body):

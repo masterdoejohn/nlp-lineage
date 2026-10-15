@@ -74,7 +74,7 @@ if (m.other) facts.push(['Other dates', m.other]);
   {summary && Summary && (
     <div class="summary" data-summary>
       <p class="provenance">
-        Drafted with Claude from the paper on {readOn}; reviewed by {summary.data.reviewed_by}.
+        Drafted with Claude from {summary.data.source_kind === 'pages' ? 'official web pages (there is no paper)' : 'the paper'} on {readOn}; reviewed by {summary.data.reviewed_by}.
         Read from <a href={summary.data.source} rel="noopener">{host(summary.data.source)}</a> ({summary.data.version}).{summary.data.source_note && ` ${summary.data.source_note}`}
       </p>
       <Summary />

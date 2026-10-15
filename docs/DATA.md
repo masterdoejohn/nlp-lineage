@@ -74,18 +74,19 @@ The header lies between two lines of `---`. Each header line is `key: value`. Va
 | `milestone` | The milestone's id. It is the same as the file name. |
 | `source` | An https link to the exact text that was read, for example a versioned arXiv link. |
 | `source_note` | Optional. A note about the source, for example that it is an open copy and where the official version is. |
+| `source_kind` | Optional. `paper` (the default) or `pages`. Use `pages` only when no paper exists and the summary is drafted from the developer's official web pages. |
 | `version` | Which version was read, for example "arXiv version 7 (May 2016)". |
 | `read` | The date the source was read, as YYYY-MM-DD. |
 | `reviewed_by` | The person who reviewed the summary. |
 
-The page shows: "Drafted with Claude from the paper on (read); reviewed by (reviewed_by)."
+The page shows: "Drafted with Claude from the paper on (read); reviewed by (reviewed_by)." With `source_kind: pages`, it says "from official web pages (there is no paper)" instead of "from the paper".
 
 The sections are these `##` headings, in this order:
 
 1. **What it changed:** one sentence.
 2. **The problem before it.**
 3. **The idea:** the mechanism first, then the notation.
-4. **What it showed:** it starts with `**Reported in the paper.**`, says whether the paper was peer reviewed or a preprint, and gives each number with what it measures.
+4. **What it showed:** it starts with `**Reported in the paper.**` (or `**Reported by the sources.**` with `source_kind: pages`), says whether the paper was peer reviewed or a preprint, and gives each number with what it measures.
 5. **Limits, and what came later:** the authors' own limits first. Later work is named only where the relationships in the data document it.
 6. **What to know first:** links to milestone and glossary pages.
 7. **How to read it:** which sections to read first, and an estimated reading time, marked as an estimate.
