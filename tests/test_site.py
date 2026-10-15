@@ -1,5 +1,5 @@
 """Checks for the reference site (site/ -> build/). Build it first: npm run site:build
-Usage: python tests/test_site.py      (screenshots of a few pages go to shots/site-*.png)
+Usage: python tests/test_site.py [--webkit]      (screenshots of a few pages go to shots/site-*.png)
 
 Part 1 reads every built page as HTML: page count, one h1, unique titles, noindex, internal links, the evidence
 rules on milestone pages, and no em dashes. It also checks the site uses the tour's exact relationship wording.
@@ -10,7 +10,7 @@ import sys, re, json, threading, functools, pathlib
 from html.parser import HTMLParser
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlsplit
-from harness import ROOT, SHOTS, page, route, OVERFLOW_JS
+from harness import ROOT, SHOTS, page, route, OVERFLOW_JS, launch
 sys.path.insert(0, str(ROOT))
 from lineage_data import load_milestones, load_relationships, DATA
 from playwright.sync_api import sync_playwright
@@ -240,7 +240,7 @@ first_tp = next(i for i, m in ms.items() if m['tp'])
 PAGES = ['/', '/milestones/', '/milestones/?thread=lm&level=turning-point', '/levels/', f'/milestones/{first_tp}/', '/milestones/transformer2017/', '/timeline/', '/search/?q=attention', '/threads/', f'/threads/{threads[0]["id"]}/', '/glossary/', '/learn/', '/about/', '/404.html']
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = launch(p)
     for w, hgt, scheme in [(390, 844, 'light'), (390, 844, 'dark'), (1440, 900, 'light'), (1440, 900, 'dark')]:
         T = f'[{w} {scheme}] '
         errs = []

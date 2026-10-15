@@ -1,6 +1,6 @@
 import json, sys, re
 from playwright.sync_api import sync_playwright
-from harness import wrap, route
+from harness import wrap, route, launch
 URL = wrap()
 results = []
 def ok(name, cond, detail=''):
@@ -8,7 +8,7 @@ def ok(name, cond, detail=''):
 def setrange(lab, idx, value):
     lab.locator('input[type=range]').nth(idx).evaluate("(e, v) => { e.value = v; e.dispatchEvent(new Event('input', {bubbles: true})); }", str(value))
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = launch(p)
     for vw, vh, motion in [(390, 844, 'reduce'), (1440, 900, 'no-preference')]:
         ctx = b.new_context(viewport={'width': vw, 'height': vh}, reduced_motion=motion, has_touch=vw < 900)
         pg = ctx.new_page(); errs = []

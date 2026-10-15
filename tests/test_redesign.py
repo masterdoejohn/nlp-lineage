@@ -1,7 +1,7 @@
 """Checks for the redesigned page: structure, scroll-driven scenes, fallbacks, navigation, contrast, overflow."""
 import json, sys
 from playwright.sync_api import sync_playwright
-from harness import wrap, page, OVERFLOW_JS
+from harness import wrap, page, OVERFLOW_JS, launch, ENGINE
 URL = wrap()
 COPY = json.load(open('src/scene_copy.json', encoding='utf-8'))
 results = []
@@ -27,7 +27,7 @@ CONTRAST_JS = '''() => {
 }'''
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = launch(p)
     # ---------- motion on, three widths, both themes ----------
     for w, hgt, scheme in [(390, 844, 'light'), (820, 1180, 'dark'), (1440, 900, 'light'), (1440, 900, 'dark')]:
         T = f'[{w} {scheme}] '
@@ -105,7 +105,12 @@ with sync_playwright() as p:
         # resize rebuilds scenes without errors
         pg.set_viewport_size({'width': 700 if w > 700 else 1100, 'height': hgt}); pg.wait_for_timeout(900)
         ok(T + 'resize redraws every scene', pg.evaluate('[...document.querySelectorAll(".stage")].every(s => s.querySelectorAll("svg:not(.probe)").length === 1)'))
-        o = pg.evaluate(OVERFLOW_JS)
+        # the pinned scenes re-measure after a resize; WebKit can take a moment longer than Chromium, so wait up to 4 s
+        for _ in range(16):
+            o = pg.evaluate(OVERFLOW_JS)
+            if o['sw'] <= o['vw'] and not o['wide']:
+                break
+            pg.wait_for_timeout(250)
         ok(T + 'no horizontal overflow after resize', o['sw'] <= o['vw'] and not o['wide'], o)
         ok(T + 'no console errors', not [e for e in errs if 'ERR_FAILED' not in e], errs)
         ctx.close()
@@ -149,8 +154,14 @@ with sync_playwright() as p:
     pg.evaluate('document.documentElement.setAttribute("data-theme", "dark")'); pg.wait_for_timeout(100)
     ok('[theme] data-theme=dark beats a light system', pg.evaluate('getComputedStyle(document.body).backgroundColor') == 'rgb(15, 18, 22)')
     # keyboard: skip link first, and it lands on chapter 1
-    pg.keyboard.press('Tab')
-    ok('[keys] first Tab reaches the skip link', pg.evaluate('document.activeElement.className') == 'skip')
+    if ENGINE == 'webkit':
+        # Safari's Tab key skips links unless "Press Tab to highlight each item" is on, and Playwright's WebKit cannot
+        # turn that on, so here the link is focused directly; tabbing to it is checked by hand in Safari.
+        pg.focus('a.skip')
+        ok('[keys] the skip link is the first link on the page', pg.evaluate('document.querySelector("a[href]") === document.activeElement'))
+    else:
+        pg.keyboard.press('Tab')
+        ok('[keys] first Tab reaches the skip link', pg.evaluate('document.activeElement.className') == 'skip')
     pg.keyboard.press('Enter'); pg.wait_for_timeout(300)
     ok('[keys] skip link goes to chapter 1', pg.evaluate('location.hash') == '#ch-1')
     ctx.close()

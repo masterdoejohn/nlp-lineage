@@ -30,7 +30,7 @@ jobs:
         run: |
           pip install -r requirements.txt
           npm ci
-          python -m playwright install --with-deps chromium
+          python -m playwright install --with-deps chromium webkit
 
       - name: Check the data against the rules
         run: python check_data.py
@@ -53,3 +53,13 @@ jobs:
 
       - name: Site checks
         run: python tests/test_site.py
+
+      # The same checks in WebKit, the engine behind Safari (docs/LAUNCH.md lists what still needs a real device)
+      - name: Interaction checks (WebKit)
+        run: python tests/test_interact.py --webkit
+
+      - name: Redesign checks (WebKit)
+        run: python tests/test_redesign.py --webkit
+
+      - name: Site checks (WebKit)
+        run: python tests/test_site.py --webkit
