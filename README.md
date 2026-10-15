@@ -2,7 +2,7 @@
 
 A public reference on how natural language processing led to modern language models. It covers the milestones, the papers behind them, and what to learn first. Every milestone and every relationship between milestones has a primary source.
 
-The site is a preview and is not yet public. [docs/PLAN.md](docs/PLAN.md) describes the plan and its phases.
+The site is at https://nlp-lineage.vercel.app/. [docs/PLAN.md](docs/PLAN.md) describes the plan and its phases.
 
 ## What is in this repository
 
