@@ -34,6 +34,8 @@ python tests/test_redesign.py # the tour's structure, motion, contrast and fallb
 python tests/test_site.py     # the site's pages, links, evidence rules, contrast and layout
 ```
 
+Add `--webkit` to any of the three test commands to run it in WebKit, the engine behind Safari (install it once with `python -m playwright install webkit`). CI runs both engines. [docs/LAUNCH.md](docs/LAUNCH.md) lists what still needs a check by hand on a real phone.
+
 Every pull request runs all of these (see `.github/workflows/checks.yml`), and `main` accepts a merge only when they pass.
 
 ## Rules the content follows

@@ -53,6 +53,12 @@ def route(pg, gsap=True):
         return r.continue_()
     pg.route('**/cdnjs.cloudflare.com/**', cdn)
 
+# The browser engine: chromium by default, or webkit (the engine behind Safari) with --webkit on the command line.
+ENGINE = 'webkit' if '--webkit' in sys.argv else 'chromium'
+
+def launch(p):
+    return getattr(p, ENGINE).launch()
+
 def page(b, w, hgt, scheme='light', motion='no-preference', gsap=True, errs=None):
     ctx = b.new_context(viewport={'width': w, 'height': hgt}, device_scale_factor=1, has_touch=(w < 900), color_scheme=scheme, reduced_motion=motion)
     pg = ctx.new_page()
