@@ -3,5 +3,5 @@
   "term": "Reward model",
   "definition": "A model trained on human comparisons to give a score to an output, such as an answer. It stands in for human judgement during reinforcement learning, so people do not have to rate every output.",
   "introduced_by": "christiano2017_rlhf",
-  "used_by": ["stiennon2020_summarize", "instructgpt2022", "hh_rlhf2022", "llama2_2023"]
+  "used_by": ["stiennon2020_summarize", "instructgpt2022", "hh_rlhf2022", "chatgpt2022", "llama2_2023"]
 }
