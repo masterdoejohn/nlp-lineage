@@ -40,6 +40,7 @@ const TRACE_VERB = {direct: 'built directly on this', influence: 'was influenced
 const CH_LINE = {1: 'lm', 2: 'rep', 3: 'lm', 4: 'lm', 5: 'scale', 6: 'align', 7: 'soc', 8: 'open', 9: 'eff', 10: 'rep', 11: 'multi', 12: 'reason', 13: 'agent', 14: null};
 const chC = n => CH_LINE[n] ? LINE[CH_LINE[n]].c : 'var(--c-ink-field)';
 const chOn = n => CH_LINE[n] ? LINE[CH_LINE[n]].on : 'var(--on-ink-field)';
+const OP_SURFACE = ['op-coral', 'op-dark', 'op-forest', 'op-cream'];
 const chLineName = n => CH_LINE[n] ? LINE[CH_LINE[n]].name : 'All ten threads';
 const firstYear = (() => { const f = {}; [...N].sort((a, b) => a.ord - b.ord).forEach(n => n.lines.forEach(l => { if (!(l in f)) f[l] = n.date; })); return f; })();
 
@@ -109,10 +110,10 @@ CH.forEach(c => {
   sec.setAttribute('aria-labelledby', 'h-' + c.n);
   sec.style.setProperty('--c', chC(c.n)); sec.style.setProperty('--on', chOn(c.n));
 
-  // opener: a field of the chapter's line colour
-  const op = h('header', 'opener');
+  // opener: a signature card; the surface paces the page (coral, dark, forest, cream), the mark names the thread
+  const op = h('header', 'opener ' + (c.n === 14 ? 'op-dark' : OP_SURFACE[(c.n - 1) % 4]));
   op.innerHTML = `<div class="opener-in"><span class="op-num" aria-hidden="true">${c.n}</span><div class="op-text">
-      <p class="op-meta">${esc(span(c.years))} · ${esc(chLineName(c.n))}</p>
+      <p class="op-meta">${CH_LINE[c.n] ? '<span class="op-mark" aria-hidden="true"></span>' : ''}<span>${esc(span(c.years))} · ${esc(chLineName(c.n))}</span></p>
       <h2 id="h-${c.n}"><span class="vh">Chapter ${c.n}: </span>${esc(c.title)}</h2>
       <p class="op-q">${esc(c.lede)}</p></div></div>`;
   if (c.n === 14){ const b = h('div', 'bands'); b.setAttribute('aria-hidden', 'true'); LORDER.forEach(l => b.appendChild(Object.assign(h('i'), {style: `background:${LINE[l].c}`}))); op.appendChild(b); }

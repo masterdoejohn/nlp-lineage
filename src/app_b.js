@@ -98,11 +98,11 @@ function buildScene(r){
 }
 function buildScenes(){ SCN.forEach(buildScene); }
 
-// chapter openers: the colour field opens out as it arrives
+// chapter openers: the card opens out as it arrives
 function openers(){
   if (!MOTION) return;
   document.querySelectorAll('.opener').forEach(op => {
-    gsap.fromTo(op, {clipPath: 'inset(7% 3% 7% 3%)'}, {clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: {trigger: op, start: 'top bottom', end: 'top 35%', scrub: .4}});
+    gsap.fromTo(op, {clipPath: 'inset(7% 3% 7% 3% round 12px)'}, {clipPath: 'inset(0% 0% 0% 0% round 12px)', ease: 'none', scrollTrigger: {trigger: op, start: 'top bottom', end: 'top 35%', scrub: .4}});
     gsap.fromTo(op.querySelector('.op-num'), {yPercent: 30}, {yPercent: 0, ease: 'none', scrollTrigger: {trigger: op, start: 'top bottom', end: 'top 25%', scrub: .4}});
   });
 }

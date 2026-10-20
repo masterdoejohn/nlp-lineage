@@ -79,7 +79,7 @@ function toggle(parent, label, value, onChange){
   l.append(i, h('span', '', esc(label))); i.onchange = () => onChange(i.checked); parent.appendChild(l); return i;
 }
 function svgIn(fig, w, ht, label){ fig.innerHTML = ''; const s = el('svg', {width: w, height: ht, viewBox: `0 0 ${w} ${ht}`, role: 'img', 'aria-label': label}); fig.appendChild(s); return s; }
-function tx(svg, x, y, s, a = {}){ const t = el('text', Object.assign({x, y, 'font-family': 'Archivo,Arial,sans-serif', 'font-size': 13.5, fill: 'var(--ink)'}, a), svg); t.textContent = s; return t; }
+function tx(svg, x, y, s, a = {}){ const t = el('text', Object.assign({x, y, 'font-family': 'Lato,Arial,sans-serif', 'font-size': 13.5, fill: 'var(--ink)'}, a), svg); t.textContent = s; return t; }
 const figW = (fig, max = 680) => Math.max(260, Math.min(fig.clientWidth || 600, max));
 const big = v => { for (const [d, s] of [[1e12, 'T'], [1e9, 'B'], [1e6, 'M'], [1e3, 'K']]) if (v >= d){ const x = v / d; return (x < 10 ? x.toFixed(1) : Math.round(x)).toString().replace(/\.0$/, '') + s; } return String(Math.round(v)); };
 const pc = v => { const x = v * 100; if (x > 0 && x < 0.1) return '<0.1%'; return (x > 0 && x < 1 ? x.toFixed(2) : x < 10 ? x.toFixed(1) : Math.round(x)).toString().replace(/\.0+$/, '') + '%'; };

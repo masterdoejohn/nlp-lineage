@@ -100,4 +100,4 @@ This plan was agreed on 14 October 2026. It turns the single-page history "How l
 6. **Remaining pages:** the learning path page, "report a problem" links, and the licence and about page.
 7. **Launch:** check in Safari and on a real phone, then make the site public.
 8. **After launch:** the remaining summaries, early NLP history, and the installable app.
-   - Redesign (added 20 October 2026): an editorial look, version 5, with Playfair Display and Lato, light theme only. The reference site moves first; the guided tour follows in a second change. docs/DESIGN.md describes both versions.
+   - Redesign (added 20 October 2026): an editorial look, version 5, with Playfair Display and Lato, light theme only. The reference site moved first (PR #18), then the guided tour. docs/DESIGN.md describes it.

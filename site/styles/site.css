@@ -1,4 +1,4 @@
-/* Reference site, version 5 (docs/DESIGN.md). An editorial page: white canvas, near-black ink, Playfair Display
+/* Reference site, version 5 (docs/DESIGN.md). Tokens: src/tokens.css, shared with the guided tour. An editorial page: white canvas, near-black ink, Playfair Display
    headings at regular weight, Lato text. Emphasis comes from size and from colour-block surfaces, not from weight or
    shadows. Pages alternate between white bands and signature cards. Thread colours mark data only and are never set
    as text. States: default and active (pressed); keyboard focus always shows a ring. No hover styling. */
