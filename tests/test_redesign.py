@@ -28,7 +28,7 @@ CONTRAST_JS = '''() => {
 
 with sync_playwright() as p:
     b = launch(p)
-    # ---------- motion on, three widths, both themes ----------
+    # ---------- motion on, three widths, with a light and a dark system setting (the page stays light) ----------
     for w, hgt, scheme in [(390, 844, 'light'), (820, 1180, 'dark'), (1440, 900, 'light'), (1440, 900, 'dark')]:
         T = f'[{w} {scheme}] '
         errs = []
@@ -141,18 +141,20 @@ with sync_playwright() as p:
     ok('[no GSAP] no script errors', not [e for e in errs if 'ERR_FAILED' not in e and 'Failed to load resource' not in e], errs)
     ctx.close()
 
-    # ---------- explicit theme toggle overrides the system ----------
+    # ---------- version 5: light theme only, the new type, openers as signature cards ----------
     ctx, pg = page(b, 1440, 900, scheme='dark')
     pg.goto(URL); pg.wait_for_timeout(600)
-    d = pg.evaluate('getComputedStyle(document.body).backgroundColor')
-    pg.evaluate('document.documentElement.setAttribute("data-theme", "light")'); pg.wait_for_timeout(100)
-    l = pg.evaluate('getComputedStyle(document.body).backgroundColor')
-    ok('[theme] data-theme=light beats a dark system', d != l and l == 'rgb(248, 249, 251)', (d, l))
-    ctx.close()
-    ctx, pg = page(b, 1440, 900, scheme='light')
-    pg.goto(URL); pg.wait_for_timeout(600)
-    pg.evaluate('document.documentElement.setAttribute("data-theme", "dark")'); pg.wait_for_timeout(100)
-    ok('[theme] data-theme=dark beats a light system', pg.evaluate('getComputedStyle(document.body).backgroundColor') == 'rgb(15, 18, 22)')
+    v5 = pg.evaluate('''() => { const g = s => getComputedStyle(document.querySelector(s));
+      const ops = [...document.querySelectorAll('.opener')].map(o => getComputedStyle(o).backgroundColor);
+      return {bg: g('body').backgroundColor, h1: g('.hero h1').fontFamily, w: +g('.hero h1').fontWeight, body: g('body').fontFamily,
+              opR: g('.opener').borderTopLeftRadius, ops, op14: g('#ch-14 .opener').backgroundColor,
+              marks: document.querySelectorAll('.opener .op-mark').length, bands: document.querySelectorAll('#ch-14 .bands i').length}; }''')
+    ok('[theme] the page stays light when the system prefers dark', v5['bg'] == 'rgb(255, 255, 255)', v5['bg'])
+    ok('[type] headings are Playfair Display at weight 500 or less, text is Lato', 'Playfair Display' in v5['h1'] and v5['w'] <= 500 and 'Lato' in v5['body'], (v5['h1'], v5['w'], v5['body']))
+    sig = {'rgb(170, 45, 0)', 'rgb(24, 29, 38)', 'rgb(10, 46, 14)', 'rgb(245, 233, 212)'}
+    ok('[openers] every opener is a rounded signature card', v5['opR'] == '12px' and set(v5['ops']) <= sig and len(set(v5['ops'])) == 4, (v5['opR'], sorted(set(v5['ops']))))
+    ok('[openers] no two neighbouring openers share a surface', all(a != b for a, b in zip(v5['ops'], v5['ops'][1:])), v5['ops'])
+    ok('[openers] chapters 1 to 13 name their thread with a mark; 14 shows all ten', v5['marks'] == 13 and v5['bands'] == 10 and v5['op14'] == 'rgb(24, 29, 38)', v5)
     # keyboard: skip link first, and it lands on chapter 1
     if ENGINE == 'webkit':
         # Safari's Tab key skips links unless "Press Tab to highlight each item" is on, and Playwright's WebKit cannot
