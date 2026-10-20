@@ -4,12 +4,14 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base title="Search" description="Search the milestones, threads and glossary.">
-  <h1 class="title">Search</h1>
-  <form class="search-box sec" id="search-form" action="/search/" method="get" role="search">
+  <header class="hero">
+    <h1 class="title">Search</h1>
+  </header>
+  <form class="search-box" id="search-form" action="/search/" method="get" role="search">
     <label for="q">Search milestones, threads and terms</label>
     <div class="sb-row">
       <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" />
-      <button class="btn btn-ink" type="submit">Search</button>
+      <button class="btn btn-primary" type="submit">Search</button>
     </div>
   </form>
   <p class="f-count" id="s-status" role="status"></p>

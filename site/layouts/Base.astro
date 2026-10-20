@@ -1,6 +1,8 @@
 ---
-// Every page of the reference site. Tokens come from src/tokens.css, shared with the guided tour.
+// Every page of the reference site. The thread colours come from src/tokens.css, shared with the guided tour;
+// site/styles/tokens.css adds the site's own surfaces, type and corners on top (docs/DESIGN.md, version 5).
 import '../../src/tokens.css';
+import '../styles/tokens.css';
 import '../styles/site.css';
 
 // indexed: the page's main content goes into the search index (milestone, thread and glossary pages)
@@ -13,9 +15,8 @@ const nav = [
   ['/threads/', 'Threads'],
   ['/glossary/', 'Glossary'],
   ['/learn/', 'Learning path'],
-  ['/tour/', 'Guided tour'],
-  ['/search/', 'Search'],
 ];
+const here = (href: string) => (path.startsWith(href) ? 'page' : undefined);
 const fullTitle = title === 'NLP Lineage' ? title : `${title} · NLP Lineage`;
 // "Report a problem" opens a new GitHub issue with the page's address filled in. Nothing about the reader is sent.
 const pageUrl = new URL(path, Astro.site).href;
@@ -31,28 +32,33 @@ A source that shows the correct information, if you have one:
 }).toString();
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="color-scheme" content="light" />
     <link rel="canonical" href={pageUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to the content</a>
-    <header class="bar">
+    <header class="bar" id="bar">
       <div class="sheet bar-in">
         <a class="brand" href="/">NLP Lineage</a>
-        <nav aria-label="Sections">
-          <ul>
+        <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu</button>
+        <nav class="site-nav" id="site-nav" aria-label="Sections">
+          <ul class="nav-main">
             {nav.map(([href, label]) => (
-              <li><a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a></li>
+              <li><a href={href} aria-current={here(href)}>{label}</a></li>
             ))}
+          </ul>
+          <ul class="nav-cta">
+            <li><a class="btn btn-sm" href="/search/" aria-current={here('/search/')}>Search</a></li>
+            <li><a class="btn btn-sm btn-primary" href="/tour/">Guided tour</a></li>
           </ul>
         </nav>
       </div>
@@ -62,14 +68,57 @@ A source that shows the correct information, if you have one:
     </main>
     <footer class="foot">
       <div class="sheet">
-        <p>Every milestone and relationship comes from a primary source, linked on its page. Weak links are marked as weak.</p>
-        <p>Content: <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a>, Zeeshan Arif. Code: <a href="https://github.com/masterdoejohn/nlp-lineage/blob/main/LICENSE" rel="noopener">MIT licence</a>.</p>
-        <ul class="foot-links">
-          <li><a href="/about/">About this site</a></li>
-          <li><a href={issue} rel="noopener" data-report>Report a problem on this page</a></li>
-          <li><a href="https://github.com/masterdoejohn/nlp-lineage" rel="noopener">Source on GitHub</a></li>
-        </ul>
+        <div class="foot-cols">
+          <div class="foot-about">
+            <p class="foot-brand">NLP Lineage</p>
+            <p>Every milestone and relationship comes from a primary source, linked on its page. Weak links are marked as weak.</p>
+          </div>
+          <div>
+            <p class="foot-h">The reference</p>
+            <ul class="foot-links">
+              <li><a href="/milestones/">Milestones</a></li>
+              <li><a href="/timeline/">Timeline</a></li>
+              <li><a href="/threads/">Threads</a></li>
+              <li><a href="/levels/">Turning points</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="foot-h">Learn</p>
+            <ul class="foot-links">
+              <li><a href="/tour/">Guided tour</a></li>
+              <li><a href="/learn/">Learning path</a></li>
+              <li><a href="/glossary/">Glossary</a></li>
+              <li><a href="/search/">Search</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="foot-h">This site</p>
+            <ul class="foot-links">
+              <li><a href="/about/">About this site</a></li>
+              <li><a href={issue} rel="noopener" data-report>Report a problem on this page</a></li>
+              <li><a href="https://github.com/masterdoejohn/nlp-lineage" rel="noopener">Source on GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="foot-legal">Content: <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a>, Zeeshan Arif. Code: <a href="https://github.com/masterdoejohn/nlp-lineage/blob/main/LICENSE" rel="noopener">MIT licence</a>.</p>
       </div>
     </footer>
+    <script>
+      // Below 900px the sections fold behind a Menu button and open as a full-screen sheet.
+      // Without JavaScript the button stays hidden and the links wrap under the name instead.
+      const bar = document.getElementById('bar')!;
+      const btn = document.getElementById('menu-btn') as HTMLButtonElement;
+      const set = (open: boolean) => {
+        bar.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        btn.textContent = open ? 'Close' : 'Menu';
+        document.documentElement.classList.toggle('menu-open', open);
+      };
+      btn.hidden = false;
+      bar.classList.add('js-menu');
+      btn.addEventListener('click', () => set(!bar.classList.contains('open')));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && bar.classList.contains('open')) { set(false); btn.focus(); } });
+      matchMedia('(min-width: 900px)').addEventListener('change', (e) => { if (e.matches) set(false); });
+    </script>
   </body>
 </html>

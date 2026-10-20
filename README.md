@@ -11,7 +11,7 @@ The site is at https://nlp-lineage.vercel.app/. [docs/PLAN.md](docs/PLAN.md) des
 | `data/` | The research data: one file per milestone, thread, chapter and glossary term. [docs/DATA.md](docs/DATA.md) describes it. |
 | `site/` | The reference site (Astro): milestone, thread and glossary pages, a timeline, filters, a learning path, an about page, and "before and after" for every milestone. It builds to `build/`, and Pagefind then adds a search index. |
 | `src/`, `build.py` | The guided tour, "How language models came to be": one HTML page with scroll-driven diagrams. It builds to `dist/llm-lineage.html`. |
-| `src/tokens.css` | The design tokens (colours, type, spacing), shared by the site and the tour. [docs/DESIGN.md](docs/DESIGN.md) describes the design. |
+| `src/tokens.css`, `site/styles/tokens.css` | The design tokens. The thread colours in `src/tokens.css` are shared by the site and the tour; the site's own surfaces, type and corners (version 5) are in `site/styles/tokens.css`. [docs/DESIGN.md](docs/DESIGN.md) describes the design. |
 | `check_data.py` | Checks the data against the rules a script can check. |
 | `tests/` | Browser checks for the tour and the site (Playwright). |
 

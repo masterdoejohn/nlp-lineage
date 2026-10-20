@@ -10,12 +10,14 @@ const years = [...new Set(milestones.map((m) => year(m)))];
 const claims = Object.keys(CLAIM_LABEL).filter((c) => milestones.some((m) => m.claim === c));
 ---
 <Base title="Milestones" description="Every milestone in the history of language models, in date order, each with its primary source.">
-  <p class="kicker">{milestones.length} milestones, {first} to {last}</p>
-  <h1 class="title">Milestones</h1>
-  <p class="lead">Papers, models, methods, datasets and events, in date order. Open one to see what it changed, its source, and what came before and after it.</p>
+  <header class="hero">
+    <p class="kicker">{milestones.length} milestones, {first} to {last}</p>
+    <h1 class="title">Milestones</h1>
+    <p class="lead">Papers, models, methods, datasets and events, in date order. Open one to see what it changed, its source, and what came before and after it.</p>
+  </header>
 
   <!-- The filters need JavaScript; without it the full list below is shown. -->
-  <details class="filters-d sec" id="filters-d" hidden>
+  <details class="filters-d" id="filters-d" hidden>
   <summary>Filter the list</summary>
   <form class="filters" id="filters" aria-label="Filter the milestones">
     <div class="f-row">

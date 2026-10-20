@@ -10,13 +10,15 @@ const count = (l: string) => milestones.filter((m) => m.level === l).length;
 const tps = milestones.filter((m) => m.level === 'turning-point').map((m) => ({ m, ...influence(m.id) }));
 ---
 <Base title="How levels are decided" description="Each milestone is a turning point, a milestone or notable. The level is measured from the documented relationships, not chosen by hand.">
-  <p class="kicker">Levels</p>
-  <h1 class="title">How levels are decided</h1>
-  <div class="prose lead">
-    <p>Each milestone has one of three levels. The level is measured from the documented relationships in the data. Nobody chooses it by hand, and a check rejects any level that does not follow the rule.</p>
-  </div>
+  <header class="hero">
+    <p class="kicker">Levels</p>
+    <h1 class="title">How levels are decided</h1>
+    <div class="prose lead">
+      <p>Each milestone has one of three levels. The level is measured from the documented relationships in the data. Nobody chooses it by hand, and a check rejects any level that does not follow the rule.</p>
+    </div>
+  </header>
 
-  <section class="sec" aria-labelledby="h-rule">
+  <section aria-labelledby="h-rule">
     <h2 id="h-rule">The rule</h2>
     <dl class="rule-list">
       <div><dt>Turning point ({count('turning-point')})</dt> <dd>At least {TP_DIRECT} later milestones build on it directly, were influenced by it, or succeeded it. Its descendants also reach at least {TP_THREADS} of the 10 research threads.</dd></div>

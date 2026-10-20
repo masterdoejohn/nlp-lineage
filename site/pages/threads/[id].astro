@@ -12,13 +12,14 @@ const ms = onThread(t.id);
 const main = ms.filter((m) => m.lines[0] === t.id).length;
 ---
 <Base indexed title={t.name} description={`The ${ms.length} milestones on the ${t.name.toLowerCase()} thread, from ${year(ms[0])} to ${year(ms[ms.length - 1])}.`}>
-  <header class="field" data-pagefind-meta="sub:Research thread" style={`--c:var(--c-${t.id});--on:var(--on-${t.id})`}>
+  <header class="hero" data-pagefind-meta="sub:Research thread" style={`--c:var(--c-${t.id})`}>
+    <span class="line-bar" aria-hidden="true"></span>
     <p class="meta">Research thread · {year(ms[0])} to {year(ms[ms.length - 1])}</p>
     <h1 class="title">{t.name}</h1>
+    <p class="lead">
+      <span class="count">{ms.length}</span> milestones sit on this thread. For <span class="count">{main}</span> of them it is the main thread.
+      The others also belong to another thread, which is named under them.
+    </p>
   </header>
-  <p class="lead">
-    <span class="count">{ms.length}</span> milestones sit on this thread. For <span class="count">{main}</span> of them it is the main thread.
-    The others also belong to another thread, which is named under them.
-  </p>
-  <div class="sec" data-pagefind-ignore><YearList items={ms} thread={t.id} /></div>
+  <div data-pagefind-ignore><YearList items={ms} thread={t.id} /></div>
 </Base>
