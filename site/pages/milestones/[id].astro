@@ -38,15 +38,18 @@ const facts: [string, string][] = [
 if (m.other) facts.push(['Other dates', m.other]);
 ---
 <Base title={m.short} description={m.problem} indexed>
-  <header class="field" data-pagefind-meta={`sub:${when(m)}, ${cap(m.type)}`} style={`--c:var(--c-${home.id});--on:var(--on-${home.id})`}>
-    <p class="meta" data-pagefind-ignore>{when(m)} · {home.name}</p>
+  <header class="hero" data-pagefind-meta={`sub:${when(m)}, ${cap(m.type)}`}>
+    <p class="meta" data-pagefind-ignore><span class="mark" style={`--c:var(--c-${home.id})`}>{home.name}</span><span>{when(m)}</span></p>
     <h1 class="title">{m.short}</h1>
-  </header>
-
-  <div class="under-field">
     <p class="orig">{m.title}</p>
     <p class="by">{m.authors}</p>
+    <div class="actions">
+      <a class="btn btn-primary" href={m.src} rel="noopener">Read the primary source ({host(m.src)})</a>
+      <a class="btn" href="#h-lin">See what came before and after</a>
+    </div>
+  </header>
 
+  <div class="card-soft">
     <dl class="facts">
       {facts.map(([k, v]) => <div><dt>{k}</dt>{' '}<dd>{v}</dd></div>)}
       <div>
@@ -59,17 +62,14 @@ if (m.other) facts.push(['Other dates', m.other]);
       )}
     </dl>
 
-    <div class="flags">
-      <p class="flag" data-level={m.level}>{levelReason(m, inf.direct, inf.threads)} <a href="/levels/">How levels are decided</a></p>
-      {flags.map((f) => <p class="flag">{f}</p>)}
-    </div>
-
-    <div class="actions">
-      <a class="btn btn-ink" href={m.src} rel="noopener">Read the primary source ({host(m.src)})</a>
-    </div>
-
-    {!summary && <p class="status">Full summary in progress. Until then, this page shows the milestone's record from the research data.</p>}
   </div>
+
+  <div class="flags">
+    <p class="flag" data-level={m.level}>{levelReason(m, inf.direct, inf.threads)} <a href="/levels/">How levels are decided</a></p>
+    {flags.map((f) => <p class="flag">{f}</p>)}
+  </div>
+
+  {!summary && <p class="status">Full summary in progress. Until then, this page shows the milestone's record from the research data.</p>}
 
   {summary && Summary && (
     <div class="summary" data-summary>

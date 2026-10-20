@@ -18,14 +18,16 @@ const path = Object.entries(phases).map(([n, title]) => {
 });
 ---
 <Base title="Learning path" description="Eight phases for learning how modern language models work, with the milestones to understand first, the terms to know and short study notes.">
-  <p class="kicker">{path.length} phases</p>
-  <h1 class="title">Learning path</h1>
-  <div class="prose lead">
-    <p>The path groups the milestones into eight phases, from the Transformer to training a model from scratch. It is a suggested order for study, not a course, and you can start with any phase.</p>
-    <p>Each phase starts with the milestones that have study notes: what to learn to understand them, and what helps to know first. Then come the terms to know and the other milestones in the phase. A milestone can be in more than one phase.</p>
-  </div>
+  <header class="hero">
+    <p class="kicker">{path.length} phases</p>
+    <h1 class="title">Learning path</h1>
+    <div class="prose lead">
+      <p>The path groups the milestones into eight phases, from the Transformer to training a model from scratch. It is a suggested order for study, not a course, and you can start with any phase.</p>
+      <p>Each phase starts with the milestones that have study notes: what to learn to understand them, and what helps to know first. Then come the terms to know and the other milestones in the phase. A milestone can be in more than one phase.</p>
+    </div>
+  </header>
 
-  <ol class="phase-index sec" aria-label="Phases">
+  <ol class="phase-index" aria-label="Phases">
     {path.map((p) => <li><a href={`#phase-${p.n}`}>{p.n}. {p.title}</a></li>)}
   </ol>
 

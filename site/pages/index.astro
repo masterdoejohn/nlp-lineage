@@ -4,41 +4,75 @@ import { milestones, relationships, threads, terms, chapters, onThread } from '.
 import { year } from '../lib/labels';
 
 const first = year(milestones[0]), last = year(milestones[milestones.length - 1]);
+const tps = milestones.filter((m) => m.level === 'turning-point').length;
 ---
 <Base title="NLP Lineage" description="A reference on how natural language processing led to modern language models: the milestones, the papers behind them, and what to learn first.">
-  <p class="kicker">A reference on how NLP led to modern language models</p>
-  <h1 class="title title-home">NLP Lineage</h1>
-  <p class="lead">
-    It records <span class="count">{milestones.length}</span> milestones from {first} to {last}, and the <span class="count">{relationships.length}</span> relationships between them.
-    Each milestone and each relationship links to its primary source.
-  </p>
-
-  <form class="search-box sec" action="/search/" method="get" role="search">
-    <label for="home-q">Search milestones, threads and terms</label>
-    <div class="sb-row">
-      <input id="home-q" name="q" type="search" autocomplete="off" spellcheck="false" />
-      <button class="btn btn-ink" type="submit">Search</button>
+  <header class="hero">
+    <p class="kicker">NLP Lineage</p>
+    <h1 class="title">How natural language processing led to modern language models</h1>
+    <p class="lead">
+      A reference of <span class="count">{milestones.length}</span> milestones from {first} to {last}, and the <span class="count">{relationships.length}</span> relationships between them.
+      Each milestone and each relationship links to its primary source.
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/tour/">Take the guided tour</a>
+      <a class="btn" href="/milestones/">Browse the milestones</a>
     </div>
-  </form>
+  </header>
 
-  <section class="sec" aria-labelledby="h-start">
-    <h2 id="h-start">Where to start</h2>
-    <ul class="tiles">
+  <section class="card card-coral on-dark" aria-labelledby="h-tp">
+    <h2 id="h-tp">{tps} turning points changed the most</h2>
+    <p>A turning point is a milestone that many later milestones build on, across several research threads. The level is measured from the documented links, not chosen by hand.</p>
+    <ul class="stats">
+      <li><span class="n count">{milestones.length}</span><span class="l">milestones</span></li>
+      <li><span class="n count">{relationships.length}</span><span class="l">documented relationships</span></li>
+      <li><span class="n count">{threads.length}</span><span class="l">research threads</span></li>
+      <li><span class="n count">{tps}</span><span class="l">turning points</span></li>
+    </ul>
+    <div class="actions"><a class="btn" href="/levels/">See the turning points</a></div>
+  </section>
+
+  <section class="band" aria-labelledby="h-start">
+    <h2 class="h2" id="h-start">Where to start</h2>
+    <ul class="tiles tiles-pastel">
       <li><a href="/tour/">Guided tour</a><p>How language models came to be: the story in {chapters.length} chapters, with working diagrams.</p></li>
       <li><a href="/milestones/">Milestones</a><p>All {milestones.length}, in date order, from {first} to {last}. Filter them by thread, kind and year.</p></li>
       <li><a href="/timeline/">Timeline</a><p>Every milestone by year, under its main thread, on one page.</p></li>
-      <li><a href="/levels/">Turning points</a><p>The {milestones.filter((m) => m.level === 'turning-point').length} milestones that changed the most, by a rule measured from the documented links.</p></li>
+      <li><a href="/learn/">Learning path</a><p>Eight phases of study, with the milestones to understand first and short study notes.</p></li>
       <li><a href="/threads/">Threads</a><p>The {threads.length} research threads, and the milestones on each one.</p></li>
       <li><a href="/glossary/">Glossary</a><p>{terms.length ? `${terms.length} terms, each defined in plain words.` : 'Terms in plain words. The glossary is being written.'}</p></li>
     </ul>
   </section>
 
-  <section class="sec" aria-labelledby="h-threads">
-    <h2 id="h-threads">The threads</h2>
+  <section class="band card-cream card-search" aria-labelledby="h-search">
+    <h2 class="h2" id="h-search">Look something up</h2>
+    <form class="search-box" action="/search/" method="get" role="search">
+      <label for="home-q">Search milestones, threads and terms</label>
+      <div class="sb-row">
+        <input id="home-q" name="q" type="search" autocomplete="off" spellcheck="false" />
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="band" aria-labelledby="h-threads">
+    <h2 class="h2" id="h-threads">The threads</h2>
     <ul class="tiles">
       {threads.map((t) => (
         <li><a class="mark" style={`--c:var(--c-${t.id})`} href={`/threads/${t.id}/`}>{t.name}</a><p><span class="count">{onThread(t.id).length}</span> milestones</p></li>
       ))}
     </ul>
+  </section>
+
+  <section class="band card card-dark on-dark" aria-labelledby="h-learn">
+    <h2 id="h-learn">Learn it in order</h2>
+    <p>The learning path groups the milestones into eight phases, from the Transformer to training a model from scratch. Each phase starts with the milestones to understand first.</p>
+    <div class="actions"><a class="btn" href="/learn/">Open the learning path</a></div>
+  </section>
+
+  <section class="band card card-strong" aria-labelledby="h-wrong">
+    <h2 id="h-wrong">Something wrong or missing?</h2>
+    <p>Every page has a link at the bottom to report a problem. A link to a source that shows the correct information helps most.</p>
+    <div class="actions"><a class="btn btn-primary" href="/about/">How this site is made</a></div>
   </section>
 </Base>

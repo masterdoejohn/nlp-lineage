@@ -1,6 +1,94 @@
-# Design system: How language models came to be
+# Design system: NLP Lineage
 
-This file records the visual system of the redesign (version 4). PRODUCT.md, beside it, covers the readers, purpose and principles.
+This file records the visual system. PRODUCT.md, beside it, covers the readers, purpose and principles.
+
+There are two versions in use while the redesign is in progress:
+- **Version 5** is the reference site (every page except the guided tour). It is described first.
+- **Version 4** is the guided tour at /tour/. It is described in the second half of this file and will move to version 5 in a later change.
+
+# Version 5: the reference site
+
+## Concept
+
+The site reads like an editorial print magazine. It has a white canvas, near-black ink, generous whitespace and calm heroes. Emphasis comes from type size and from colour-block surfaces, never from bold display type, gradients or shadows. Long pages alternate between white bands and signature cards, so that no two neighbouring bands have the same surface.
+
+The system is modelled on the public marketing design of Airtable. It adapts that language for a reading-heavy reference site and uses none of Airtable's names, logos or licensed fonts.
+
+## Decisions that differ from the model
+
+| Model | This site | Why |
+|---|---|---|
+| Haas Grotesk / Haas Groot Disp | Playfair Display for headings, Lato for text | Open fonts, chosen for this project |
+| Body text 14px | 17px (nav, captions and meta stay 14px) | Long summaries need a comfortable size |
+| Weight 500 for buttons and labels | Lato 700 | Lato has no 500 weight |
+| No added accent colours | The ten thread colours stay, for data only | They identify research threads in marks, map lines and the tracer |
+| Links never underlined | Links in running text are underlined | Link blue on body text is about 2:1, below the 3:1 needed to tell links apart by colour alone |
+| Hairline input borders | Inputs use `--input-line` (#7c818a) | Form controls need a 3:1 boundary |
+| Pricing sub-system | Not used | The site has no pricing page |
+| Light theme only | Light theme only | `data-theme="light"` on `<html>` also keeps the shared thread colours on their light values |
+
+## Colour
+
+All tokens are on `:root` in `site/styles/tokens.css`. The thread colours come from `src/tokens.css`, shared with the tour.
+
+| Token | Value | Role |
+|---|---|---|
+| `--canvas` | #ffffff | Page surface |
+| `--surface-soft` | #f8fafc | Fact cards, study cards, tiles, filters |
+| `--surface-strong` | #e0e2e6 | The light grey call-to-action band |
+| `--surface-dark` | #181d26 | The dark call-to-action card |
+| `--hairline` | #dddddd | Dividers, secondary button outline |
+| `--ink` | #181d26 | Headings, primary button, strongest text |
+| `--ink-active` | #0d1218 | Primary button when pressed |
+| `--body` | #333840 | Running text |
+| `--muted` | #41454d | Kickers, captions, meta |
+| `--link` / `--link-active` | #1b61c9 / #1a3866 | Links; also the focus ring |
+
+**Signature surfaces** are whole cards or bands, never small accents:
+- Coral #aa2d00 and forest #0a2e0e carry white text. Forest is defined but not used yet.
+- Cream #f5e9d4 holds callouts (a milestone's level, the home page search).
+- Peach #fcab79, mint #a8d8c4, yellow #f4d35e and mustard #d9a441 are tile surfaces. Text on them is ink only: muted grey and link blue fall below 4.5:1 on some of them.
+
+**Thread colours** mark data: the square beside a thread's name, the line above a thread page's title, the timeline's column heads and the tracer's dots. They are never text colours and never page surfaces.
+
+## Type
+
+| Role | Face | Setting |
+|---|---|---|
+| Page title (h1) | Playfair Display 400 | clamp(2.5rem to 3.5rem), line height 1.1 |
+| Section heading (h2) | Playfair Display 400 | clamp(1.75rem to 2.25rem), line height 1.2 |
+| Sub-heading, card title | Playfair Display 500 | 1.25rem |
+| Running text | Lato 400 | 17px, line height 1.6 |
+| Lead | Lato 400 | 1.25rem |
+| Buttons, labels | Lato 700 | 16px (14px in the top bar) |
+| Nav, captions, meta | Lato 400 or 700 | 14px |
+
+Display type is never bolder than 500. Fonts load from Google Fonts, with Georgia and the system sans-serif stack as fallbacks.
+
+## Space, corners and depth
+
+- **Sheet:** 1280px wide, with a gutter of clamp(16px, 4vw, 48px).
+- **Spacing:** a 4px base (4, 8, 12, 16, 24, 32, 48, 64, 96). Bands are `--section` apart: 96px on wide screens, at least 56px on phones.
+- **Corners:** 12px for buttons, signature cards and soft cards; 10px for tiles, callouts and study cards; 6px for inputs and chips; 2px for thread squares; full round for the tracer dots and the thread line.
+- **Depth:** colour blocks, not shadows. The only shadow is a faint blue-tinted drop under the primary button.
+
+## Components
+
+- **Top bar:** 64px, white, pinned, with a hairline below. Name on the left, five section links, then Search (secondary) and Guided tour (primary). Below 900px the links fold behind a Menu button and open as a full-screen sheet. Without JavaScript, the links wrap under the name.
+- **Hero:** white, with a kicker, the h1, a lead and at most one primary button. A milestone's hero also shows its thread mark and date, the original title, the authors and the button pair.
+- **Buttons:** primary is near-black with white text; secondary is white with a hairline. On coral, forest and dark cards the secondary button stays white.
+- **Signature cards:** coral (the home page's turning points, with four figures), dark (the learning path) and light grey (reporting a problem). Padding is 48px, or 24 to 32px on phones.
+- **Tiles:** pastel on the home page's "Where to start" (heights differ on purpose), soft grey elsewhere.
+- **Fact card:** a soft card holding the milestone's spec sheet.
+- **Callouts:** cream cards for a milestone's level and other notes.
+- **Lists:** year blocks and rows divided by hairlines; the year is set in Playfair Display.
+- **Footer:** white, the name and a sentence on sources, three link columns, and a legal row with the licences.
+
+## States
+
+Components define a default state and a pressed (`:active`) state. There is no hover styling. Keyboard focus always shows a 2px ring in link blue, or white on dark and coral cards. The site renders in the light theme even when the reader's system prefers dark.
+
+# Version 4: the guided tour
 
 ## Concept
 

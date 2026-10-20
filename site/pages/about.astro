@@ -12,11 +12,13 @@ const turningDone = milestones.filter((m) => m.level === 'turning-point' && ids.
 const others = summaries.length - turningDone;
 ---
 <Base title="About this site" description="What NLP Lineage is, where its information comes from, how the summaries are made, and how to report a problem.">
-  <p class="kicker">About</p>
-  <h1 class="title">About this site</h1>
-  <div class="prose lead">
-    <p>NLP Lineage is a free reference on how natural language processing led to modern language models. It covers the events that caused big changes, the papers behind them, and what to learn first.</p>
-  </div>
+  <header class="hero">
+    <p class="kicker">About</p>
+    <h1 class="title">About this site</h1>
+    <div class="prose lead">
+      <p>NLP Lineage is a free reference on how natural language processing led to modern language models. It covers the events that caused big changes, the papers behind them, and what to learn first.</p>
+    </div>
+  </header>
 
   <div class="prose about">
     <h2 class="h2">What it covers</h2>

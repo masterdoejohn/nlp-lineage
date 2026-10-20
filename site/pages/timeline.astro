@@ -19,11 +19,13 @@ const gapText = (r: { from: number; to: number }) => (r.from === r.to ? `${r.fro
 const first = year(milestones[0]), lastY = year(milestones[milestones.length - 1]);
 ---
 <Base title="Timeline" description="Every milestone in the history of language models, by year and by research thread.">
-  <p class="kicker">{first} to {lastY}</p>
-  <h1 class="title">Timeline</h1>
-  <p class="lead">Every milestone by year, under its main thread. Turning points are in bold. Years with no milestones are folded together.</p>
+  <header class="hero">
+    <p class="kicker">{first} to {lastY}</p>
+    <h1 class="title">Timeline</h1>
+    <p class="lead">Every milestone by year, under its main thread. Turning points are in bold. Years with no milestones are folded together.</p>
+  </header>
 
-  <div class="tt-wide sec">
+  <div class="tt-wide">
     <table class="tt">
       <caption class="sr">Milestones by year and main thread</caption>
       <thead>
@@ -53,7 +55,7 @@ const first = year(milestones[0]), lastY = year(milestones[milestones.length - 1
     </table>
   </div>
 
-  <div class="tt-narrow sec">
+  <div class="tt-narrow">
     {rows.map((r) => r.kind === 'gap' ? (
       <p class="tt-gap-n">{gapText(r)}</p>
     ) : (

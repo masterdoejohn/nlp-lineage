@@ -213,6 +213,13 @@ dashes = [rel(p) for p, x in pages.items() if '\u2014' in ''.join(x.text)]
 dashes += ['/tour/'] if '\u2014' in (BUILD / 'tour' / 'index.html').read_text(encoding='utf-8') else []
 ok('no em dashes on any page', not dashes, dashes[:5])
 
+# version 5 of the design (docs/DESIGN.md): light theme only, Playfair Display and Lato, no version 4 fonts
+raw = {p_: p_.read_text(encoding='utf-8') for p_ in pages}
+not_light = [rel(p_) for p_, h in raw.items() if '<html lang="en" data-theme="light">' not in h]
+ok('every page is set to the light theme', not not_light, not_light[:5])
+bad_fonts = [rel(p_) for p_, h in raw.items() if 'family=Lato' not in h or 'family=Playfair+Display' not in h or 'Archivo' in h or 'Atkinson' in h]
+ok('every page loads Playfair Display and Lato, and no version 4 font', not bad_fonts, bad_fonts[:5])
+
 
 # the site uses the tour's exact wording for relationships and weak evidence
 def pairs(text, name):
@@ -300,6 +307,26 @@ with sync_playwright() as p:
     ok('[search] finds the Transformer milestone', '/milestones/transformer2017/' in urls, urls[:5])
     n_hits = int(pg.inner_text('#s-status').split()[0])
     ok('[search] reports how many results it found', 'results for "transformer"' in pg.inner_text('#s-status') and pg.locator('#results li').count() == min(n_hits, 20), pg.inner_text('#s-status'))
+    ctx.close()
+
+    # version 5 of the design: light even when the system prefers dark, regular-weight headings, the button pair
+    ctx, pg = page(b, 1440, 900, scheme='dark')
+    pg.goto(BASE + '/'); pg.wait_for_load_state('networkidle')
+    st = pg.evaluate('''() => { const g = (s) => getComputedStyle(document.querySelector(s));
+      return {bg: g('body').backgroundColor, h1: g('h1').fontFamily, w: g('h1').fontWeight, body: g('body').fontFamily,
+              pbg: g('.hero .btn-primary').backgroundColor, pr: g('.hero .btn-primary').borderRadius, sbg: g('.hero .btn:not(.btn-primary)').backgroundColor}; }''')
+    ok('[design] the page stays light when the system prefers dark', st['bg'] == 'rgb(255, 255, 255)', st['bg'])
+    ok('[design] headings are Playfair Display at weight 500 or less', 'Playfair Display' in st['h1'] and int(st['w']) <= 500, (st['h1'], st['w']))
+    ok('[design] text is Lato', st['body'].startswith('Lato') or st['body'].startswith('"Lato"'), st['body'])
+    ok('[design] the primary button is near-black with 12px corners, the secondary is white', st['pbg'] == 'rgb(24, 29, 38)' and st['pr'] == '12px' and st['sbg'] == 'rgb(255, 255, 255)', st)
+    ctx.close()
+    ctx, pg = page(b, 390, 844)
+    pg.goto(BASE + '/milestones/'); pg.wait_for_load_state('networkidle')
+    closed = pg.is_visible('#menu-btn') and not pg.is_visible('#site-nav a[href="/timeline/"]')
+    pg.click('#menu-btn')
+    opened = pg.is_visible('#site-nav a[href="/timeline/"]') and pg.get_attribute('#menu-btn', 'aria-expanded') == 'true'
+    pg.keyboard.press('Escape')
+    ok('[design] on a phone the sections fold behind Menu, which opens and closes', closed and opened and not pg.is_visible('#site-nav a[href="/timeline/"]'), (closed, opened))
     ctx.close()
 
     # before and after: the same lineage as the tour's tracer, for every model the tracer offers
