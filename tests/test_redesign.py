@@ -100,8 +100,14 @@ with sync_playwright() as p:
         pg.locator('#ch-6 .key .btn-line').first.click(); pg.wait_for_timeout(250)
         card = pg.evaluate('''() => ({open: document.getElementById('sheet').open, title: document.getElementById('sheet-title').textContent, cells: document.querySelectorAll('.sh-grid > div').length, focus: document.activeElement.id})''')
         ok(T + 'study card opens as a spec sheet', card['open'] and card['cells'] == 6 and card['focus'] == 'close', card)
-        pg.keyboard.press('Escape'); pg.wait_for_timeout(150)
-        ok(T + 'focus returns to the keystone button', pg.evaluate("document.activeElement.classList.contains('btn-line')"))
+        pg.keyboard.press('Escape')
+        # WebKit can take a little longer than 150 ms to close the dialog and return focus, so wait up to 1.5 s
+        back = False
+        for _ in range(10):
+            pg.wait_for_timeout(150)
+            back = pg.evaluate("document.activeElement.classList.contains('btn-line')")
+            if back: break
+        ok(T + 'focus returns to the keystone button', back)
         # resize rebuilds scenes without errors
         pg.set_viewport_size({'width': 700 if w > 700 else 1100, 'height': hgt}); pg.wait_for_timeout(900)
         ok(T + 'resize redraws every scene', pg.evaluate('[...document.querySelectorAll(".stage")].every(s => s.querySelectorAll("svg:not(.probe)").length === 1)'))
@@ -155,6 +161,26 @@ with sync_playwright() as p:
     ok('[openers] every opener is a rounded signature card', v5['opR'] == '12px' and set(v5['ops']) <= sig and len(set(v5['ops'])) == 4, (v5['opR'], sorted(set(v5['ops']))))
     ok('[openers] no two neighbouring openers share a surface', all(a != b for a, b in zip(v5['ops'], v5['ops'][1:])), v5['ops'])
     ok('[openers] chapters 1 to 13 name their thread with a mark; 14 shows all ten', v5['marks'] == 13 and v5['bands'] == 10 and v5['op14'] == 'rgb(24, 29, 38)', v5)
+    # the site's sections sit above the route strip, as on every other page; the route strip stays pinned
+    nav = pg.evaluate('''() => ({links: [...document.querySelectorAll('#sb-nav a')].map(a => a.getAttribute('href')),
+      current: document.querySelector('#sb-nav a[aria-current=page]')?.getAttribute('href'),
+      firstLink: document.querySelector('a[href]').className, order: !!(document.getElementById('sitebar').compareDocumentPosition(document.querySelector('.topbar')) & 4)})''')
+    want = ['/milestones/', '/timeline/', '/threads/', '/glossary/', '/learn/', '/search/', '/tour/']
+    ok('[nav] the tour has the site navigation, with the tour marked as the current page', nav['links'] == want and nav['current'] == '/tour/' and nav['order'] and nav['firstLink'] == 'skip', nav)
+    pg.evaluate('document.querySelectorAll("#ch-2 .step")[1].scrollIntoView({block: "center"})'); pg.wait_for_timeout(300)
+    tops = pg.evaluate('({bar: Math.round(document.querySelector(".topbar").getBoundingClientRect().top), site: Math.round(document.getElementById("sitebar").getBoundingClientRect().bottom)})')
+    ok('[nav] after scrolling, the site bar has gone and the route strip is pinned at the top', tops['bar'] == 0 and tops['site'] <= 0, tops)
+    ctx.close()
+    ctx, pg = page(b, 390, 844)
+    pg.goto(URL); pg.wait_for_timeout(600)
+    closed = pg.is_visible('#sb-menu') and not pg.is_visible('#sb-nav a[href="/timeline/"]')
+    pg.click('#sb-menu')
+    opened = pg.is_visible('#sb-nav a[href="/timeline/"]') and pg.get_attribute('#sb-menu', 'aria-expanded') == 'true'
+    pg.keyboard.press('Escape')
+    ok('[nav] on a phone the sections fold behind Menu, which opens and closes', closed and opened and not pg.is_visible('#sb-nav a[href="/timeline/"]'), (closed, opened))
+    ctx.close()
+    ctx, pg = page(b, 1440, 900)
+    pg.goto(URL); pg.wait_for_timeout(600)
     # keyboard: skip link first, and it lands on chapter 1
     if ENGINE == 'webkit':
         # Safari's Tab key skips links unless "Press Tab to highlight each item" is on, and Playwright's WebKit cannot

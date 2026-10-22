@@ -23,18 +23,48 @@ b,strong{color:var(--ink)}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .mono{font-family:var(--mono);font-size:0.92em}
 
-/* ---------- top bar: the route strip, 64px, white, pinned ---------- */
-.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:var(--z-bar);background:var(--canvas);border-bottom:1px solid var(--hairline)}
+/* ---------- the site's top bar: the same sections as every other page; it scrolls away, the route strip stays ---------- */
+.sitebar{position:relative;z-index:calc(var(--z-bar) + 1);background:var(--canvas);border-bottom:1px solid var(--hairline)}
+.sitebar-in{max-width:var(--sheet);margin-inline:auto;padding-inline:var(--gutter);display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s6);min-height:var(--nav-h);padding-block:var(--s2)}
+.sb-brand{font-family:var(--display);font-weight:500;font-size:1.375rem;line-height:1;color:var(--ink);text-decoration:none;white-space:nowrap}
+.sb-nav{flex:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s2) var(--s5)}
+.sb-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center}
+.sb-main{gap:0 var(--s5)}
+.sb-main a{display:inline-flex;align-items:center;min-height:44px;font-size:var(--t-cap);color:var(--ink);text-decoration:none;border-bottom:2px solid transparent}
+.sb-cta{gap:var(--s2)}
+.sb-btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:var(--s2) var(--s4);font-weight:700;font-size:var(--t-cap);line-height:1.4;
+  color:var(--ink);background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--r-lg);text-decoration:none}
+.sb-btn:active{background:var(--surface-soft);color:var(--ink)}
+.sb-primary{background:var(--ink);color:var(--on-dark);border-color:var(--ink);box-shadow:var(--btn-depth)}
+.sb-primary:active{background:var(--ink-active);color:var(--on-dark)}
+.sb-menu{display:none;margin-left:auto;font-weight:700;font-size:var(--t-cap);color:var(--ink);background:var(--canvas);
+  border:1px solid var(--hairline);border-radius:var(--r-lg);min-height:44px;padding:0 var(--s4)}
+.sb-menu:active{background:var(--surface-soft)}
+@media (max-width:899px){
+  .sitebar.js-menu .sb-menu{display:inline-flex;align-items:center}
+  .sitebar.js-menu .sb-nav{display:none}
+  .sitebar.js-menu.open .sb-nav{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:var(--s6);
+    position:fixed;inset:var(--sb-top,var(--nav-h)) 0 0 0;z-index:var(--z-dialog);background:var(--canvas);padding:var(--s6) var(--gutter);overflow:auto}
+  .sitebar.js-menu.open .sb-main{flex-direction:column;align-items:stretch}
+  .sitebar.js-menu.open .sb-main a{font-family:var(--display);font-size:1.75rem;min-height:56px;width:100%;border-bottom:1px solid var(--hairline)}
+  .sitebar.js-menu.open .sb-cta{flex-direction:column;align-items:stretch}
+  .sitebar.js-menu.open .sb-btn{width:100%;min-height:48px;font-size:var(--t-label)}
+  html.menu-open{overflow:hidden}
+  .sitebar:not(.js-menu) .sb-nav{flex-basis:100%}
+}
+
+/* ---------- the route strip: a soft rail under the site bar, pinned once the site bar has scrolled away ---------- */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:var(--z-bar);background:var(--surface-soft);border-bottom:1px solid var(--hairline)}
 .bar-in{max-width:var(--sheet);margin-inline:auto;padding-inline:var(--gutter);height:var(--bar-h);display:grid;
   grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--s5)}
-.bar-home{font-family:var(--display);font-weight:500;font-size:1.125rem;color:var(--ink);text-decoration:none;white-space:nowrap}
+.bar-home{font-family:var(--display);font-weight:500;font-size:1.0625rem;color:var(--ink);text-decoration:none;white-space:nowrap}
 .bar-route{position:relative;height:28px;display:flex;align-items:center;justify-content:space-between;min-width:0}
 .bar-route .track,.bar-route .fill{position:absolute;left:12px;right:12px;top:50%;height:2px;margin-top:-1px;background:var(--hairline);border-radius:var(--r-full)}
 .bar-route .fill{background:var(--ink);transform-origin:left center;transform:scaleX(0)}
 .bar-route a{position:relative;z-index:1;display:grid;place-items:center;width:24px;height:28px;text-decoration:none}
-.bar-route a i{display:block;width:11px;height:11px;border-radius:50%;background:var(--canvas);border:2.5px solid var(--c);transition:transform .25s var(--ease-out),background-color .25s}
+.bar-route a i{display:block;width:11px;height:11px;border-radius:50%;background:var(--surface-soft);border:2.5px solid var(--c);transition:transform .25s var(--ease-out),background-color .25s}
 .bar-route a.done i{background:var(--c)}
-.bar-route a.now i{transform:scale(1.45);background:var(--c);box-shadow:0 0 0 2px var(--canvas),0 0 0 3.5px var(--ink)}
+.bar-route a.now i{transform:scale(1.45);background:var(--c);box-shadow:0 0 0 2px var(--surface-soft),0 0 0 3.5px var(--ink)}
 .bar-where{font-size:var(--t-cap);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:22rem;color:var(--muted)}
 .bar-where b{font-weight:700;color:var(--ink);margin-right:6px}
 @media (max-width:860px){
