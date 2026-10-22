@@ -107,6 +107,20 @@ function openers(){
   });
 }
 
+// ---------- the site's sections: below 900px they fold behind Menu ----------
+{
+  const bar = document.getElementById('sitebar'), btn = document.getElementById('sb-menu');
+  const set = open => {
+    if (open) bar.style.setProperty('--sb-top', Math.max(0, bar.getBoundingClientRect().bottom) + 'px');
+    bar.classList.toggle('open', open); btn.setAttribute('aria-expanded', String(open)); btn.textContent = open ? 'Close' : 'Menu';
+    document.documentElement.classList.toggle('menu-open', open);
+  };
+  btn.hidden = false; bar.classList.add('js-menu');
+  btn.addEventListener('click', () => set(!bar.classList.contains('open')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && bar.classList.contains('open')){ set(false); btn.focus(); } });
+  matchMedia('(min-width: 900px)').addEventListener('change', e => { if (e.matches) set(false); });
+}
+
 // ---------- where am I: the route strip ----------
 const barFill = document.getElementById('bar-fill'), where = document.getElementById('where');
 const barLinks = [...barRoute.querySelectorAll('a')], secs = SCN.map(r => r.sec);

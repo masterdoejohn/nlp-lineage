@@ -105,8 +105,9 @@ The tour uses the same tokens, type and states as the reference site. A working 
 
 ## Components
 
-- **Route strip (the top bar):**
-  - 64px, white and pinned, with a hairline below.
+- **Site bar:** the same top bar as every other page (name, the five sections, Search, and Guided tour marked as the current page), with the same Menu sheet below 900px. It scrolls away with the page; the route strip below it then pins to the top.
+- **Route strip:**
+  - 56px, a soft grey rail with a hairline below, pinned once the site bar has scrolled away.
   - Fourteen stop dots in their chapters' thread colours on a grey track. An ink fill follows the scroll between stops.
   - Passed stops are filled; the current stop is enlarged and ringed.
   - It also shows "N of 14" and the chapter title.
